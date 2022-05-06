@@ -1,9 +1,10 @@
 import React from "react";
-import {HStack, Stack, Box, Center, Flex, Spacer, Wrap, WrapItem} from '@chakra-ui/react'
+import {HStack, Stack, Box, Center, Flex, Spacer, Wrap, WrapItem, VStack} from '@chakra-ui/react'
 import { Routes, Route, Link } from 'react-router-dom'
 import TheLoai from "../../pages/TheLoai";
 import Home from "../../pages/Home";
-import Films from "../../pages/Films";
+import FilmAll from "../../pages/FilmAll";
+import FilmHome from "../../pages/FilmHome";
 
 const Navbar = () => {
     return(
@@ -55,14 +56,16 @@ const Navbar = () => {
                         </Center>
                     </Wrap>
             </Center>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="phim" element={<Films />} />
-                <Route path="TheLoai" element={<TheLoai />} />
-                <Route path="Ve" element={<TheLoai />} />
-                <Route path="TuyenDung" element={<TheLoai />} />
-                <Route path="tintuc" element={<TheLoai />} />
-            </Routes>
+            <Box h='full'>
+                <Routes>
+                    <Route path="/" element={<FilmHome />} />
+                    <Route path="phim" element={<FilmAll />} />
+                    <Route path="TheLoai" element={<TheLoai />} />
+                    <Route path="Ve" element={<TheLoai />} />
+                    <Route path="TuyenDung" element={<TheLoai />} />
+                    <Route path="tintuc" element={<TheLoai />} />
+                </Routes>
+            </Box>
         </Stack>
     )
 }

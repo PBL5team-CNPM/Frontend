@@ -1,23 +1,21 @@
 
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { useColorMode, IconButton } from '@chakra-ui/react';
-import { SunIcon, MoonIcon} from '@chakra-ui/icons'
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import Header from "./components/Header";
-import SwitchDarkMode from "./components/SwitchDarkMode";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import './App.css';
 
 function App() {
   return (
-    <div className="">
+    <Box fontFamily='Poppins'>
       <Header/>
+      <Box>
       <Navbar/>
-      <div>
-      </div>
+      </Box>
       <Footer/>
-    </div>
+    </Box>
   );
 }
 
