@@ -1,6 +1,5 @@
 import React from "react";
 import { 
-    Container, 
     Box, 
     HStack,
     Spacer,
@@ -13,7 +12,7 @@ import { FaFacebook, FaTwitter, FaGithub } from 'react-icons/fa'
 
 const Footer = () => {
     return(
-        <HStack as='footer' bgColor='#00051D' h='108px'>
+        <HStack as='footer' bgColor='#00051D' h='70px'>
             <Box color='white'>
                 <Box ml='164px' fontSize='24px'>
                     <Link>
