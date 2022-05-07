@@ -5,6 +5,7 @@ import TheLoai from "../../pages/TheLoai";
 import Home from "../../pages/Home";
 import FilmAll from "../../pages/FilmAll";
 import FilmHome from "../../pages/FilmHome";
+import Showtimes from "../Showtimes";
 
 const Navbar = () => {
     return(
@@ -61,7 +62,7 @@ const Navbar = () => {
                     <Route path="/" element={<FilmHome />} />
                     <Route path="phim" element={<FilmAll />} />
                     <Route path="TheLoai" element={<TheLoai />} />
-                    <Route path="Ve" element={<TheLoai />} />
+                    <Route path="Ve" element={<Showtimes />} />
                     <Route path="TuyenDung" element={<TheLoai />} />
                     <Route path="tintuc" element={<TheLoai />} />
                 </Routes>
