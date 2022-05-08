@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Button,  Input, Link, Radio, RadioGroup, Stack, Text} from '@chakra-ui/react'
+import { Box, Button, Input, Radio, RadioGroup, Stack, Text} from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 function SignupForm() {
         const [value, setValue] = React.useState('1')
@@ -8,7 +9,7 @@ function SignupForm() {
           marginLeft='80px'
           padding='10px'>
             <Text color='white' fontWeight='bold' fontSize='3xl'
-           textAlign='center' marginTop='20px'
+            textAlign='center' marginTop='20px'
             >SIGN UP</Text>
             <Box display='flex' marginTop='20px' marginLeft='60px'>
             <Text color='white'>Username</Text>
@@ -122,7 +123,11 @@ function SignupForm() {
             margin='40px 0px 20px 114px'
           >Sign up</Button>
          <Text color='white' textAlign='center'>Already have an account?
-         <span> <Link color="#42C2FF">Login!</Link></span></Text>
+         <span > <Link to='/login' >
+            <Button  color='#42C2FF' variant='link'>
+                      Login!
+                 </Button>
+           </Link></span></Text>
         </Box>
         );
 }

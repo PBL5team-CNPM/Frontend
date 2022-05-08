@@ -1,16 +1,16 @@
 import React from 'react';
-import LoginForm from '../../components/LoginForm';
+import SignupForm from '../../components/SignupForm';
 import { Box, Center, Flex, Heading, Image, Text} from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 
-function Login() {
+function Signup() {
         return (
             <Box bgColor='#1F1D36' w='100%' h='675px' 
-                 display='flex'>
+                display='flex'>
                 <Box  w='50%' h='675px'
-                    > 
+                    >
                     <Link to='/'>
-                     <Flex marginLeft='90px'>  
+                    <Flex marginLeft='90px'>  
                         <Box paddingTop='10px'>
                             <Image
                                 borderRadius='full'
@@ -28,7 +28,7 @@ function Login() {
                     </Flex>
                     </Link>
                     <Image src={require('../../imgs/img1.png')} h='250px' w='690px'
-                      margin='10px 0px 0px 90px' />
+                        margin='10px 0px 0px 90px' />
                     <Text marginLeft='90px' color='white' fontWeight='1000' fontSize='36px'
                     >Watch movies with friends and family.</Text> <br></br><br></br>
                     <Heading marginLeft='90px' color='white' size='3xl'>
@@ -39,16 +39,15 @@ function Login() {
                 </Box>
 
                 <Box  w='50%' h='675px'>
-                    <LoginForm/>
+                    <SignupForm/>
                 </Box>
-              
             </Box>
         );
 }
 
 
-Login.propTypes = {
+Signup.propTypes = {
 
 };
 
-export default Login;
+export default Signup;

@@ -1,5 +1,6 @@
-import { Box, Button, Center, Flex, Heading, HStack, Image, Spacer, Text, Link } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Heading, HStack, Image, Spacer, Text } from '@chakra-ui/react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Welcome=() =>( 
      <Box>
@@ -28,13 +29,17 @@ const Welcome=() =>(
             <Box w='300px' color='white' fontFamily='Poppins' fontSize='20px' paddingTop='20px'>
                 <Flex>
                     <Box w='120px'>
-                        <Link  to="/">
+                        <Link to="/home">
+                        <Button  colorScheme='white' variant='link'>
                             Explore
+                       </Button>
                         </Link>
                     </Box>
                     <Box>
-                        <Link to="/Login">
+                        <Link to="/login">
+                        <Button  colorScheme='white' variant='link'>
                             Join
+                       </Button>
                         </Link>
                     </Box>
                 </Flex>
@@ -87,9 +92,11 @@ const Welcome=() =>(
                 <Text color='white' fontSize='xl'>ENTER THE FANTASY WORLD</Text>
                 <Text color='white' fontSize='xl'>TOUCH THE WORLD OF DREAMS</Text>
                 <br></br>
-                <Button bgColor='#42C2FF' color='white' w='140px' h='60px'
-                   fontSize='2xl'>
+                <Link to='/login'>
+                   <Button bgColor='#42C2FF' color='white' w='140px' h='60px'
+                   fontSize='2xl'  >
                     Join</Button>
+                </Link>
 
             </Box>
            </Box>
