@@ -5,15 +5,17 @@ import { Box, Flex, Stack } from '@chakra-ui/react';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
 import Navbar from "./components/Navbar";
 import './App.css';
 
 function App() {
   return (
     <Box fontFamily='Poppins'>
-      <Header/>
+      {/* <Header/> */}
       <Box>
-         <Login/>
+        <Welcome/>
+         {/* <Login/> */}
       {/* <Navbar/> */}
       </Box>
       <Footer/>
