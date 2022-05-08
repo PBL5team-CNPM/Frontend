@@ -16,7 +16,7 @@ const Header = () => {
     return(
         <HStack bgColor='#00051D' h='80px'>
             <Box w='500px' h='80px' ml='164px'>
-                <a href="/" >
+                <Link to="/" >
                     <Flex>  
                         <Box>
                             <Image
@@ -33,7 +33,7 @@ const Header = () => {
                         </Center>
                         
                     </Flex>
-                </a>
+                </Link>
             </Box>
             <Spacer/>
             <Box color='white' fontFamily='Poppins' fontSize='36px'>
