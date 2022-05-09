@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Center, Flex, HStack, Image,Text, VStack} from '@chakra-ui/react'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet} from 'react-router-dom';
 
 function Dashboard() {
         return (
@@ -12,7 +12,7 @@ function Dashboard() {
                             <Image
                                 borderRadius='full'
                                 boxSize='70px'
-                                src='Logo2.png'
+                                src={require('../../../imgs/Logo2.png')}
                                 alt='Logo'
                             />
                         </Box>
@@ -32,7 +32,7 @@ function Dashboard() {
                <VStack bgColor='#3D3C4D' w='380px' spacing='5'>
                   <Box w='330px' bgColor='white' h='6px' borderRadius='4px' mt='20px'></Box>
                   <Link to='revenue'>
-                    <Flex h='80px' padding='10px'  w='330px'>
+                    <Flex h='80px' padding='10px'  w='330px' >
                       <Image ml='30px' src={require('../../../imgs/revenue.png')}/>
                       <Text color='white' fontFamily='Poppins' fontSize='40px' ml='20px'
                         mt='5px'>Revenue</Text>
@@ -64,7 +64,7 @@ function Dashboard() {
                   </Link>
                </VStack>
                <Box>
-                   <Outlet/>
+                 <Outlet/>
                </Box>
            </Box>
           </Box>

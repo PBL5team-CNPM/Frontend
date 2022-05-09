@@ -43,7 +43,7 @@ function LoginForm() {
              h="50px"
              margin='20px 0px 20px 60px'
             />
-          <Link to='/admin'>
+          <Link to='/admin/revenue'>
           <Button 
             bgColor='#42C2FF'
             color='white'
