@@ -2,28 +2,25 @@
 import React from "react";
 import {
     Stack, 
-    HStack, 
-    VStack,
     Box,
-    Image,
     Heading,
     Divider,
     Flex,
-    Text,
-    Button,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
-    BreadcrumbSeparator,
+ 
     SimpleGrid,
     Center
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import Footer from "../Footer";
 
 const Showtimes = () => {
     return(
-        <Stack minH='800px' color='white' bgColor='#1F1D36' px={164} py={18} fontFamily='Poppins'>
+        <Box>
+        <Stack minH='640px' color='white' bgColor='#1F1D36' px={164} py={18} fontFamily='Poppins'>
             <Box>
                 <Heading fontSize='32px'>Thông tin phim</Heading>
                 <Divider size='' mb='24px'/>
@@ -59,11 +56,11 @@ const Showtimes = () => {
                             </Flex>
                         </Center>
                         <Box ml='84px'>
-                            <SimpleGrid columns={[2, null, 4]} spacing='20px' spacingX='84px'>
+                            <SimpleGrid columns={[2, null, 3]} spacing='20px' spacingX='84px'>
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             20:00 PM
                                         </Heading>
                                     </Box>
@@ -72,7 +69,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             18:30 PM
                                         </Heading>
                                     </Box>
@@ -81,7 +78,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             21:30 PM
                                         </Heading>
                                     </Box>
@@ -90,7 +87,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             16:00 PM
                                         </Heading>
                                     </Box>
@@ -99,7 +96,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             15:00 PM
                                         </Heading>
                                     </Box>
@@ -108,7 +105,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             22:30 PM
                                         </Heading>
                                     </Box>
@@ -137,11 +134,11 @@ const Showtimes = () => {
                             </Flex>
                         </Center>
                         <Box ml='84px'>
-                            <SimpleGrid columns={[2, null, 4]} spacing='20px' spacingX='84px'>
+                            <SimpleGrid columns={[2, null, 3]} spacing='20px' spacingX='84px'>
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             20:00 PM
                                         </Heading>
                                     </Box>
@@ -150,7 +147,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             18:30 PM
                                         </Heading>
                                     </Box>
@@ -159,7 +156,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             21:30 PM
                                         </Heading>
                                     </Box>
@@ -168,7 +165,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             16:00 PM
                                         </Heading>
                                     </Box>
@@ -177,7 +174,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             15:00 PM
                                         </Heading>
                                     </Box>
@@ -186,7 +183,7 @@ const Showtimes = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                 <Flex>
                                     <Box>
-                                        <Heading>
+                                        <Heading fontSize='36px'>
                                             22:30 PM
                                         </Heading>
                                     </Box>
@@ -198,6 +195,8 @@ const Showtimes = () => {
                 </Box>
             </Box>
         </Stack>
+        <Footer/>
+        </Box>
     )
 }
 
