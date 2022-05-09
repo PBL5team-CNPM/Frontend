@@ -2,15 +2,19 @@
 import React from "react";
 import { Routes, Route} from "react-router-dom";
 import { Box } from '@chakra-ui/react';
-import Footer from "./components/Footer";
-import Login from "./pages/Login";
-import Welcome from "./pages/Welcome";
-import Signup from "./pages/Signup";
-import Navbar from "./components/Navbar";
-import FilmHome from "./pages/FilmHome";
-import FilmAll from "./pages/FilmAll";
-import TheLoai from "./pages/TheLoai";
-import Showtimes from "./components/Showtimes";
+import Login from "./pages/website/Login";
+import Welcome from "./pages/website/Welcome";
+import Signup from "./pages/website/Signup";
+import Navbar from "./components/website/Navbar";
+import FilmHome from "./pages/website/FilmHome";
+import FilmAll from "./pages/website/FilmAll";
+import TheLoai from "./pages/website/TheLoai";
+import Showtimes from "./components/website/Showtimes";
+import Dashboard from "./pages/admin/Dashboard";
+import Revenue from "./pages/admin/Revenue";
+import Film from "./pages/admin/Film";
+import Category from "./pages/admin/Category";
+import Users from "./pages/admin/Users";
 import './App.css';
 
 function App() {
@@ -22,6 +26,12 @@ function App() {
           <Route path="/" element={<Welcome/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
+          <Route path="/admin" element={<Dashboard/>}>
+            <Route path="revenue" element={<Revenue />} />
+            <Route path="film" element={<Film/>} />
+            <Route path="category" element={<Category/>} />
+            <Route path="users" element={<Users />} />
+          </Route>
           <Route path="/home" element={<Navbar/>}>
             <Route path="" element={<FilmHome />} />
             <Route path="phim" element={<FilmAll />} />
@@ -32,7 +42,6 @@ function App() {
           </Route>
         </Routes>
       </Box>
-      <Footer/>
     </Box>
   );
 }
