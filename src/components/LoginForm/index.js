@@ -54,7 +54,11 @@ function LoginForm() {
             margin='10px 0px 20px 60px'
           >Login</Button>
          <Text color='white' textAlign='center'>No account? 
-         <span> <Link to='signup' color="#42C2FF">Sign up!</Link></span></Text>
+         <span> <Link to='/signup'> 
+                  <Button  color='#42C2FF' variant='link'>
+                      Sign up!
+                 </Button>
+         </Link></span></Text>
         </Box>
         );
 }

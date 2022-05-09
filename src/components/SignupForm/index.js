@@ -123,7 +123,11 @@ function SignupForm() {
             margin='40px 0px 20px 114px'
           >Sign up</Button>
          <Text color='white' textAlign='center'>Already have an account?
-         <span> <Link to='/' color="#42C2FF">Login!</Link></span></Text>
+         <span > <Link to='/login' >
+            <Button  color='#42C2FF' variant='link'>
+                      Login!
+                 </Button>
+           </Link></span></Text>
         </Box>
         );
 }

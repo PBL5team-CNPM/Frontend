@@ -1,10 +1,10 @@
 
 import React from "react";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
-import { Box, Flex, Stack } from '@chakra-ui/react';
-import Header from "./components/Header";
+import { Routes, Route} from "react-router-dom";
+import { Box } from '@chakra-ui/react';
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import FilmHome from "./pages/FilmHome";
@@ -16,13 +16,13 @@ import './App.css';
 function App() {
   return (
     <Box fontFamily='Poppins'>
-      <Header/>
+   
       <Box>
-        {/* <Login/> */}
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="signup" element={<Signup/>} />
-          <Route path="home" element={<Navbar/>}>
+          <Route path="/" element={<Welcome/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/signup" element={<Signup/>} />
+          <Route path="/home" element={<Navbar/>}>
             <Route path="" element={<FilmHome />} />
             <Route path="phim" element={<FilmAll />} />
             <Route path="TheLoai" element={<TheLoai />} />

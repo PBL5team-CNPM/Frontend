@@ -1,15 +1,12 @@
 import React from "react";
-import {HStack, Stack, Box, Center, Flex, Spacer, Wrap, WrapItem, VStack} from '@chakra-ui/react'
-import { Routes, Route, Link, Outlet } from 'react-router-dom'
-import TheLoai from "../../pages/TheLoai";
-import Home from "../../pages/Home";
-import FilmAll from "../../pages/FilmAll";
-import FilmHome from "../../pages/FilmHome";
-import Showtimes from "../Showtimes";
+import { Stack, Box, Center,  Wrap} from '@chakra-ui/react'
+import { Link, Outlet } from 'react-router-dom'
+import Header from "../Header";
 
 const Navbar = () => {
     return(
         <Stack>
+              <Header/>
             <Center bgColor='' h='70px'>
                     <Wrap fontSize='24px' fontFamily='Poppins' align='center'>
                         <Center w='196px'>
