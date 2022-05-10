@@ -17,7 +17,7 @@ function Signup() {
                             <Image
                                 borderRadius='full'
                                 boxSize='80px'
-                                src='Logo.png'
+                                src={require('../../../imgs/Logo.png')}
                                 alt='Logo'
                             />
                         </Box>
