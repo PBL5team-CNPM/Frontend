@@ -16,9 +16,11 @@ import Film from "./pages/admin/Film";
 import Category from "./pages/admin/Category";
 import Users from "./pages/admin/Users";
 import './App.css';
-import EditProfile from "./components/EditProfile";
-import MyTickets from "./components/MyTickets";
-import ChangePassword from "./components/ChangePassword";
+import Profile from "./pages/website/Profile";
+import ViewProfile from "./components/website/ViewProfile";
+import EditProfile from "./components/website/EditProfile";
+import MyTickets from "./components/website/MyTickets";
+import ChangePassword from "./components/website/ChangePassword";
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function App() {
             <Route path="tintuc" element={<TheLoai />} />
           </Route>
           <Route path="/profile" element={<Profile/>}>
+            <Route path="viewprofile" element={<ViewProfile/>} />
             <Route path="editprofile" element={<EditProfile />} />
             <Route path="mytickets" element={<MyTickets />} />
             <Route path="changepassword" element={<ChangePassword />} />

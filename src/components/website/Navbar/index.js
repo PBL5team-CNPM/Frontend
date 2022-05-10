@@ -5,52 +5,34 @@ import Header from "../Header";
 
 const Navbar = () => {
     return(
-        <Stack>
-              <Header/>
-            <Center bgColor='' h='30px'>
+        <Box>
+
+          <Header/>
+        <Stack bgColor='#1F1D36'>
+            <Center bgColor='white' h='50px'>
                     <Wrap fontSize='24px' fontFamily='Poppins' align='center'>
                         <Center w='196px'>
-                            <Link to="">HOME</Link>
+                            <Link to="">TRANG CHỦ</Link>
                         </Center>
-                        <Box fontSize='30px' fontWeight='bold'>
-                            <Center>
-                                |
-                            </Center>
-                        </Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="phim">MOVIE</Link>
+                            <Link to="phim">PHIM</Link>
                         </Center>
-                        <Box fontSize='30px' fontWeight='bold'>
-                            <Center>
-                                |
-                            </Center>
-                        </Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="theloai">CATEGORY</Link>
+                            <Link to="theloai">THỂ LOẠI</Link>
                         </Center>
-                        <Box fontSize='30px' fontWeight='bold'>
-                            <Center>
-                                |
-                            </Center>
-                        </Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="ve">MY TICKET</Link>
+                            <Link to="ve">VÉ CỦA TÔI</Link>
                         </Center>
-                        <Box fontSize='30px' fontWeight='bold'>
-                            <Center>
-                                |
-                            </Center>
-                        </Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="tuyendung">RECRUIT</Link>
+                            <Link to="tuyendung">TUYỂN DỤNG</Link>
                         </Center>
-                        <Box fontSize='30px' fontWeight='bold'>
-                            <Center>
-                                |
-                            </Center>
-                        </Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="tintuc">NEWS</Link>
+                            <Link to="tintuc">TIN MỚI</Link>
                         </Center>
                     </Wrap>
             </Center>
@@ -58,6 +40,7 @@ const Navbar = () => {
                 <Outlet />
             </Box>
         </Stack>
+        </Box>
     )
 }
 

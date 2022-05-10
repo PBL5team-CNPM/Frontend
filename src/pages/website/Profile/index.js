@@ -1,34 +1,86 @@
 import React from 'react';
-import { Box, Center, Flex, HStack, Image,Text, VStack} from '@chakra-ui/react'
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Box, Button, Center, Flex, HStack, Image,Text} from '@chakra-ui/react'
 import { Outlet, Link } from "react-router-dom";
+import Footer from '../../../components/website/Footer';
 
 
 function Profile() {
         return (
-            <Box bgColor='#1F1D36' w='100%' h='675px' 
-                 display='flex'>
-                 <Box bgColor='black' w='250px' h='450px' 
-                 boxShadow='10px 10px 10px #7c76ad'
-                 margin='100px 0px 0px 80px' borderRadius='10px'
-                 padding='10px'>
-                 <Image src={require('../../imgs/user1.png')} h='200px' w='125' marginTop='20px' marginLeft='30px' align='center'/>
-                 <Link to='EditProfile'>
-                   <Text color='white'marginTop='20px' align='center'>Edit Profile</Text>
-                 </Link>  
-                 <Link to='MyTickets'>
-                   <Text color='white'marginTop='20px' align='center'>My Tickets</Text>
-                 </Link>  
-                 <Link to='ChangePassword'>
-                   <Text color='white'marginTop='20px' align='center'>Change Password</Text>
-                 </Link>  
+          <Box>
+              <HStack bgColor='#00051D' h='80px' padding='10px'>
+                 <Box w='500px' h='75px' ml='50px'>
+                   <Link to='/home'>
+                    <Flex>  
+                        <Box>
+                            <Image
+                                borderRadius='full'
+                                boxSize='80px'
+                                src={require('../../../imgs/Logo.png')}
+                                alt='Logo'
+                            />
+                        </Box>
+                        <Center h ='75px'>
+                            <Box ml='11px' color='white' fontFamily='Poppins' fontSize='36px' fontWeight='bold.400'>
+                                CINEMA PRO MAX
+                            </Box>
+                        </Center>
+                     </Flex>
+                     </Link>
                  </Box>
+            <Link to="/">
+               <Button ml='820px' color='white' variant='link'>
+                    Đăng xuất
+               </Button>
+            </Link>
+
+           </HStack>
+            <Box bgColor='#1F1D36' w='100%' h='655px' 
+                 display='flex'>
+                 <Box bgColor='#00051D' w='280px' h='500px' 
+                 boxShadow='10px 10px 10px #7c76ad'
+                 margin='70px 0px 0px 160px' borderRadius='10px'
+                 >
+                <Box w='280px' h='250px'>
+                  <Image border='2px' borderColor='#42C2FF' borderRadius='50%'
+                   src={require('../../../imgs/user1.png')} h='150px' w='150px' marginTop='30px'
+                   marginLeft='65px'/> 
+                   <Text color='white' fontFamily='Poppins' fontSize='16px' align='center' mt='10px'
+                     textDecoration='underline'>
+                     userabcxyz@gmail.com</Text>
+                    <Text color='white' fontFamily='Poppins' fontSize='20px' align='center'
+                     >
+                     Tên tài khoản</Text>
+                </Box>
+                <hr/>
+                  <Box w='280px' h='250px' fontFamily='Poppins'>
+                    <Link to='viewprofile'>
+                      <Text color='white' align='center' fontSize='24px'
+                        mt='9px' mb='9px'>Xem thông tin</Text>
+                    </Link> 
+                    <hr/>
+                    <Link to='editprofile'>
+                      <Text color='white' align='center' fontSize='24px'
+                        mt='9px' mb='9px'>Sửa thông tin</Text>
+                    </Link>  
+                    <hr/>
+                    <Link to='MyTickets'>
+                       <Text color='white' align='center' fontSize='24px'
+                        mt='9px' mb='9px'>Vé của tôi</Text>
+                     </Link>  
+                     <hr/>
+                     <Link to='ChangePassword'>
+                       <Text color='white' align='center' fontSize='24px'
+                        mt='9px' >Đổi mật khẩu</Text>
+                    </Link>  
+                  </Box>
+                </Box>
 
                 <Box>
                     <Outlet/>
                 </Box>
               
+            </Box>
+             <Footer/>
             </Box>
         );
 }

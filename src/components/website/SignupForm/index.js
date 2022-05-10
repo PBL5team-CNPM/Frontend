@@ -10,12 +10,12 @@ function SignupForm() {
           padding='10px'>
             <Text color='white' fontWeight='bold' fontSize='3xl'
             textAlign='center' marginTop='20px'
-            >SIGN UP</Text>
+            >ĐĂNG KÝ</Text>
             <Box display='flex' marginTop='20px' marginLeft='60px'>
-            <Text color='white'>Username</Text>
+            <Text color='white'>Tên tài khoản</Text>
             <Input
                type='text'
-               placeholder='Enter username'
+               placeholder='Nhập tên tài khoản'
                color="white"
                outline="2px"
                focusBorderColor='white'
@@ -25,14 +25,14 @@ function SignupForm() {
                border="2px"
                w="370px"
                h="50px"
-               margin='5px 0px 0px 90px'
+               margin='5px 0px 0px 60px'
             /></Box>
 
             <Box display='flex' marginTop='20px' marginLeft='60px'>
-            <Text color='white'>Full name</Text>
+            <Text color='white'>Họ và tên</Text>
             <Input
                type='text'
-               placeholder='Enter full name'
+               placeholder='Nhập họ và tên'
                color="white"
                outline="2px"
                focusBorderColor='white'
@@ -49,7 +49,7 @@ function SignupForm() {
             <Text color='white'>Email</Text>
             <Input
                type='email'
-               placeholder='Enter email'
+               placeholder='Nhập Email'
                color="white"
                outline="2px"
                focusBorderColor='white'
@@ -63,10 +63,10 @@ function SignupForm() {
             /></Box>
 
            <Box display='flex'  marginLeft='60px' marginTop='20px'>
-           <Text color='white' >Password</Text>
+           <Text color='white' >Mật khẩu</Text>
            <Input 
              type='password'
-             placeholder='Enter password'
+             placeholder='Nhập mật khẩu'
              color="white"
              outline="2px"
              focusBorderColor='white'
@@ -81,11 +81,11 @@ function SignupForm() {
             </Box>
 
             <Box display='flex'  marginLeft='60px' marginTop='20px'>
-           <Text color='white' >Confirm Password</Text>
+           <Text color='white' >Xác nhận mật khẩu</Text>
 
            <Input 
             type='password'
-             placeholder='Enter password'
+             placeholder='Nhập mật khẩu xác nhận'
              color="white"
              outline="2px"
              focusBorderColor='white'
@@ -95,7 +95,7 @@ function SignupForm() {
              borderRadius="10px"
              w="370px"
              h="50px"
-             margin='5px 0px 0px 22px'
+             margin='5px 0px 0px 18px'
             />
            
 
@@ -103,16 +103,18 @@ function SignupForm() {
             </Box>
 
             <Box display='flex'  marginLeft='60px' marginTop='20px'>
-           <Text color='white' >Gender</Text>
+           <Text color='white' >Giới tính</Text>
              <RadioGroup onChange={setValue} value={value}
                       margin='5px 0px 0px 110px' color='white'>
                <Stack direction='row'>
-                <Radio value='1' marginRight='70px' colorScheme='#42C2FF'>Male</Radio>
-                <Radio value='2' colorScheme='#42C2FF'>Female</Radio>
+                <Radio value='1' marginRight='70px' colorScheme='#42C2FF'
+                  borderColor='#42C2FF'>Nam</Radio>
+                <Radio value='2' colorScheme='#42C2FF'  
+                borderColor='#42C2FF'>Nữ</Radio>
                </Stack>
               </RadioGroup>
             </Box>
-      
+        <Link to='/profile/viewprofile'>
           <Button 
             bgColor='#42C2FF'
             color='white'
@@ -121,11 +123,11 @@ function SignupForm() {
             w="460px"
             h="50px"
             margin='40px 0px 20px 114px'
-          >Sign up</Button>
-         <Text color='white' textAlign='center'>Already have an account?
+          >Đăng ký</Button></Link>
+         <Text color='white' textAlign='center'>Đã có tài khoản?
          <span > <Link to='/login' >
             <Button  color='#42C2FF' variant='link'>
-                      Login!
+                      Đăng nhập!
                  </Button>
            </Link></span></Text>
         </Box>
