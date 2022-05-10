@@ -16,6 +16,9 @@ import Film from "./pages/admin/Film";
 import Category from "./pages/admin/Category";
 import Users from "./pages/admin/Users";
 import './App.css';
+import EditProfile from "./components/EditProfile";
+import MyTickets from "./components/MyTickets";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   return (
@@ -39,6 +42,11 @@ function App() {
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<TheLoai />} />
             <Route path="tintuc" element={<TheLoai />} />
+          </Route>
+          <Route path="/profile" element={<Profile/>}>
+            <Route path="editprofile" element={<EditProfile />} />
+            <Route path="mytickets" element={<MyTickets />} />
+            <Route path="changepassword" element={<ChangePassword />} />
           </Route>
         </Routes>
       </Box>
