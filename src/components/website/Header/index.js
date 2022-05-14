@@ -6,17 +6,16 @@ import {
     Image, 
     Flex, 
     Center, 
-    Spacer,
     Button,
 } from '@chakra-ui/react'
 
 import SearchBar from "../SearchBar";
-import SwitchDarkMode from "../SwitchDarkMode";
+
 
 const Header = () => {
     return(
-        <HStack bgColor='#00051D' h='80px'>
-            <Box w='500px' h='80px' ml='164px'>
+        <HStack bgColor='#00051D' h='80px' spacing='6'>
+            <Box w='500px' h='80px' ml='50px'>
                 <Link to="/" >
                     <Flex>  
                         <Box>
@@ -36,31 +35,28 @@ const Header = () => {
                     </Flex>
                 </Link>
             </Box>
-            <Spacer/>
+          
             <Box color='white' fontFamily='Poppins' fontSize='36px'>
                 <SearchBar/>    
             </Box>
-            <Spacer/>
-            <Box w='170px' color='white' fontFamily='Poppins' fontSize='20px'>
-                <Flex>
-                    <Box w='80px'>
+
+            <Box w='170px' color='white' fontFamily='Poppins' fontSize='20px' >
+                <Flex ml='60px'>
+                    <Box w='80px' mr='60px'>
                        <Link to="/login">
                           <Button  colorScheme='white' variant='link'>
-                            Login
+                            Đăng nhập
                          </Button>
                         </Link>
                     </Box>
-                    <Box>
+                    <Box >
                        <Link to="/">
                         <Button colorScheme='white' variant='link'>
-                            Logout
+                            Đăng xuất
                        </Button>
                         </Link>
                     </Box>
                 </Flex>
-            </Box>
-            <Box w='80px'>
-                <SwitchDarkMode/>
             </Box>
         </HStack>
     );

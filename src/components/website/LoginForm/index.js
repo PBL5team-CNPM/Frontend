@@ -10,13 +10,13 @@ function LoginForm() {
           padding='10px'>
             <Text color='white' fontWeight='bold' fontSize='3xl'
            textAlign='center' marginTop='20px'
-            >LOGIN</Text>
+            >ĐĂNG NHẬP</Text>
 
-            <Text color='white'marginTop='20px' marginLeft='60px'>Username</Text>
+            <Text color='white'marginTop='20px' marginLeft='60px'>Tên tài khoản</Text>
 
             <Input
                type='text'
-               placeholder='Enter username'
+               placeholder='Nhập tên tài khoản'
                color="white"
                outline={"2px"}
                focusBorderColor='white'
@@ -28,10 +28,10 @@ function LoginForm() {
                h="50px"
                margin='20px 0px 20px 60px'
             />
-           <Text color='white' marginLeft='60px'>Password</Text>
+           <Text color='white' marginLeft='60px'>Mật khẩu</Text>
            <Input 
              type='password'
-             placeholder='Enter password'
+             placeholder='Nhập mật khẩu'
              color="white"
              outline="2px"
              focusBorderColor='white'
@@ -52,13 +52,13 @@ function LoginForm() {
             w="460px"
             h="50px"
             margin='10px 0px 20px 60px'
-          >Login</Button>
+          >Đăng nhập</Button>
           </Link>
 
-         <Text color='white' textAlign='center'>No account? 
+         <Text color='white' textAlign='center'>Chưa có tài khoản? 
          <span> <Link to='/signup'> 
                   <Button  color='#42C2FF' variant='link'>
-                      Sign up!
+                      Đăng ký!
                  </Button>
          </Link></span></Text>
         </Box>
@@ -66,8 +66,6 @@ function LoginForm() {
 }
 
 
-LoginForm.propTypes = {
 
-};
 
 export default LoginForm;

@@ -35,7 +35,7 @@ function Dashboard() {
                     <Flex h='80px' padding='10px'  w='330px' >
                       <Image ml='30px' src={require('../../../imgs/revenue.png')}/>
                       <Text color='white' fontFamily='Poppins' fontSize='40px' ml='20px'
-                        mt='5px'>Revenue</Text>
+                        mt='5px'>Doanh thu</Text>
                     </Flex>
                   </Link>
 
@@ -43,7 +43,7 @@ function Dashboard() {
                     <Flex h='80px' padding='10px'  w='330px'>
                       <Image ml='30px' src={require('../../../imgs/film.png')}/>
                       <Text color='white' fontFamily='Poppins' fontSize='40px' ml='20px'
-                        mt='5px'>Movie</Text>
+                        mt='5px'>Phim</Text>
                     </Flex>
                   </Link>
 
@@ -51,7 +51,7 @@ function Dashboard() {
                     <Flex h='80px' padding='10px' w='330px'>
                       <Image ml='30px' src={require('../../../imgs/category.png')}/>
                       <Text color='white' fontFamily='Poppins' fontSize='40px' ml='20px'
-                        mt='5px'>Category</Text>
+                        mt='5px'>Thể loại</Text>
                     </Flex>
                   </Link>
 
@@ -59,7 +59,7 @@ function Dashboard() {
                     <Flex h='80px' padding='10px'  w='330px'>
                       <Image ml='30px' src={require('../../../imgs/user.png')}/>
                       <Text color='white' fontFamily='Poppins' fontSize='40px' ml='20px'
-                        mt='5px'>Users</Text>
+                        mt='5px'>Tài khoản</Text>
                     </Flex>
                   </Link>
                </VStack>
