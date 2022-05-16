@@ -14,23 +14,23 @@ const Navbar = () => {
                         <Center w='196px'>
                             <Link to="">TRANG CHỦ</Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box bgColor='black' w='2px' h='70px' ></Box>
                         <Center w='196px'>
                             <Link to="phim">PHIM</Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box bgColor='black' w='2px' h='70px' ></Box>
                         <Center w='196px'>
                             <Link to="theloai">THỂ LOẠI</Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box bgColor='black' w='2px' h='70px' ></Box>
                         <Center w='196px'>
                             <Link to="ve">VÉ CỦA TÔI</Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box bgColor='black' w='2px' h='70px' ></Box>
                         <Center w='196px'>
                             <Link to="tuyendung">TUYỂN DỤNG</Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box bgColor='black' w='2px' h='70px' ></Box>
                         <Center w='196px'>
                             <Link to="tintuc">TIN MỚI</Link>
                         </Center>
