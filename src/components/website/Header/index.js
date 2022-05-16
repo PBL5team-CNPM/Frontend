@@ -50,9 +50,9 @@ const Header = () => {
                         </Link>
                     </Box>
                     <Box >
-                       <Link to="/">
+                       <Link to="/signup">
                         <Button colorScheme='white' variant='link'>
-                            Đăng xuất
+                            Đăng ký
                        </Button>
                         </Link>
                     </Box>
