@@ -8,7 +8,7 @@ const Navbar = () => {
         <Box>
 
           <Header/>
-        <Stack bgColor='#1F1D36'>
+        <Stack bgColor=''>
             <Center bgColor='white' h='50px'>
                     <Wrap fontSize='24px' fontFamily='Poppins' align='center'>
                         <Center w='196px'>

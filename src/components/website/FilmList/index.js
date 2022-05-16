@@ -6,15 +6,15 @@ import {
 } from '@chakra-ui/react'
 import Film from "./Film"
 
-const FilmList = () => {
+const FilmList = (props) => {
+    const {data} = props
+    const List = data.map((item)=>(
+        <Film data = {item} key = {data.id} />
+    ))
+
     return(
         <SimpleGrid columns={[2, null, 3]} spacing='70px'>
-            <Film/>
-            <Film/>
-            <Film/>
-            <Film/>
-            <Film/>
-            <Film/>
+            {List}
         </SimpleGrid>
     )
 }
