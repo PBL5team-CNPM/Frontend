@@ -71,20 +71,11 @@ function EditProfile() {
             color='white'
             size='lg'
             borderRadius="10px"
-            w="145px"
+            w="245px"
             h="35px"
-            margin='20px 0px 20px 60px'
+            margin='20px 0px 20px 92px'
           >Lưu</Button>
 
-          <Button 
-            bgColor='#42C2FF'
-            color='white'
-            size='lg'
-            borderRadius="10px"
-            w="145px"
-            h="35px"
-            margin='20px 0px 20px 20px'
-          >Hủy</Button>
         </Box>
         );
 }

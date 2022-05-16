@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Input, Radio, RadioGroup, Stack, Text} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import {FaEye, FaEyeSlash} from 'react-icons/fa';
 
 function SignupForm() {
-        const [value, setValue] = React.useState('1')
+        const [value, setValue] = React.useState('1');
+        const [type1, setType1]=useState('password');
+        const [type2, setType2]=useState('password');
+        const [icon1, setIcon1]=useState(FaEyeSlash);
+        const [icon2, setIcon2]=useState(FaEyeSlash);
+        const handleToggle1=()=>{
+           if(type1==='password'){
+              setIcon1(FaEye);
+              setType1('text');
+              }
+           else{
+              setIcon1(FaEyeSlash);
+              setType1('password');
+              }
+         }
+
+         const handleToggle2=()=>{
+          if(type2==='password'){
+             setIcon2(FaEye);
+             setType2('text');
+             }
+          else{
+             setIcon2(FaEyeSlash);
+             setType2('password');
+             }
+        }
         return (
           <Box bgColor='#3F4A81' w='688px' h='675px' 
           marginLeft='80px'
-          padding='10px'>
+          padding='10px' overflow='hidden'>
             <Text color='white' fontWeight='bold' fontSize='3xl'
             textAlign='center' marginTop='20px'
             >ĐĂNG KÝ</Text>
@@ -65,7 +91,7 @@ function SignupForm() {
            <Box display='flex'  marginLeft='60px' marginTop='20px'>
            <Text color='white' >Mật khẩu</Text>
            <Input 
-             type='password'
+             type={type1}
              placeholder='Nhập mật khẩu'
              color="white"
              outline="2px"
@@ -77,14 +103,15 @@ function SignupForm() {
              w="370px"
              h="50px"
              margin='5px 0px 0px 96px'
-            />
+            /> <span style={{position:'relative',
+            color:'#42C2FF', right:'30px', top:'20px'}} onClick={handleToggle1}>{icon1}</span>
             </Box>
 
             <Box display='flex'  marginLeft='60px' marginTop='20px'>
            <Text color='white' >Xác nhận mật khẩu</Text>
 
            <Input 
-            type='password'
+            type={type2}
              placeholder='Nhập mật khẩu xác nhận'
              color="white"
              outline="2px"
@@ -97,9 +124,8 @@ function SignupForm() {
              h="50px"
              margin='5px 0px 0px 18px'
             />
-           
-
-        
+           <span style={{position:'relative',
+            color:'#42C2FF', right:'30px', top:'20px'}} onClick={handleToggle2}>{icon2}</span>
             </Box>
 
             <Box display='flex'  marginLeft='60px' marginTop='20px'>
