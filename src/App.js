@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Routes, Route} from "react-router-dom";
-import { Box } from '@chakra-ui/react';
+import { Box, HStack, VStack } from '@chakra-ui/react';
 import Login from "./pages/website/Login";
 import Welcome from "./pages/website/Welcome";
 import Signup from "./pages/website/Signup";
@@ -21,6 +21,7 @@ import ViewProfile from "./components/website/ViewProfile";
 import EditProfile from "./components/website/EditProfile";
 import MyTickets from "./components/website/MyTickets";
 import ChangePassword from "./components/website/ChangePassword";
+import SeatSelect from "./pages/website/SeatSelect";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             <Route path="phim" element={<FilmAll />} />
             <Route path="TheLoai" element={<TheLoai />} />
             <Route path="Ve" element={<Showtimes />} />
-            <Route path="TuyenDung" element={<TheLoai />} />
+            <Route path="TuyenDung" element={<SeatSelect />} />
             <Route path="tintuc" element={<TheLoai />} />
           </Route>
           <Route path="/profile" element={<Profile/>}>
