@@ -29,7 +29,7 @@ function DialogAddMovie(){
         
         >
         <AlertDialogOverlay >
-          <AlertDialogContent mt='20px' bgColor='#1F1D36' border='2px' borderColor='#42C2FF' 
+          <AlertDialogContent   bgColor='#1F1D36' border='2px' borderColor='#42C2FF' 
           >
             <AlertDialogHeader fontSize='2xl' fontWeight='bold'
              color='white' textAlign='center'>
@@ -76,6 +76,18 @@ function DialogAddMovie(){
 
                 <Center>
                 <Flex mb='20px'>
+                  <Text mr='166px'>Trailer</Text>
+                  <Input w='400px' h='45px' type='url'
+                  focusBorderColor='white'
+                  border='2px'
+                  borderRadius='10px'
+                  borderColor='#42C2FF'
+                  placeholder='Nhập url'  />
+                </Flex>
+                </Center>
+
+                <Center>
+                <Flex mb='20px'>
                   <Text mr='140px'>Đạo diễn</Text>
                   <Input w='400px' h='45px' type='text' 
                   focusBorderColor='white'
@@ -100,7 +112,7 @@ function DialogAddMovie(){
 
                 <Center>
                 <Flex mb='20px'>
-                  <Text mr='140px'>Nội dung</Text>
+                  <Text mr='139px'>Nội dung</Text>
                   <Textarea w='400px'  type='text' 
                   focusBorderColor='white'
                   border='2px'

@@ -143,6 +143,7 @@ function SignupForm() {
         <Link to='/profile/viewprofile'>
           <Button 
             bgColor='#42C2FF'
+            colorScheme='blue'
             color='white'
             size='lg'
             borderRadius="10px"
