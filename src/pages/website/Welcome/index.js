@@ -94,7 +94,7 @@ const Welcome=() =>(
                 <Text color='white' fontSize='xl'>CHẠM ĐẾN THẾ GIỚI CỦA NHỮNG ƯỚC MƠ</Text>
                 <br></br>
                 <Link to='/login'>
-                   <Button bgColor='#42C2FF' color='white' w='140px' h='60px'
+                   <Button colorScheme='blue' bgColor='#42C2FF' color='white' w='140px' h='60px'
                    fontSize='xl'  >
                     Tham gia</Button>
                 </Link>

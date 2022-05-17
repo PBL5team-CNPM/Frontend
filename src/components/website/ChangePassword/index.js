@@ -59,6 +59,7 @@ function ChangePassword() {
             />
                   
           <Button 
+            colorScheme='blue'
             bgColor='#42C2FF'
             color='white'
             size='lg'

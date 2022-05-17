@@ -6,9 +6,10 @@ import { Box, Button, Heading,
     Tr,
     Th,
     Td,
-    TableContainer,
-    Image} from '@chakra-ui/react'
+    TableContainer} from '@chakra-ui/react'
+    
 import DialogAddMovie from '../DialogAddMovie';
+import ViewMovieInFo from '../ViewMovieInfo';
 
 function ShowDataMovies() {
         return (
@@ -31,7 +32,7 @@ function ShowDataMovies() {
                       <Tr>
                         <Td>02/04/2022</Td>
                         <Td>The Batman</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>
@@ -40,7 +41,7 @@ function ShowDataMovies() {
                       <Tr>
                         <Td>01/04/2022</Td>
                         <Td>The Witcher</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>
@@ -49,7 +50,7 @@ function ShowDataMovies() {
                      <Tr>
                         <Td>31/03/2022</Td>
                         <Td>Docter Strange</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>
@@ -58,7 +59,7 @@ function ShowDataMovies() {
                      <Tr>
                         <Td>30/03/2022</Td>
                         <Td>ETERNALS</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>
@@ -67,7 +68,7 @@ function ShowDataMovies() {
                      <Tr>
                         <Td>29/03/2022</Td>
                         <Td>Hobs and Shaw</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>
@@ -76,7 +77,7 @@ function ShowDataMovies() {
                      <Tr>
                         <Td>28/03/2022</Td>
                         <Td>Spiderman</Td>
-                        <Td><Image h='40px' w='42px' src={require('../../../imgs/view.png')}/></Td>
+                        <Td><ViewMovieInFo/></Td>
                         <Td isNumeric>
                             <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
                             <Button size='sm' colorScheme='red'>Xóa</Button>

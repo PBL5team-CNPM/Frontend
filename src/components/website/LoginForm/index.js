@@ -61,6 +61,7 @@ function LoginForm() {
           <Link to='/admin/revenue'>
           <Button 
             bgColor='#42C2FF'
+            colorScheme='blue'
             color='white'
             size='lg'
             borderRadius="10px"
@@ -72,7 +73,7 @@ function LoginForm() {
 
          <Text color='white' textAlign='center'>Chưa có tài khoản? 
          <span> <Link to='/signup'> 
-                  <Button  color='#42C2FF' variant='link'>
+                  <Button color='#42C2FF' variant='link'>
                       Đăng ký!
                  </Button>
          </Link></span></Text>
