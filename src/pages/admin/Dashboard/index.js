@@ -63,7 +63,7 @@ function Dashboard() {
                     </Flex>
                   </Link>
                </VStack>
-               <Box>
+               <Box h='670px'  w='1160px'>
                  <Outlet/>
                </Box>
            </Box>

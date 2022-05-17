@@ -7,7 +7,7 @@ function EditProfile() {
         return (
           <Box bgColor='white' w='450px' h='500px' 
           boxShadow='10px 10px 10px #7c76ad'
-          margin='70px 0px 0px 120px' borderRadius='10px' p='20px 10px 10px 10px'
+          margin='0px 0px 0px 120px' borderRadius='10px' p='20px 10px 10px 10px'
           >
 
             <Text  color='black' align='center' fontSize='36px' fontWeight='bold'>

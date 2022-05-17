@@ -1,11 +1,9 @@
 import React from 'react';
-import { Box, Heading} from '@chakra-ui/react'
+import ShowDataUsers from '../../../components/admin/ShowDataUsers';
 
 function Users() {
         return (
-            <Box >
-               <Heading color='black'>USERS</Heading>
-          </Box>
+            <ShowDataUsers/>
         );
 }
 

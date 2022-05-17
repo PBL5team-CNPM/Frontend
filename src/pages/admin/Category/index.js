@@ -1,11 +1,9 @@
 import React from 'react';
-import { Box, Heading} from '@chakra-ui/react'
+import ShowDataCategory from '../../../components/admin/ShowDataCategory';
 
 function Category() {
         return (
-            <Box >
-               <Heading color='black'>CATEGORY</Heading>
-          </Box>
+            <ShowDataCategory/>
         );
 }
 

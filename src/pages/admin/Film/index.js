@@ -1,11 +1,9 @@
 import React from 'react';
-import { Box, Heading} from '@chakra-ui/react'
+import ShowDataMovies from '../../../components/admin/ShowDataMovies';
 
 function Film() {
         return (
-            <Box >
-               <Heading color='black'>MOVIE</Heading>
-          </Box>
+            <ShowDataMovies/>
         );
 }
 
