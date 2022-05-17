@@ -7,6 +7,7 @@ import Footer from '../../../components/website/Footer';
 function Profile() {
         return (
           <Box>
+         
               <HStack bgColor='#00051D' h='80px' padding='10px'>
                  <Box w='500px' h='75px' ml='50px'>
                    <Link to='/home'>
@@ -34,11 +35,12 @@ function Profile() {
             </Link>
 
            </HStack>
-            <Box bgColor='#1F1D36' w='100%' h='655px' 
+            <Center bgColor='#1F1D36' w='100%' h='655px' 
                  display='flex'>
-                 <Box bgColor='#00051D' w='280px' h='500px' 
+           
+              <Box bgColor='#00051D' w='280px' h='500px' 
                  boxShadow='10px 10px 10px #7c76ad'
-                 margin='70px 0px 0px 160px' borderRadius='10px'
+                 borderRadius='10px'
                  >
                 <Box w='280px' h='250px'>
                   <Image border='2px' borderColor='#42C2FF' borderRadius='50%'
@@ -78,8 +80,8 @@ function Profile() {
                 <Box>
                     <Outlet/>
                 </Box>
-              
-            </Box>
+
+            </Center>
              <Footer/>
             </Box>
         );
