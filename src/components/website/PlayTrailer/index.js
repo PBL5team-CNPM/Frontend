@@ -4,18 +4,20 @@ import {Modal,
     ModalHeader,
     ModalBody,
     ModalCloseButton,
-    Button,
+    IconButton,
     useDisclosure, AspectRatio, Center
     } from '@chakra-ui/react';
 import React from 'react';
+import {GrPlayFill} from 'react-icons/gr'
 
 
-function WatchTrailer(){
+function PlayTrailer(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
     <>
     
-    <Button onClick={onOpen} fontSize='24px' h='63px' w='164px' colorScheme='red'>Xem Trailer</Button>
+    <IconButton style={props.styleProp} onClick={onOpen} borderRadius='50%' icon={<GrPlayFill/>}
+                    transition='0.7s'  bgColor='white' mr='10px'/>
         
       <Modal isOpen={isOpen} onClose={onClose} size='4xl'>
         <ModalOverlay/>
@@ -39,4 +41,4 @@ function WatchTrailer(){
     )
 }
 
-export default WatchTrailer;
+export default PlayTrailer;

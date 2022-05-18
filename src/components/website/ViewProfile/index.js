@@ -7,12 +7,12 @@ function ViewProfile() {
         return (
           <Box bgColor='white' w='450px' h='500px' 
           boxShadow='10px 10px 10px #7c76ad'
-          margin='0px 0px 0px 120px' borderRadius='10px' p='20px 10px 10px 10px'
+          margin='0px 0px 0px 120px' borderRadius='10px' p='20px 10px 0px 10px'
           >
 
             <Text  color='black' align='center' fontSize='36px' fontWeight='bold'>
               Thông tin tài khoản</Text>
-            <Text color='black'mt='20px' marginLeft='60px'>Họ và tên</Text>
+            <Text color='black'mt='10px' marginLeft='60px'>Họ và tên</Text>
             
             <Box  w="310px"
                h="30px"
@@ -20,6 +20,16 @@ function ViewProfile() {
                borderRadius="10px"
                border="2px">
               <Text ml='10px' color='black' fontSize='18px'>Nguyễn Văn A</Text>
+            </Box>
+
+            <Text color='black' marginLeft='60px'>Số điện thoại</Text>
+            
+             <Box  w="310px"
+               h="30px"
+               m='10px 0px 10px 60px'  borderColor='blue'
+               borderRadius="10px"
+               border="2px">
+              <Text ml='10px' color='black' fontSize='18px'>0935218596</Text>
             </Box>
           
             <Text color='black' marginLeft='60px'>Email</Text>
@@ -38,14 +48,7 @@ function ViewProfile() {
                border="2px">
                <Text ml='10px' color='black' fontSize='18px'>01/01/2022</Text>
             </Box>
-            <Text color='black' marginLeft='60px'>Giới tính</Text>
-            <Box  w="310px"
-               h="30px"
-               m='10px 0px 10px 60px'  borderColor='blue'
-               borderRadius="10px"
-               border="2px">
-               <Text ml='10px' color='black' fontSize='18px'>Nam</Text>
-            </Box>
+
                 
          <Link to='/profile/editprofile'>
          <Button 

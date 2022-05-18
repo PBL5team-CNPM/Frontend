@@ -10,8 +10,8 @@ const FilmHome = ()=> {
     return(
         <Box>
             <SliderShow/>
-            <Center mt='12px'>
-            <Tabs colorScheme='orange'>
+            <Center  mt='12px'>
+            <Tabs w='4xl' colorScheme='orange'>
                 <TabList>
                     <Tab>PHIM ĐANG CHIẾU</Tab>
                     <Tab>PHIM SẮP CHIẾU</Tab>

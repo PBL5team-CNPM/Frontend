@@ -21,7 +21,7 @@ function ViewUsersInFo(){
         
       <Modal isOpen={isOpen} onClose={onClose} size='sm'>
         <ModalOverlay />
-        <ModalContent alignSelf='center' h='570px' mt='10px'
+        <ModalContent alignSelf='center' h='600px' mt='10px'
         color='white' bgColor='#1F1D36'>
             
             <Image objectFit='cover' opacity='0.6's
@@ -57,7 +57,13 @@ function ViewUsersInFo(){
                <Flex  mt='10px'>
                    <Text mr='125px'>Email:</Text>
                    <Text fontWeight='bold'>ltb@gmail.com</Text>
-               </Flex> </Box>
+               </Flex> 
+
+               <Flex  mt='10px'>
+                   <Text mr='55px'>Số điện thoại:</Text>
+                   <Text fontWeight='bold'>0935218596</Text>
+               </Flex> 
+               </Box>
                </Center>
 
              </Box>
