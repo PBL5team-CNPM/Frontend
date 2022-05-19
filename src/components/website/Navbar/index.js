@@ -13,7 +13,7 @@ const Navbar = () => {
 
           <Header/>
         <Stack bgColor=''>
-            <Center bgColor='white' h='50px'>
+            <Center bgColor='white' h='40px' pt='10px'>
                     <Wrap fontSize='24px' fontFamily='Poppins' align='center'>
                         <Center w='196px'>
                             <Link to="">  
@@ -22,16 +22,16 @@ const Navbar = () => {
                                     TRANG CHỦ
                                 </Flex></Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='70px' ></Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="phim">
+                            <Link to="theloai">
                                <Flex>
                                     <Icon as={BiMoviePlay} mr='5px' mt='4px'/>
                                     PHIM
                                 </Flex>
                             </Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='70px' ></Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
                             <Link to="theloai">
                                 <Flex>
@@ -40,7 +40,7 @@ const Navbar = () => {
                                 </Flex>
                             </Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='70px' ></Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
                             <Link to="ve">
                                 <Flex>
@@ -49,7 +49,7 @@ const Navbar = () => {
                                 </Flex>
                                 </Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='70px' ></Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
                             <Link to="tuyendung">
                                <Flex>
@@ -58,7 +58,7 @@ const Navbar = () => {
                                 </Flex>
                             </Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='70px' ></Box>
+                        <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
                             <Link to="tintuc">
                             <Flex>

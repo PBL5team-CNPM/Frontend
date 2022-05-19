@@ -1,8 +1,17 @@
-import React from 'react';
-import { Box, Button,  Input, Text} from '@chakra-ui/react'
+import React, { useState } from 'react';
+import { Box, Button,  Checkbox,  Input, Text} from '@chakra-ui/react'
 
 
 function ChangePassword() {
+        const [typeP,setTypeP]=useState("password");
+        const handleToggle=()=>{
+          if(typeP==='password'){
+            setTypeP('text');
+          }
+          else{
+            setTypeP('password');
+          }
+        }
         return (
           <Box bgColor='white' w='450px' h='500px' 
           boxShadow='10px 10px 10px #7c76ad'
@@ -14,7 +23,7 @@ function ChangePassword() {
             <Text color='black'mt='20px' marginLeft='60px'>Mật khẩu cũ</Text>
 
             <Input
-               type='password'
+               type={typeP}
                color="black"
                placeholder='Nhập mật khẩu cũ'
                outline={"2px"}
@@ -29,7 +38,7 @@ function ChangePassword() {
             />
             <Text color='black' marginLeft='60px'>Mật khẩu mới</Text>
             <Input 
-             type='password'
+             type={typeP}
              color="black"
              placeholder='Nhập mật khẩu mới'
              outline="2px"
@@ -44,7 +53,7 @@ function ChangePassword() {
             />
             <Text color='black' marginLeft='60px'>Xác nhận mật khẩu</Text>
             <Input 
-             type='password'
+             type={typeP}
              placeholder='Nhập mật khẩu xác nhận'
              color="black"
              outline="2px"
@@ -58,6 +67,7 @@ function ChangePassword() {
              margin='10px 0px 10px 60px'
             />
                   
+          <Checkbox onChange={handleToggle} margin='10px 0px 10px 60px'>Hiện mật khẩu</Checkbox>
           <Button 
             colorScheme='blue'
             bgColor='#42C2FF'

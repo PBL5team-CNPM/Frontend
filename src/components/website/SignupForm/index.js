@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, Radio, RadioGroup, Stack, Text} from '@chakra-ui/react'
+import { Box, Button, Center, Input, Radio, RadioGroup, Stack, Text} from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
 
@@ -34,10 +34,12 @@ function SignupForm() {
           <Box bgColor='#3F4A81' w='688px' h='675px' 
           marginLeft='80px'
           padding='10px' overflow='hidden'>
-            <Text color='white' fontWeight='bold' fontSize='3xl'
-            textAlign='center' marginTop='20px'
+            <Text color='white' fontWeight='bold' fontSize='30px'
+            textAlign='center' marginTop='10px'
             >ĐĂNG KÝ</Text>
-            <Box display='flex' marginTop='20px' marginLeft='60px'>
+            <Center fontSize='18px'>
+            <Box  ml='25px'>
+            <Box display='flex' marginTop='20px' >
             <Text color='white'>Tên tài khoản</Text>
             <Input
                type='text'
@@ -49,12 +51,12 @@ function SignupForm() {
                outlineColor='#42C2FF'
                borderRadius="10px"
                border="2px"
-               w="370px"
-               h="50px"
-               margin='5px 0px 0px 60px'
+               w="400px"
+               h="45px"
+               margin='0px 0px 0px 65px'
             /></Box>
 
-            <Box display='flex' marginTop='20px' marginLeft='60px'>
+            <Box display='flex' marginTop='15px' >
             <Text color='white'>Họ và tên</Text>
             <Input
                type='text'
@@ -66,12 +68,29 @@ function SignupForm() {
                outlineColor='#42C2FF'
                borderRadius="10px"
                border="2px"
-               w="370px"
-               h="50px"
-               margin='5px 0px 0px 93px'
+               w="400px"
+               h="45px"
+               margin='0px 0px 0px 95px'
             /></Box>
 
-            <Box display='flex' marginTop='20px' marginLeft='60px'>
+            <Box display='flex' marginTop='15px'>
+            <Text color='white'>Số điện thoại</Text>
+            <Input
+               type='number'
+               placeholder='Nhập số điện thoại'
+               color="white"
+               outline="2px"
+               focusBorderColor='white'
+               borderColor='#42C2FF'
+               outlineColor='#42C2FF'
+               borderRadius="10px"
+               border="2px"
+               w="400px"
+               h="45px"
+               margin='0px 0px 0px 70px'
+            /></Box>
+
+            <Box display='flex' marginTop='15px'>
             <Text color='white'>Email</Text>
             <Input
                type='email'
@@ -83,12 +102,12 @@ function SignupForm() {
                outlineColor='#42C2FF'
                borderRadius="10px"
                border="2px"
-               w="370px"
-               h="50px"
-               margin='5px 0px 0px 125px'
+               w="400px"
+               h="45px"
+               margin='0px 0px 0px 121px'
             /></Box>
 
-           <Box display='flex'  marginLeft='60px' marginTop='20px'>
+           <Box display='flex'   marginTop='15px'>
            <Text color='white' >Mật khẩu</Text>
            <Input 
              type={type1}
@@ -100,14 +119,14 @@ function SignupForm() {
              errorBorderColor="#42C2FF"
              border="2px"
              borderRadius="10px"
-             w="370px"
-             h="50px"
-             margin='5px 0px 0px 96px'
+             w="400px"
+             h="45px"
+             margin='0px 0px 0px 96px'
             /> <span style={{position:'relative',
-            color:'#42C2FF', right:'30px', top:'20px'}} onClick={handleToggle1}>{icon1}</span>
+            color:'#42C2FF', right:'30px', top:'15px'}} onClick={handleToggle1}>{icon1}</span>
             </Box>
 
-            <Box display='flex'  marginLeft='60px' marginTop='20px'>
+            <Box display='flex'  marginTop='15px'>
            <Text color='white' >Xác nhận mật khẩu</Text>
 
            <Input 
@@ -120,18 +139,34 @@ function SignupForm() {
              errorBorderColor="#42C2FF"
              border="2px"
              borderRadius="10px"
-             w="370px"
-             h="50px"
-             margin='5px 0px 0px 18px'
+             w="400px"
+             h="45px"
+             margin='0px 0px 0px 25px'
             />
            <span style={{position:'relative',
-            color:'#42C2FF', right:'30px', top:'20px'}} onClick={handleToggle2}>{icon2}</span>
+            color:'#42C2FF', right:'30px', top:'15px'}} onClick={handleToggle2}>{icon2}</span>
             </Box>
 
-            <Box display='flex'  marginLeft='60px' marginTop='20px'>
+            <Box display='flex' marginTop='15px'>
+            <Text color='white'>Ngày sinh</Text>
+            <Input
+               type='date'
+               color="white"
+               outline="2px"
+               focusBorderColor='white'
+               borderColor='#42C2FF'
+               outlineColor='#42C2FF'
+               borderRadius="10px"
+               border="2px"
+               w="400px"
+               h="45px"
+               margin='0px 0px 0px 90px'
+            /></Box>
+
+            <Box display='flex'  marginTop='15px'>
            <Text color='white' >Giới tính</Text>
              <RadioGroup onChange={setValue} value={value}
-                      margin='5px 0px 0px 110px' color='white'>
+                      margin='0px 0px 0px 110px' color='white'>
                <Stack direction='row'>
                 <Radio value='1' marginRight='70px' colorScheme='#42C2FF'
                   borderColor='#42C2FF'>Nam</Radio>
@@ -140,6 +175,8 @@ function SignupForm() {
                </Stack>
               </RadioGroup>
             </Box>
+            </Box>
+         </Center>
         <Link to='/profile/viewprofile'>
           <Button 
             bgColor='#42C2FF'
@@ -149,7 +186,7 @@ function SignupForm() {
             borderRadius="10px"
             w="460px"
             h="50px"
-            margin='40px 0px 20px 114px'
+            margin='25px 0px 20px 114px'
           >Đăng ký</Button></Link>
          <Text color='white' textAlign='center'>Đã có tài khoản?
          <span > <Link to='/login' >

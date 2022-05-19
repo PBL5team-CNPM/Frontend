@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Button,
     AlertDialog,
     AlertDialogBody,
@@ -13,9 +13,12 @@ import {Button,
     Center,
     Box,
     Textarea} from '@chakra-ui/react'
+  import Multiselect from 'multiselect-react-dropdown';
 function DialogAddMovie(){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
+    const [category]=useState(["Kinh dị", "Hài hước", "Tình cảm", 
+        "Trinh thám", "Khoa học-viễn tưởng", "Hành động", "Phiêu lưu"]);
     return(
     <>
       <Button ml='70px' mt='30px' colorScheme='green' size='lg'
@@ -52,25 +55,13 @@ function DialogAddMovie(){
 
                 <Center>
                 <Flex mb='20px'>
-                  <Text mr='150px'>Thể loại</Text>
-                  <Input w='400px' h='45px' type='text'
+                  <Text mr='125px'>Thời lượng</Text>
+                  <Input w='400px' h='45px' type='text' 
                   focusBorderColor='white'
                   border='2px'
                   borderRadius='10px'
                   borderColor='#42C2FF'
-                  placeholder='Nhập tên thể loại'  />
-                </Flex>
-                </Center>
-
-                <Center>
-                <Flex mb='20px'>
-                  <Text mr='100px'>Năm sản xuất</Text>
-                  <Input w='400px' h='45px' type='number' 
-                  focusBorderColor='white'
-                  border='2px'
-                  borderRadius='10px'
-                  borderColor='#42C2FF'
-                  placeholder='Nhập năm sản xuất'  />
+                  placeholder='Nhập thời lượng phim'  />
                 </Flex>
                 </Center>
 
@@ -134,9 +125,9 @@ function DialogAddMovie(){
                 </Center>
 
                 <Center>
-                <Flex mb='20px'>
-                  <Text mr='30px'>Ngày kết thúc dự kiến</Text>
-                  <Input w='400px' h='45px' type='date' 
+                <Flex >
+                  <Text mr='120px'>Poster Phim</Text>
+                  <Input w='400px' h='45px' type='file' 
                   focusBorderColor='white'
                   border='2px'
                   borderRadius='10px'
@@ -145,13 +136,15 @@ function DialogAddMovie(){
                 </Center>
 
                 <Center>
-                <Flex >
-                  <Text mr='120px'>Poster Phim</Text>
-                  <Input w='400px' h='45px' type='file' 
-                  focusBorderColor='white'
-                  border='2px'
-                  borderRadius='10px'
-                  borderColor='#42C2FF' />
+                <Flex mt='20px' mb='20px'>
+                  <Text mr='150px'>Thể loại</Text>
+                  <Multiselect className='mse-category'
+                  isObject={false} placeholder='Chọn thể loại' hidePlaceholder='true'
+                  options={category}    showCheckbox='true' 
+                  avoidHighlightFirstOption='true'
+                  style={ {chips: { background: "#42C2FF" }, 
+                  searchBox: { border: "2px solid #42C2FF",  "border-radius": "10px"}} }
+                  />
                 </Flex>
                 </Center>
               </Box>

@@ -3,30 +3,41 @@ import {
     Box,
     Image,
     Button,
-    Heading,
+    Center,
 } from '@chakra-ui/react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import PlayTrailer from '../../PlayTrailer'
 
 
 
 const Film = (props) => {
     const [style, setStyle] = useState({opacity: 0})
     return(
-        <Box 
+        <Box
             onMouseLeave={(e) => {setStyle({opacity: 0})}}
-            onMouseEnter ={(e) => {setStyle({opacity: 1})}}
+            onMouseEnter ={(e) => {setStyle({opacity: 1})}} 
             >
-            <Heading transition='0.7s' style={style} fontSize='32px' ml='20px' mt='20px' bgColor='' color='white' pos='absolute' noOfLines={2} maxW='400px'>{props.data.title}</Heading>
-            <Box ml='220px' mt='190px' pos='absolute'>
+            <Box ml='80px' mt='402px' pos='absolute'>
                 <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
-                <Button transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button>
+                <Link to="phim" state={{title:props.data.title, poster:props.data.imageUrl,
+                    trailer:props.data.trailer, time:props.data.time, director:props.data.director,
+                    actor:props.data.actor, category:props.data.category,content:props.data.content,
+                    length: props.data.length}}>
+                <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>
-            <Image
-                src={props.data.imageUrl}
-                w='490px' 
-                h='250px'
-                objectFit='cover'
+            <Box ml='130px' mt='200px' pos='absolute'  
+            onClick={(e) => {setStyle({opacity: 0})}} >
+                <PlayTrailer styleProp={style} trailerProp={props.data.trailer}/>
+            </Box>
+            <Box w='320px' h='472px' /*1387x2048*/ bgColor='black' pt='10px'>
+            <Center>
+              <Image w='300px' h='452px' border='2px' 
+                src={props.data.imageUrl} borderColor='white'
             />
+            </Center>
+            </Box>
+           
         </Box>
     )
 }
