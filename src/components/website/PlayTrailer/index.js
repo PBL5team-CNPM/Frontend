@@ -1,8 +1,6 @@
 import {Modal,
     ModalOverlay,
     ModalContent,
-    ModalHeader,
-    ModalBody,
     ModalCloseButton,
     IconButton,
     useDisclosure, AspectRatio, Center
@@ -21,20 +19,19 @@ function PlayTrailer(props){
         
       <Modal isOpen={isOpen} onClose={onClose} size='4xl'>
         <ModalOverlay/>
-        <ModalContent alignSelf='center' bgColor='black' w='900px' h='620px' 
+        <ModalContent alignSelf='center' bgColor='white' w='660px' h='410px' 
          color='white'>
-        <ModalHeader>Trailer</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      
+      
             <Center>
-           <AspectRatio w='900px' h='500px' ratio={1}>
-             <iframe
+           <AspectRatio w='650px' h='400px' mt='5px' ratio={1}>
+             <iframe 
               title='The Batman'
-              src="https://www.youtube.com/embed/mqqft2x_Aa4"
+              src={props.trailerProp}
               allowFullScreen
              />
            </AspectRatio></Center>
-          </ModalBody>
+          <ModalCloseButton />
         </ModalContent>
       </Modal>
     </>

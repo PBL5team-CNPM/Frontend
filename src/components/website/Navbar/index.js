@@ -24,7 +24,7 @@ const Navbar = () => {
                         </Center>
                         <Box bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
-                            <Link to="phim">
+                            <Link to="theloai">
                                <Flex>
                                     <Icon as={BiMoviePlay} mr='5px' mt='4px'/>
                                     PHIM

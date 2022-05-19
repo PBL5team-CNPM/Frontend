@@ -17,7 +17,7 @@ import {Button,
 function DialogAddMovie(){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
-    const [category,setCategory]=useState(["Kinh dị", "Hài hước", "Tình cảm", 
+    const [category]=useState(["Kinh dị", "Hài hước", "Tình cảm", 
         "Trinh thám", "Khoa học-viễn tưởng", "Hành động", "Phiêu lưu"]);
     return(
     <>
@@ -55,13 +55,13 @@ function DialogAddMovie(){
 
                 <Center>
                 <Flex mb='20px'>
-                  <Text mr='100px'>Năm sản xuất</Text>
-                  <Input w='400px' h='45px' type='number' 
+                  <Text mr='125px'>Thời lượng</Text>
+                  <Input w='400px' h='45px' type='text' 
                   focusBorderColor='white'
                   border='2px'
                   borderRadius='10px'
                   borderColor='#42C2FF'
-                  placeholder='Nhập năm sản xuất'  />
+                  placeholder='Nhập thời lượng phim'  />
                 </Flex>
                 </Center>
 
@@ -117,17 +117,6 @@ function DialogAddMovie(){
                 <Flex mb='20px'>
                   <Text mr='50px'>Ngày bắt đầu chiếu</Text>
                   <Input w='400px' h='45px' type='date'
-                  focusBorderColor='white'
-                  border='2px'
-                  borderRadius='10px'
-                  borderColor='#42C2FF' />
-                </Flex>
-                </Center>
-
-                <Center>
-                <Flex mb='20px'>
-                  <Text mr='30px'>Ngày kết thúc dự kiến</Text>
-                  <Input w='400px' h='45px' type='date' 
                   focusBorderColor='white'
                   border='2px'
                   borderRadius='10px'

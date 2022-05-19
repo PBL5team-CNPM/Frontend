@@ -38,7 +38,7 @@ function ViewMovieInFo(){
           <ModalBody>
           <Flex>
                     <Box>
-                        <Image objectFit='cover' w='499px' h='572px' src="https://www.thebatman.com/images/share.jpg"/>
+                        <Image objectFit='cover' w='449px' h='640px' src="https://www.thebatman.com/images/share.jpg"/>
                     </Box>
                     <Box flex={1} ml='55px'>
                         <Heading fontSize='27px'>THE BATMAN</Heading>
