@@ -20,10 +20,7 @@ const Film = (props) => {
             >
             <Box ml='80px' mt='402px' pos='absolute'>
                 <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
-                <Link to="phim" state={{title:props.data.title, poster:props.data.imageUrl,
-                    trailer:props.data.trailer, time:props.data.time, director:props.data.director,
-                    actor:props.data.actor, category:props.data.category,content:props.data.content,
-                    length: props.data.length}}>
+                <Link to="phim" state={{data:props.data}}>
                 <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>
             <Box ml='130px' mt='200px' pos='absolute'  
