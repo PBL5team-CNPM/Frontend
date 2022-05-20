@@ -15,17 +15,16 @@ import { useLocation } from "react-router-dom";
 
 const FilmInfo = (props) => {
     
-    const location=useLocation();
-    const [locationState, setLocationState]=useState({title:"", poster:"", trailer:"",time:"",
-                 director:"", actor:"",category:"", content:"", length:""})
+    const location=useLocation()
+    const [locationState, setLocationState]=useState({data:{}})
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
             setLocationState(_state)
         }
     }, [location])
-    const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(";
-    const bgImg=bgC+locationState.poster+")";
+    const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
+    const bgImg=bgC+locationState.data.imageUrl+")"
     return(
         <Stack  color='white' 
         bg={bgImg}
@@ -38,43 +37,43 @@ const FilmInfo = (props) => {
                 <Divider size='' mt='10px' mb='15px'/>
                 <Flex>
                     <Box>
-                        <Image  w='407px' h='600px' src={locationState.poster}/>
+                        <Image  w='407px' h='600px' src={locationState.data.imageUrl}/>
                     </Box>
                     <Box flex={1} ml='55px'>
-                        <Heading fontSize='32px'>{locationState.title}</Heading>
+                        <Heading fontSize='32px'>{locationState.data.title}</Heading>
                         <Divider mt='10px' mb='15px'/>
                         <Box mb='23px' fontSize='20px'>
                             <Flex>
                                 <Text fontWeight='bold'>Đạo diễn: </Text>
-                                <Text ml='1'>{locationState.director}</Text>
+                                <Text ml='1'>{locationState.data.director}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Diễn viên: </Text>
-                                <Text  ml='1'>{locationState.actor}</Text>
+                                <Text  ml='1'>{locationState.data.actor}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thể loại: </Text>
-                                <Text ml='1'>{locationState.category}</Text>
+                                <Text ml='1'>{locationState.data.category}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
-                                <Text ml='1'>{locationState.time}</Text>
+                                <Text ml='1'>{locationState.data.time}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thời lượng: </Text>
-                                <Text ml='1'>{locationState.length}</Text>
+                                <Text ml='1'>{locationState.data.length}</Text>
                             </Flex>
                         </Box>
                         <Flex>
                           <Button mr='20px' fontSize='24px' h='63px' w='164px' colorScheme='blue'>Mua Vé</Button>
-                          <TrailerInfo trailerProp={locationState.trailer}/>
+                          <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
                         
                         <Divider mt='24px' mb='10px'/>
                         <Box>
                             <Heading fontSize='32px' mb='2px'>Tóm tắt nội dung</Heading>
                             <Text fontSize='20px'>
-                             {locationState.content}
+                             {locationState.data.content}
                             </Text>
                         </Box>
                     </Box>
