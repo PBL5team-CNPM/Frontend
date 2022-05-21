@@ -4,12 +4,12 @@ import {
     Box,
     SimpleGrid
 } from '@chakra-ui/react'
-import Film from "./Film"
+import FilmUpcoming from "./FilmUpcoming"
 
-const FilmList = (props) => {
+const FilmListUpcoming = (props) => {
     const {data} = props
     const List = data.map((item)=>(
-        <Film data = {item} key = {data.id} />
+        <FilmUpcoming data = {item} key = {data.id} />
     ))
 
     return(
@@ -19,4 +19,4 @@ const FilmList = (props) => {
     )
 }
 
-export default FilmList
+export default FilmListUpcoming

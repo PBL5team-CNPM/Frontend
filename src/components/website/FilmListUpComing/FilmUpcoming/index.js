@@ -11,7 +11,7 @@ import PlayTrailer from '../../PlayTrailer'
 
 
 
-const Film = (props) => {
+const FilmUpcoming = (props) => {
     const [style, setStyle] = useState({opacity: 0})
     return(
         <Box
@@ -19,8 +19,8 @@ const Film = (props) => {
             onMouseEnter ={(e) => {setStyle({opacity: 1})}} 
             >
             <Box ml='80px' mt='402px' pos='absolute'>
-                <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
-                <Link to="phim" state={{data:props.data, check:'0'}}>
+                <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red' disabled>Mua vé</Button>
+                <Link to="phim" state={{data:props.data, check: '1'}}>
                 <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>
             <Box ml='130px' mt='200px' pos='absolute'  
@@ -39,4 +39,4 @@ const Film = (props) => {
     )
 }
 
-export default Film
+export default FilmUpcoming
