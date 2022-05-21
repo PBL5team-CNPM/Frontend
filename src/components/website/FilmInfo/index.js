@@ -14,15 +14,23 @@ import TrailerInfo from "../TrailerInfo";
 import { useLocation } from "react-router-dom";
 
 const FilmInfo = (props) => {
-    
+    const [disabled, setDisabled] = useState('')
     const location=useLocation()
-    const [locationState, setLocationState]=useState({data:{}})
+    const [locationState, setLocationState]=useState({data:{}, check: ''})
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
             setLocationState(_state)
         }
     }, [location])
+    function xulyDisable(){
+        if(locationState.check == '1'){
+            return 'disabled'
+        }
+        else{
+            return ''
+        }
+    }
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
     const bgImg=bgC+locationState.data.imageUrl+")"
     return(
@@ -61,11 +69,11 @@ const FilmInfo = (props) => {
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thời lượng: </Text>
-                                <Text ml='1'>{locationState.data.length}</Text>
+                                <Text ml='1'>{locationState.data.length} {locationState.data.length?'phút':''}</Text>
                             </Flex>
                         </Box>
                         <Flex>
-                          <Button mr='20px' fontSize='24px' h='63px' w='164px' colorScheme='blue'>Mua Vé</Button>
+                          <Button mr='20px' fontSize='24px' h='63px' w='164px' colorScheme='blue' onChange={xulyDisable} >Mua Vé</Button>
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
                         
