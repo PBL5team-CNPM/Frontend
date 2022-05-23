@@ -17,7 +17,7 @@ function Login() {
                             <Image
                                 borderRadius='full'
                                 boxSize='80px'
-                                src='Logo.png'
+                                src={require('../../../imgs/Logo.png')}
                                 alt='Logo'
                             />
                         </Box>
@@ -32,7 +32,7 @@ function Login() {
                     <Image src={require('../../../imgs/img1.png')} h='250px' w='690px'
                       margin='10px 0px 0px 90px' />
                     <Text marginLeft='90px' color='white' fontWeight='1000' fontSize='36px'
-                    >Watch movies with friends and family.</Text> <br></br><br></br>
+                    >Xem phim cùng bạn bè và gia đình.</Text> <br></br><br></br>
                     <Heading marginLeft='90px' color='white' size='3xl'>
                     make your <span style={{color:"#CA3BD7"}}> DREAM<br></br></span> come 
                     <span style={{color:"#42C2FF"}}> TRUE</span>.

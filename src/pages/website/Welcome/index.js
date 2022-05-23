@@ -13,7 +13,7 @@ const Welcome=() =>(
                             <Image
                                 borderRadius='full'
                                 boxSize='80px'
-                                src='Logo.png'
+                                src={require('../../../imgs/Logo.png')}
                                 alt='Logo'
                             />
                         </Box>
@@ -32,14 +32,14 @@ const Welcome=() =>(
                     <Box w='120px'>
                         <Link to="/home">
                         <Button  colorScheme='white' variant='link'>
-                            Explore
+                            Khám phá
                        </Button>
                         </Link>
                     </Box>
                     <Box>
                         <Link to="/login">
                         <Button  colorScheme='white' variant='link'>
-                            Join
+                            Tham gia
                        </Button>
                         </Link>
                     </Box>
@@ -90,13 +90,13 @@ const Welcome=() =>(
              left='840px' bottom='230px' >
                 <Heading color='white'>WELCOME TO</Heading>
                 <Heading color='white'>CINEMA PRO MAX</Heading><br></br>
-                <Text color='white' fontSize='xl'>ENTER THE FANTASY WORLD</Text>
-                <Text color='white' fontSize='xl'>TOUCH THE WORLD OF DREAMS</Text>
+                <Text color='white' fontSize='xl'>BƯỚC VÀO THẾ GIỚI GIẢ TƯỞNG</Text>
+                <Text color='white' fontSize='xl'>CHẠM ĐẾN THẾ GIỚI CỦA NHỮNG ƯỚC MƠ</Text>
                 <br></br>
                 <Link to='/login'>
-                   <Button bgColor='#42C2FF' color='white' w='140px' h='60px'
-                   fontSize='2xl'  >
-                    Join</Button>
+                   <Button colorScheme='blue' bgColor='#42C2FF' color='white' w='140px' h='60px'
+                   fontSize='xl'  >
+                    Tham gia</Button>
                 </Link>
 
             </Box>

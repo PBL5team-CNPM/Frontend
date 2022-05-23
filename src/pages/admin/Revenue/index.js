@@ -1,12 +1,10 @@
 import React from 'react';
-import { Box, Heading} from '@chakra-ui/react'
+import ShowDataRevenue from '../../../components/admin/ShowDataRevenue';
 
 function Revenue() {
         return (
-            <Box >
-               <Heading color='black'>REVENUE</Heading>
-          </Box>
-        );
+           <ShowDataRevenue/>
+        )
 }
 
 
