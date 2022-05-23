@@ -8,60 +8,129 @@ import {
     Text,
     Center
 } from '@chakra-ui/react'
-import { FaFacebook, FaTwitter, FaGithub } from 'react-icons/fa'
+import { FaFacebook, FaTwitter, FaGithub, FaApple, FaGooglePlay, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 const Footer = () => {
     return(
-        <HStack as='footer' bgColor='#00051D' h='70px'>
+        <HStack as='footer' bgColor='#00051D' h='200px'>
             <Box color='white'>
-                <Box ml='164px' fontSize='24px'>
+                <Box ml='164px' fontSize='20px'>
+                    <Text>
+                        INTRODUCE
+                    </Text>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
                     <Link>
                         About Us
                     </Link>
                 </Box>
-            </Box>
-            <Box color='white' fontSize='24px'>
-                <Box ml='54px'>
+                <Box ml='164px' fontSize='16px'>
                     <Link>
-                        Contact Us
+                        Operational Regulations
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Usage Agreement
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Privacy Policy
                     </Link>
                 </Box>
             </Box>
-            <Spacer/>
-            <Box w='600px'>
-                <Flex>
-                    <Box>
-                        <Link>
-                                <Flex>
-                                    <Center>
-                                        <FaFacebook size='24px' color="white"/>
-                                        <Text ml='10px' fontSize='24px' color='white'>Facebook</Text>
-                                    </Center>
-                                </Flex>
-                        </Link>
-                    </Box>
-                    <Box ml='54px'>
-                        <Link>
-                                <Flex>
-                                    <Center>
-                                        <FaTwitter size='24px' color="white"/>
-                                        <Text ml='10px' fontSize='24px' color='white'>Twitter</Text>
-                                    </Center>
-                                </Flex>
-                        </Link>
-                    </Box>
-                    <Box ml='54px'>
-                        <Link>
-                                <Flex>
-                                    <Center>
-                                        <FaGithub size='24px' color="white"/>
-                                        <Text ml='10px' fontSize='24px' color='white'>Github</Text>
-                                    </Center>
-                                </Flex>
-                        </Link>
-                    </Box>
-                </Flex>
+            <Box color='white'>
+                <Box ml='164px' fontSize='20px'>
+                    <Text>
+                        CINEMA CORNER
+                    </Text>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Movie Genre
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Movie Commentary
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Movie Blog
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Movie of the Month
+                    </Link>
+                </Box>
             </Box>
+            <Box color='white'>
+                <Box ml='164px' fontSize='20px'>
+                    <Text>
+                        SUPPORT
+                    </Text>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Recruit
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Feedback
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Sales & Services
+                    </Link>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                    <Link>
+                        Ticket Price
+                    </Link>
+                </Box>
+            </Box>
+            <Box color='white'>
+                <Box ml='164px' fontSize='20px'>
+                    <Text>
+                        CONNECT US
+                    </Text>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                <Link>
+                    <Flex>
+                        <Center>
+                            <FaFacebook size='24px' color="white"/>
+                            <FaTwitter size='24px' color="white"/>
+                            <FaInstagram size='24px' color="white"/>
+                            <FaYoutube size='24px' color="white"/>
+                        </Center>
+                    </Flex>
+                </Link>
+                </Box>
+                <Box ml='164px' fontSize='20px'>
+                    <Text>
+                        DOWNLOAD APP
+                    </Text>
+                </Box>
+                <Box ml='164px' fontSize='16px'>
+                <Link>
+                    <Flex>
+                        <Center>
+                            <FaApple size='24px' color="white"/>
+                            <FaGooglePlay size='24px' color="white"/>
+                        </Center>
+                    </Flex>
+                </Link>
+                </Box>
+                
+                
+            </Box>
+            
         </HStack>
     )
 }

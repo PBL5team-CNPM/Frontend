@@ -16,9 +16,10 @@ import Film from "./pages/admin/Film";
 import Category from "./pages/admin/Category";
 import Users from "./pages/admin/Users";
 import './App.css';
-import EditProfile from "./components/EditProfile";
-import MyTickets from "./components/MyTickets";
-import ChangePassword from "./components/ChangePassword";
+import EditProfile from "./components/website/EditProfile";
+import MyTickets from "./components/website/MyTickets";
+import ChangePassword from "./components/website/ChangePassword";
+import Profile from "./pages/website/Profile";
 
 function App() {
   return (
