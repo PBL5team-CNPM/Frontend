@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading,
     Table,
     Thead,
@@ -10,8 +10,32 @@ import { Box, Button, Heading,
     
 import DialogAddMovie from '../DialogAddMovie';
 import ViewMovieInFo from '../ViewMovieInfo';
+import axios from 'axios';
 
-function ShowDataMovies() {
+const ShowDataMovies=() => {
+  const [listTheloai, setListTheloai] = useState([])
+  const listCategory=[]
+  function xulytheloai(item, index, arr){
+    listCategory.push(arr[index].category)
+}
+  useEffect( ()=> {
+    axios.get('http://localhost:8000/api/theloais/').
+    then(
+        res => {
+            console.log(res.data)
+            setListTheloai(res.data.map((datatheloai)=>{
+                return(
+                    {
+                        id: datatheloai.id,
+                        category: datatheloai.ten_the_loai,
+                    }
+                )
+            },
+            ))
+        }
+    ).catch(error => console.log(error))
+}, [])
+        listTheloai.forEach(xulytheloai)
         return (
             <Box >
                 <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
@@ -87,7 +111,7 @@ function ShowDataMovies() {
                    </Tbody>
                  </Table>
                </TableContainer>
-               <DialogAddMovie />
+               <DialogAddMovie data={listCategory}/>
           </Box>
         );
 }

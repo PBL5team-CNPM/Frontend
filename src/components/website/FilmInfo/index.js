@@ -8,13 +8,11 @@ import {
     Divider,
     Flex,
     Text,
-    Button
 } from "@chakra-ui/react"
 import TrailerInfo from "../TrailerInfo";
 import { useLocation } from "react-router-dom";
-
+import XulyDisable from "../xulyDisable";
 const FilmInfo = (props) => {
-    const [disabled, setDisabled] = useState('')
     const location=useLocation()
     const [locationState, setLocationState]=useState({data:{}, check: ''})
     React.useEffect(() =>{
@@ -23,14 +21,9 @@ const FilmInfo = (props) => {
             setLocationState(_state)
         }
     }, [location])
-    function xulyDisable(){
-        if(locationState.check == '1'){
-            return 'disabled'
-        }
-        else{
-            return ''
-        }
-    }
+
+
+  
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
     const bgImg=bgC+locationState.data.imageUrl+")"
     return(
@@ -71,12 +64,17 @@ const FilmInfo = (props) => {
                                 <Text fontWeight='bold'>Thời lượng: </Text>
                                 <Text ml='1'>{locationState.data.length} {locationState.data.length?'phút':''}</Text>
                             </Flex>
+
+                            <Flex>
+                                <Text fontWeight='bold'>Dự kiến kết thúc: </Text>
+                                <Text ml='1'>{locationState.data.finish} </Text>
+                            </Flex>
                         </Box>
                         <Flex>
-                          <Button mr='20px' fontSize='24px' h='63px' w='164px' colorScheme='blue' onChange={xulyDisable} >Mua Vé</Button>
+                          <XulyDisable Check={locationState.check}/>
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
-                        
+                     
                         <Divider mt='24px' mb='10px'/>
                         <Box>
                             <Heading fontSize='32px' mb='2px'>Tóm tắt nội dung</Heading>

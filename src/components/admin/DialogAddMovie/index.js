@@ -13,12 +13,14 @@ import {Button,
     Center,
     Box,
     Textarea,
-    FormControl,
-    FormLabel,
+    useToast
+
   } from '@chakra-ui/react'
   import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
-function DialogAddMovie(){
+
+function DialogAddMovie(props){
+    const toast=useToast()
     const [values, setValues] = useState(
       {
         title: "",
@@ -28,15 +30,27 @@ function DialogAddMovie(){
         length: "",
         director: "",
         actor: "",
-        content: ""
+        content: "",
+        finish:""
       }
     )
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
-    const [category]=useState(["Kinh dị", "Hài hước", "Tình cảm", 
-        "Trinh thám", "Khoa học-viễn tưởng", "Hành động", "Phiêu lưu"]);
+    const category=props.data;
 
     const handleSubmit = (e) => {
+      if(values.title==="" || values.trailer==="" ||values.imageUrl==="" ||
+      values.length==="" ||values.director==="" ||values.actor==="" ||values.content==="" ){
+        e.preventDefault();
+        toast({
+          title: 'Warning!',
+          description: "Hãy nhập đủ thông tin.",
+          status: 'warning',
+          duration: 2000,
+          isClosable: true,
+        })
+      }
+      else{
       e.preventDefault();
       const phim = {
         ten: values.title,
@@ -46,7 +60,8 @@ function DialogAddMovie(){
         thoiluong: values.length,
         dao_dien: values.director,
         dien_vien: values.actor,
-        tom_tat: values.content
+        tom_tat: values.content,
+        ngay_ketthuc: values.finish
       }
       console.log(phim)
       
@@ -55,6 +70,23 @@ function DialogAddMovie(){
       }).catch(error=>{
             console.log(error)
       })
+     
+      toast({
+        title: 'Successfully!',
+        description: "Đã thêm phim mới "+values.title+".",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
+      setValues({title: "",
+      trailer: "",
+      imageUrl: "",
+      time: "",
+      length: "",
+      director: "",
+      actor: "",
+      content: "",
+      finish:""})}
     }
 
     return(
@@ -66,11 +98,11 @@ function DialogAddMovie(){
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
-        size='xl' 
+        size='2xl' 
         
         >
         <AlertDialogOverlay >
-          <AlertDialogContent   bgColor='#1F1D36' border='2px' borderColor='#42C2FF' 
+          <AlertDialogContent alignSelf={'center'}  bgColor='#1F1D36' border='2px' borderColor='#42C2FF' 
           >
             <form onSubmit={handleSubmit}>
               <AlertDialogHeader fontSize='2xl' fontWeight='bold'
@@ -79,11 +111,13 @@ function DialogAddMovie(){
               </AlertDialogHeader>
 
               <AlertDialogBody color='white'>
-                <Box >
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='140px'>Tên phim</Text>
-                    <Input w='400px' h='45px' type='text' 
+              
+              <Center>
+                <Flex>
+                <Box mr='35px'>
+                  <Box mb='15px'>
+                    <Text mb='10px'>Tên phim (*)</Text>
+                    <Input w='360px' h='45px' type='text' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -99,16 +133,15 @@ function DialogAddMovie(){
                                 length: values.length,
                                 director: values.director,
                                 actor: values.actor,
-                                content: values.content
+                                content: values.content,
+                                finish: values.finish
                               })}}
                     />
-                  </Flex>
-                  </Center>
+                  </Box>
 
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='125px'>Thời lượng</Text>
-                    <Input w='400px' h='45px' type='text' 
+                  <Box mb='15px'>
+                    <Text mb='10px'>Thời lượng (*)</Text>
+                    <Input w='360px' h='45px' type='number' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -123,15 +156,14 @@ function DialogAddMovie(){
                     length: e.target.value,
                     director: values.director,
                     actor: values.actor,
-                    content: values.content})}}
+                    content: values.content,
+                    finish: values.finish})}}
                     />
-                  </Flex>
-                  </Center>
+                  </Box>
 
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='166px'>Trailer</Text>
-                    <Input w='400px' h='45px' type='url'
+                  <Box mb='15px'>
+                    <Text mb='10px'>Trailer (*)</Text>
+                    <Input w='360px' h='45px' type='url'
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -146,15 +178,14 @@ function DialogAddMovie(){
                     length: values.length,
                     director: values.director,
                     actor: values.actor,
-                    content: values.content})}}
+                    content: values.content,
+                    finish: values.finish})}}
                     />
-                  </Flex>
-                  </Center>
+                  </Box>
 
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='140px'>Đạo diễn</Text>
-                    <Input w='400px' h='45px' type='text' 
+                  <Box mb='15px'>
+                    <Text mb='10px'>Đạo diễn (*)</Text>
+                    <Input w='360px' h='45px' type='text' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -169,15 +200,92 @@ function DialogAddMovie(){
                     length: values.length,
                     director: e.target.value,
                     actor: values.actor,
-                    content: values.content})}}
+                    content: values.content,
+                    finish: values.finish})}}
                     />
-                  </Flex>
-                  </Center>
+                  </Box>
 
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='140px'>Diễn viên</Text>
-                    <Input w='400px' h='45px' type='text' 
+                  <Box >
+                    <Text mb='10px'>Thể loại (*)</Text>
+                    <Multiselect className='mse-category' 
+                    isObject={false} placeholder='Chọn thể loại' hidePlaceholder='true'
+                    options={category}    showCheckbox='true' 
+                    avoidHighlightFirstOption='true'
+                    style={ {chips: { background: "#42C2FF" },
+                    searchBox: { border: "2px solid #42C2FF",  "border-radius": "10px"}} }
+                    />
+                  </Box>
+                  </Box>
+                  <Box>
+                 
+
+                  <Box mb='15px'>
+                    <Text mb='10px'>Ngày bắt đầu chiếu</Text>
+                    <Input w='360px' h='45px' type='date'
+                    focusBorderColor='white'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    value={values.time}
+                    onChange={(e)=>{setValues({
+                    title: values.title,
+                    trailer: values.trailer,
+                    imageUrl: values.imageUrl,
+                    time: e.target.value,
+                    length: values.length,
+                    director: values.director,
+                    actor: values.actor,
+                    content: values.content,
+                    finish: values.finish})}}
+                    />
+                  </Box>
+
+                  <Box mb='15px'>
+                    <Text mb='10px' >Ngày kết thúc dự kiến</Text>
+                    <Input w='360px' h='45px' type='date'
+                    focusBorderColor='white'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    value={values.finish}
+                    onChange={(e)=>{setValues({
+                    title: values.title,
+                    trailer: values.trailer,
+                    imageUrl: values.imageUrl,
+                    time: values.time,
+                    length: values.length,
+                    director: values.director,
+                    actor: values.actor,
+                    content: values.content,
+                    finish: e.target.value})}}
+                    />
+                  </Box>
+
+                  <Box mb='15px'>
+                    <Text mb='10px'>Poster Phim (*)</Text>
+                    <Input w='360px' h='45px' type='text' 
+                    focusBorderColor='white'
+                    placeholder='Nhập link poster'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    value={values.imageUrl}
+                    onChange={(e)=>{setValues({
+                    title: values.title,
+                    trailer: values.trailer,
+                    imageUrl: e.target.value,
+                    time: values.time,
+                    length: values.length,
+                    director: values.director,
+                    actor: values.actor,
+                    content: values.content,
+                    finish: values.finish})}}
+                    />
+                  </Box>
+
+                  <Box mb='15px'>
+                    <Text mb='10px'>Diễn viên (*) </Text>
+                    <Input w='360px' h='45px' type='text' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -192,15 +300,14 @@ function DialogAddMovie(){
                     length: values.length,
                     director: values.director,
                     actor: e.target.value,
-                    content: values.content})}}
+                    content: values.content,
+                    finish: values.finish})}}
                     />
-                  </Flex>
-                  </Center>
+                  </Box>
 
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='139px'>Nội dung</Text>
-                    <Textarea w='400px'  type='text' 
+                  <Box>
+                    <Text mb='10px'>Nội dung (*)</Text>
+                    <Textarea w='360px'  type='text' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
@@ -215,71 +322,16 @@ function DialogAddMovie(){
                     length: values.length,
                     director: values.director,
                     actor: values.actor,
-                    content: e.target.value})}}
+                    content: e.target.value,
+                    finish: values.finish})}}
                     />
-                  </Flex>
-                  </Center>
-
-                  <Center>
-                  <Flex mb='20px'>
-                    <Text mr='50px'>Ngày bắt đầu chiếu</Text>
-                    <Input w='400px' h='45px' type='date'
-                    focusBorderColor='white'
-                    border='2px'
-                    borderRadius='10px'
-                    borderColor='#42C2FF'
-                    value={values.time}
-                    onChange={(e)=>{setValues({
-                    title: values.title,
-                    trailer: values.trailer,
-                    imageUrl: values.imageUrl,
-                    time: e.target.value,
-                    length: values.length,
-                    director: values.director,
-                    actor: values.actor,
-                    content: values.content})}}
-                    />
-                  </Flex>
-                  </Center>
-
-                  <Center>
-                  <Flex >
-                    <Text mr='120px'>Poster Phim</Text>
-                    <Input w='400px' h='45px' type='text' 
-                    focusBorderColor='white'
-                    border='2px'
-                    borderRadius='10px'
-                    borderColor='#42C2FF'
-                    value={values.imageUrl}
-                    onChange={(e)=>{setValues({
-                    title: values.title,
-                    trailer: values.trailer,
-                    imageUrl: e.target.value,
-                    time: values.time,
-                    length: values.length,
-                    director: values.director,
-                    actor: values.actor,
-                    content: values.content})}}
-                    />
-                  </Flex>
-                  </Center>
-
-                  <Center>
-                  <Flex mt='20px' mb='20px'>
-                    <Text mr='150px'>Thể loại</Text>
-                    <Multiselect className='mse-category'
-                    isObject={false} placeholder='Chọn thể loại' hidePlaceholder='true'
-                    options={category}    showCheckbox='true' 
-                    avoidHighlightFirstOption='true'
-                    style={ {chips: { background: "#42C2FF" }, 
-                    searchBox: { border: "2px solid #42C2FF",  "border-radius": "10px"}} }
-                    />
-                  </Flex>
-                  </Center>
+                  </Box>
                 </Box>
+                </Flex>
+                </Center>
                 
               </AlertDialogBody>
-
+             
               <AlertDialogFooter>
                 <Button colorScheme='red' ref={cancelRef} onClick={onClose}>
                   Hủy
@@ -288,8 +340,9 @@ function DialogAddMovie(){
                   Thêm
                 </Button>
               </AlertDialogFooter>
-            </form>
+              </form>
           </AlertDialogContent>
+
         </AlertDialogOverlay>
       </AlertDialog>
    </>

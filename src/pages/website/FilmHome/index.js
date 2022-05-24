@@ -7,7 +7,6 @@ import SliderShow from "../../../components/website/SliderShow"
 import axios from 'axios'
 
 const FilmHome = ()=> {
-    const [phim, setPhim] = useState([])
     const listphimdangchieu = []
     const listphimsapchieu = []
     const [listphim, setListphim] = useState([])
@@ -24,7 +23,6 @@ const FilmHome = ()=> {
         then(
             res => {
                 console.log(res.data)
-                setPhim(res.data)
                 setListphim(res.data.map((dataphim)=>{
                     return(
                         {
@@ -37,11 +35,11 @@ const FilmHome = ()=> {
                             director:dataphim.dao_dien,
                             actor:dataphim.dien_vien,
                             category:"dsadsad",
-                            content:dataphim.tom_tat
+                            content:dataphim.tom_tat,
+                            finish:dataphim.ngay_ketthuc
                         }
                     )
                 }))
-                res.data.forEach(xulyphim)
             }
         ).catch(error => console.log(error))
     }, [])
@@ -53,7 +51,7 @@ const FilmHome = ()=> {
         <Box>
             <SliderShow/>
             <Center  mt='12px'>
-            <Tabs w='8xl' colorScheme='orange'>
+            <Tabs w='6xl' colorScheme='orange'>
                 <TabList>
                     <Tab>PHIM ĐANG CHIẾU</Tab>
                     <Tab>PHIM SẮP CHIẾU</Tab>
