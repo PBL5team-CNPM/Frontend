@@ -22,7 +22,7 @@ const Navbar = () => {
                                     TRANG CHỦ
                                 </Flex></Link>
                         </Center>
-                        <Box bgColor='black' w='2px' h='50px' ></Box>
+                        <Box  bgColor='black' w='2px' h='50px' ></Box>
                         <Center w='196px'>
                             <Link to="theloai">
                                <Flex>

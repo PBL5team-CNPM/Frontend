@@ -13,7 +13,7 @@ const FilmList = (props) => {
     ))
 
     return(
-        <SimpleGrid columns={[2, null, 4]} spacing='70px'>
+        <SimpleGrid columns={[2, null, 4]} spacing='40px'>
             {List}
         </SimpleGrid>
     )
