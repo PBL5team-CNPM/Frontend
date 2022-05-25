@@ -36,7 +36,8 @@ const FilmHome = ()=> {
                             actor:dataphim.dien_vien,
                             category:"dsadsad",
                             content:dataphim.tom_tat,
-                            finish:dataphim.ngay_ketthuc
+                            finish:dataphim.ngay_ketthuc,
+                            theloai:dataphim.theloai
                         }
                     )
                 }))
@@ -46,6 +47,8 @@ const FilmHome = ()=> {
     
 
     listphim.forEach(xulyphim);
+    console.log(listphimdangchieu)
+    console.log(listphimsapchieu)
 
     return(
         <Box>

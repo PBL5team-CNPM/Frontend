@@ -9,7 +9,7 @@ import FilmUpcoming from "./FilmUpcoming"
 const FilmListUpcoming = (props) => {
     const {data} = props
     const List = data.map((item)=>(
-        <FilmUpcoming data = {item} key = {data.id} />
+        <FilmUpcoming key = {item.id} data = {item} />
     ))
 
     return(

@@ -9,7 +9,7 @@ import Film from "./Film"
 const FilmList = (props) => {
     const {data} = props
     const List = data.map((item)=>(
-        <Film data = {item} key = {data.id} />
+        <Film key = {item.id} data = {item} />
     ))
 
     return(
