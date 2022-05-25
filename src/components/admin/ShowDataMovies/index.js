@@ -16,7 +16,7 @@ const ShowDataMovies=() => {
   const [listTheloai, setListTheloai] = useState([])
   const listCategory=[]
   function xulytheloai(item, index, arr){
-    listCategory.push(arr[index].category)
+    listCategory.push(arr[index])
 }
   useEffect( ()=> {
     axios.get('http://localhost:8000/api/theloais/').
@@ -27,7 +27,7 @@ const ShowDataMovies=() => {
                 return(
                     {
                         id: datatheloai.id,
-                        category: datatheloai.ten_the_loai,
+                        ten_the_loai: datatheloai.ten_the_loai,
                     }
                 )
             },

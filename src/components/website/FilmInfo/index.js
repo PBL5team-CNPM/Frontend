@@ -14,16 +14,32 @@ import { useLocation } from "react-router-dom";
 import XulyDisable from "../xulyDisable";
 const FilmInfo = (props) => {
     const location=useLocation()
-    const [locationState, setLocationState]=useState({data:{}, check: ''})
+    const [locationState, setLocationState]=useState({data:{
+        id: "",
+        title: "",
+        trailer: "",
+        imageUrl: "",
+        time: "",
+        length: "",
+        director: "",
+        actor: "",
+        category:"dsadsad",
+        content: "",
+        finish: "",
+        theloai: [{
+            id: '',
+            ten_the_loai: ''
+        }]
+    }, check: ''})
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
             setLocationState(_state)
+            console.log(_state)
         }
-    }, [location])
+    }, [])
 
 
-  
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
     const bgImg=bgC+locationState.data.imageUrl+")"
     return(
@@ -54,7 +70,13 @@ const FilmInfo = (props) => {
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thể loại: </Text>
-                                <Text ml='1'>{locationState.data.category}</Text>
+                                <Flex ml='1'>{
+                                    locationState.data.theloai.length>0?
+                                    locationState.data.theloai.map((item) => (
+                                        <Text key = {item.id}>{item.ten_the_loai}</Text>
+                                    )).reduce((prev, curr) => [prev, ', ', curr])
+                                    :''
+                                }</Flex>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
