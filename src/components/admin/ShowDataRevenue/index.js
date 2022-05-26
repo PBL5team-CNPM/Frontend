@@ -12,7 +12,7 @@ import {Box, Select, Text,
 function ShowDataRevenue() {
         return (
             <Box >
-               <Select size='sm' w='135px' focusBorderColor='none'
+               <Select  size='sm' w='135px' focusBorderColor='none'
                   shadow='0px 3px 3px 3px rgb(131, 131, 131)'
                    mt='10px' ml='70px'>
                   <option value='option1'>Batman</option>

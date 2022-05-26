@@ -8,7 +8,7 @@ import {Modal,
 import React from 'react';
 
 
-function WatchTrailer(){
+function WatchTrailer(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
     <>
@@ -23,7 +23,7 @@ function WatchTrailer(){
            <AspectRatio w='650px' h='400px'mt='5px' ratio={1}>
              <iframe
               title='The Batman'
-              src="https://www.youtube.com/embed/mqqft2x_Aa4"
+              src={props.trailer}
               allowFullScreen
              />
            </AspectRatio></Center>

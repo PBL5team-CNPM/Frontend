@@ -86,8 +86,8 @@ const Welcome=() =>(
                w='450px' h='450px'
                left='160px' bottom='1400px'/>
             
-           <Box w='560px' h='330px' position='absolute' 
-             left='840px' bottom='230px' >
+           <Box w='560px' h='350px' position='absolute' 
+             left='840px' bottom='320px' >
                 <Heading color='white'>WELCOME TO</Heading>
                 <Heading color='white'>CINEMA PRO MAX</Heading><br></br>
                 <Text color='white' fontSize='xl'>BƯỚC VÀO THẾ GIỚI GIẢ TƯỞNG</Text>

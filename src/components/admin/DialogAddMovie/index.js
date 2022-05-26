@@ -13,14 +13,18 @@ import {Button,
     Center,
     Box,
     Textarea,
-    useToast
-
+    useToast,
   } from '@chakra-ui/react'
   import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
 
 function DialogAddMovie(props){
     const toast=useToast()
+    const [Theloai,setTheloai]=useState([])
+    const SelectCategory = val => {
+      setTheloai(val)
+      console.log(Theloai)
+    }
     const [values, setValues] = useState(
       {
         title: "",
@@ -32,7 +36,6 @@ function DialogAddMovie(props){
         actor: "",
         content: "",
         finish:"",
-        theloai:[ ]
       }
     )
     const { isOpen,onOpen, onClose } = useDisclosure()
@@ -40,9 +43,15 @@ function DialogAddMovie(props){
     const category=props.data;
 
     const handleSubmit = (e) => {
-      if(values.title==="" || values.trailer==="" ||values.imageUrl==="" ||
-      values.length==="" ||values.director==="" ||values.actor==="" ||values.content==="" || !values.theloai){
+      if(values.title==="" || values.trailer==="" ||values.imageUrl==="" || !Theloai.length ||
+      values.length==="" ||values.director==="" ||values.actor==="" ||values.content==="" ){
         e.preventDefault();
+        const a=[]
+        function xulyTheloai(item,index,arr){
+            a.push(arr[index].id)
+       }
+       Theloai.forEach(xulyTheloai)
+       console.log(a)
         toast({
           title: 'Warning!',
           description: "Hãy nhập đủ thông tin.",
@@ -65,11 +74,11 @@ function DialogAddMovie(props){
         ngay_ketthuc: values.finish,
         theloai: []
       }
-      function xulytheloai(item, index, arr){
-        phim.theloai.push(arr[index])
+      function xulyTheloai(item,index,arr){
+         phim.theloai.push(arr[index].id)
       }
-      values.theloai.forEach(xulytheloai)
-      console.log(phim)
+      Theloai.forEach(xulyTheloai)
+      console.log(phim.theloai)
       
       axios.post('http://localhost:8000/api/addphims', phim).then(res => {
 
@@ -93,18 +102,12 @@ function DialogAddMovie(props){
       actor: "",
       content: "",
       finish:"",
-      // theloai:[
-      //   {
-      //     id: '',
-      //     ten_the_loai: ''
-      //   }
-      // ]
     })}
     }
 
     return(
     <>
-      <Button ml='70px' mt='30px' colorScheme='green' size='lg'
+      <Button ml='70px' mt='30px' mb='20px' colorScheme='green' size='lg'
         shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
        
        <AlertDialog
@@ -114,6 +117,7 @@ function DialogAddMovie(props){
         size='4xl' 
         
         >
+          
         <AlertDialogOverlay >
           <AlertDialogContent alignSelf={'center'}  bgColor='#1F1D36' border='2px' borderColor='#42C2FF' 
           >
@@ -148,7 +152,7 @@ function DialogAddMovie(props){
                                 actor: values.actor,
                                 content: values.content,
                                 finish: values.finish,
-                                theloai: values.theloai
+                                 
                               })}}
                     />
                   </Box>
@@ -172,7 +176,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                      
                   })}}
                     />
                   </Box>
@@ -196,7 +200,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                       
                   })}}
                     />
                   </Box>
@@ -220,7 +224,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>
@@ -230,43 +234,11 @@ function DialogAddMovie(props){
                     <Multiselect className='mse-category' 
                     placeholder='Chọn thể loại' hidePlaceholder='true'
                     options={category} showCheckbox='true' displayValue="ten_the_loai"
-                    onSelect={(e) => {
-                      let t = e.map((e)=>(e.id))
-                      console.log(t)
-                      setValues({
-                        title: values.title,
-                        trailer: values.trailer,
-                        imageUrl: values.imageUrl,
-                        time: values.time,
-                        length: values.length,
-                        director: values.director,
-                        actor: values.actor,
-                        content: values.content,
-                        finish: values.finish,
-                        theloai: t
-                      })
-                      console.log(values)
-                    }}
-                    onRemove={(e) => {
-                      let t = e.map((e)=>(e.id))
-                      console.log(t)
-                      setValues({
-                        title: values.title,
-                        trailer: values.trailer,
-                        imageUrl: values.imageUrl,
-                        time: values.time,
-                        length: values.length,
-                        director: values.director,
-                        actor: values.actor,
-                        content: values.content,
-                        finish: values.finish,
-                        theloai: t
-                      })
-                      console.log(values)
-                    }}
+                    onSelect={SelectCategory}
+                    onRemove={SelectCategory}
                     avoidHighlightFirstOption='true'
                     style={ {chips: { background: "#42C2FF" },
-                    searchBox: { border: "2px solid #42C2FF",  "borderRadius": "10px"}} }
+                    searchBox: {color:"white", border: "2px solid #42C2FF",  "borderRadius": "10px"}} }
                     />
                   </Box>
                   </Box>
@@ -291,7 +263,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>
@@ -314,7 +286,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: e.target.value,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>
@@ -338,7 +310,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>
@@ -362,7 +334,7 @@ function DialogAddMovie(props){
                     actor: e.target.value,
                     content: values.content,
                     finish: values.finish,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>
@@ -386,7 +358,7 @@ function DialogAddMovie(props){
                     actor: values.actor,
                     content: e.target.value,
                     finish: values.finish,
-                    theloai: values.theloai
+                     
                   })}}
                     />
                   </Box>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Heading,
     Table,
     Thead,
@@ -8,72 +8,58 @@ import { Box, Button, Heading,
     Td,
     TableContainer} from '@chakra-ui/react'
 import DialogAddCategory from '../DialogAddCategory';
+import axios from 'axios';
 
 function ShowDataCategory() {
+  const [listTheloai,setListTheloai]=useState([])
+  useEffect(()=>{axios.get('http://localhost:8000/api/theloais/').
+  then(
+      res => {
+          console.log(res.data)
+          setListTheloai(res.data.map((datatheloai)=>{
+              return(
+                  {
+                      id: datatheloai.id,
+                      category: datatheloai.ten_the_loai,
+                   
+                  }
+              )
+          },
+          ))
+      }
+  ).catch(error => console.log(error))
+ }, [])
+ 
+  const renderTableData=listTheloai.map((theloai, index) => {
+    const { id, category} = theloai
+    return (
+      <Tr key={id}>
+        <Td >{index+1}</Td>
+        <Td >{category}</Td>
+        <Td >8</Td>
+        <Td isNumeric> <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
+            <Button size='sm' colorScheme='red'>Xóa</Button></Td>
+      </Tr>
+    )
+  })
         return (
             <Box >
                 <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách thể loại</Heading>
-                <TableContainer  mt='30px' ml='70px' w='1020px' h='450px' 
+                <TableContainer  mt='30px' ml='70px' w='1020px' maxH='450px' 
                 boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
                overflowY='auto'>
                  <Table variant='striped'>
-                     <Thead>
+                     <Thead bgColor={'#1F1D36'}>
                        <Tr>
-                         <Th>Ngày cập nhật</Th>
-                         <Th>Tên thể loại</Th>
-                         <Th>Phim</Th>
-                         <Th isNumeric>Action
+                         <Th color='white'>STT</Th>
+                         <Th color='white'>Tên thể loại</Th>
+                         <Th color='white'>Phim</Th>
+                         <Th color='white' isNumeric>Action
                          </Th>
                        </Tr>
                     </Thead>
                     <Tbody>
-                      <Tr>
-                        <Td>02/04/2022</Td>
-                        <Td>Hành động</Td>
-                        <Td>6</Td>
-                        <Td isNumeric>
-                            <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                            <Button size='sm' colorScheme='red'>Xóa</Button>
-                        </Td>
-                       </Tr>
-                      <Tr>
-                        <Td>01/04/2022</Td>
-                        <Td>Hài hước</Td>
-                        <Td>4</Td>
-                        <Td isNumeric>
-                            <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                            <Button size='sm' colorScheme='red'>Xóa</Button>
-                        </Td>
-                     </Tr>
-                     <Tr>
-                        <Td>31/03/2022</Td>
-                        <Td>Trinh thám</Td>
-                        <Td>9</Td>
-                        <Td isNumeric>
-                            <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                            <Button size='sm' colorScheme='red'>Xóa</Button>
-                        </Td>
-                     </Tr>
-                     <Tr>
-                        <Td>30/03/2022</Td>
-                        <Td>Tội phạm</Td>
-                        <Td>5</Td>
-                        <Td isNumeric>
-                            <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                            <Button size='sm' colorScheme='red'>Xóa</Button>
-                        </Td>
-                     </Tr>
-                     <Tr>
-                        <Td>29/03/2022</Td>
-                        <Td>Kinh dị</Td>
-                        <Td>3</Td>
-                        <Td isNumeric>
-                            <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                            <Button size='sm' colorScheme='red'>Xóa</Button>
-                        </Td>
-                     </Tr>
-                   
-                     
+                      {renderTableData}
                    </Tbody>
                  </Table>
                </TableContainer>
