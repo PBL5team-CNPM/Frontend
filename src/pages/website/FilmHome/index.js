@@ -34,7 +34,6 @@ const FilmHome = ()=> {
                             length: dataphim.thoiluong,
                             director:dataphim.dao_dien,
                             actor:dataphim.dien_vien,
-                            category:"dsadsad",
                             content:dataphim.tom_tat,
                             finish:dataphim.ngay_ketthuc,
                             theloai:dataphim.theloai

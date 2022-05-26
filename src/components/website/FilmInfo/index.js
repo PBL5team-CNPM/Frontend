@@ -39,7 +39,13 @@ const FilmInfo = (props) => {
         }
     }, [])
 
-
+    let tl=""
+    function xuliTL(item,index,arr){
+         if(index===locationState.data.theloai.length-1)
+         {tl=tl+arr[index].ten_the_loai}
+         else {tl=tl+arr[index].ten_the_loai+", "}
+    }
+    locationState.data.theloai.forEach(xuliTL)
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
     const bgImg=bgC+locationState.data.imageUrl+")"
     return(
@@ -70,13 +76,7 @@ const FilmInfo = (props) => {
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thể loại: </Text>
-                                <Flex ml='1'>{
-                                    locationState.data.theloai.length>0?
-                                    locationState.data.theloai.map((item) => (
-                                        <Text key = {item.id}>{item.ten_the_loai}</Text>
-                                    )).reduce((prev, curr) => [prev, ', ', curr])
-                                    :''
-                                }</Flex>
+                                <Text  ml='1'>{tl}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
