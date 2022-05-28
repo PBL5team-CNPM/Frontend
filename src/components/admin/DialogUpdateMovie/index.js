@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {Button,
     AlertDialog,
     AlertDialogBody,
@@ -18,32 +18,29 @@ import {Button,
   import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
 
-function DialogAddMovie(props){
+function DialogUpdateMovie(props){
     const toast=useToast()
-    const [Theloai,setTheloai]=useState([])
-    useEffect(()=>{
-      console.log(Theloai)
-    },[Theloai])
+    const [Theloai,setTheloai]=useState(props.dataphim.theloai)
     const SelectCategory = val => {
       setTheloai(val)
       console.log(Theloai)
     }
     const [values, setValues] = useState(
       {
-        title: "",
-        trailer: "",
-        imageUrl: "",
-        time: "",
-        length: "",
-        director: "",
-        actor: "",
-        content: "",
-        finish:"",
+        title: props.dataphim.title,
+        trailer: props.dataphim.trailer,
+        imageUrl: props.dataphim.imageUrl,
+        time: props.dataphim.time,
+        length: props.dataphim.length,
+        director: props.dataphim.director,
+        actor: props.dataphim.actor,
+        content: props.dataphim.content,
+        finish:props.dataphim.finish,
       }
     )
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
-    const category=props.data;
+    const category=props.datatheloai;
 
     const handleSubmit = (e) => {
       if(values.title==="" || values.trailer==="" ||values.imageUrl==="" || !Theloai.length ||
@@ -83,7 +80,7 @@ function DialogAddMovie(props){
       Theloai.forEach(xulyTheloai)
       console.log(phim.theloai)
       
-      axios.post('http://localhost:8000/api/addphims', phim).then(res => {
+      axios.put(`http://localhost:8000/api/updatephim/${props.dataphim.id}`, phim).then(res => {
 
       }).catch(error=>{
             console.log(error)
@@ -91,30 +88,18 @@ function DialogAddMovie(props){
      
       toast({
         title: 'Successfully!',
-        description: "Đã thêm phim mới "+values.title+".",
+        description: "Đã sửa phim "+values.title+".",
         status: 'success',
         duration: 2000,
         isClosable: true,
       })
       props.parentCallback("Update")
-      setValues({title: "",
-      trailer: "",
-      imageUrl: "",
-      time: "",
-      length: "",
-      director: "",
-      actor: "",
-      content: "",
-      finish:"",
-    })}
+     }
     }
 
     return(
     <>
-      <Button ml='70px' mt='30px' mb='20px' 
-      colorScheme='green' size='lg'
-        shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
-       
+       <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
        <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -129,7 +114,7 @@ function DialogAddMovie(props){
             <form onSubmit={handleSubmit}>
               <AlertDialogHeader fontSize='2xl' fontWeight='bold'
               color='white' textAlign='center'>
-                Thêm phim
+                Sửa phim
               </AlertDialogHeader>
 
               <AlertDialogBody color='white'>
@@ -158,9 +143,7 @@ function DialogAddMovie(props){
                                 content: values.content,
                                 finish: values.finish,
                                  
-                              })
-                            console.log(Theloai)
-                            }}
+                              })}}
                     />
                   </Box>
 
@@ -240,6 +223,7 @@ function DialogAddMovie(props){
                     <Text mb='10px'>Thể loại (*)</Text>
                     <Multiselect className='mse-category' 
                     placeholder='Chọn thể loại' hidePlaceholder='true'
+                    selectedValues={Theloai}
                     options={category} showCheckbox='true' displayValue="ten_the_loai"
                     onSelect={SelectCategory}
                     onRemove={SelectCategory}
@@ -379,8 +363,8 @@ function DialogAddMovie(props){
                 <Button colorScheme='red' ref={cancelRef} onClick={onClose}>
                   Hủy
                 </Button>
-                <Button type='submit' colorScheme='green' ml={3}>
-                  Thêm
+                <Button type='submit' colorScheme='green' ml={3} onClick={onClose}>
+                  Sửa
                 </Button>
               </AlertDialogFooter>
               </form>
@@ -394,4 +378,4 @@ function DialogAddMovie(props){
 
 
 
-export default DialogAddMovie;
+export default DialogUpdateMovie;

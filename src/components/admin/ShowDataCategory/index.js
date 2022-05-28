@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading,
+import { Box,  Heading,
     Table,
     Thead,
     Tbody,
@@ -9,10 +9,18 @@ import { Box, Button, Heading,
     TableContainer} from '@chakra-ui/react'
 import DialogAddCategory from '../DialogAddCategory';
 import axios from 'axios';
+import DialogUpdateCategory from '../DialogUpdateCategory';
+import DialogDeleteCategory from '../DialogDeleteCategory';
 
 function ShowDataCategory() {
   const [listTheloai,setListTheloai]=useState([])
-  useEffect(()=>{axios.get('http://localhost:8000/api/theloais/').
+  const [message,setMessage]= useState('')
+  const callbackFunction = (childData) => {
+    setMessage(childData)
+  }
+  
+ 
+  if(message==='Update' || message===""){ axios.get('http://localhost:8000/api/theloais/').
   then(
       res => {
           console.log(res.data)
@@ -24,12 +32,10 @@ function ShowDataCategory() {
                       phim: datatheloai.phim
                   }
               )
-          },
-          ))
-      }
-  ).catch(error => console.log(error))
- }, [])
- 
+                }))}).catch(error => console.log(error))
+              setMessage('waiting update')
+              }
+   
   const renderTableData=listTheloai.map((theloai, index) => {
     const { id, category, phim} = theloai
     console.log(phim.length)
@@ -38,8 +44,10 @@ function ShowDataCategory() {
         <Td >{index+1}</Td>
         <Td >{category}</Td>
         <Td >{phim.length}</Td>
-        <Td isNumeric> <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-            <Button size='sm' colorScheme='red'>Xóa</Button></Td>
+        <Td isNumeric> <DialogUpdateCategory parentCallback={callbackFunction}
+         idTL={id} tenTL={category}/>
+               <DialogDeleteCategory parentCallback={callbackFunction} 
+               idTL={id} tenTL={category}/></Td>
       </Tr>
     )
   })
@@ -64,7 +72,7 @@ function ShowDataCategory() {
                    </Tbody>
                  </Table>
                </TableContainer>
-               <DialogAddCategory/>
+               <DialogAddCategory parentCallback={callbackFunction}/>
           </Box>
         );
 }

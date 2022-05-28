@@ -15,13 +15,13 @@ import {Button,
     useToast} from '@chakra-ui/react'
 import axios from 'axios';
 
-function DialogAddCategory(props){
+function DialogUpdateCategory(props){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast= useToast()
     const [values, setValues] = useState(
       {
-        category: ""
+        category: props.tenTL
       }
     )
 
@@ -40,26 +40,24 @@ function DialogAddCategory(props){
       e.preventDefault();
       const theloai = {ten_the_loai: values.category}
 
-    axios.post('http://localhost:8000/api/addtheloais',theloai).then(res => {
+    axios.put(`http://localhost:8000/api/updatetheloai/${props.idTL}`,theloai).then(res => {
 
       }).catch(error=>{
             console.log(error)
       })
       toast({
         title: 'Successfully!',
-        description: "Đã thêm thể loại "+values.category+".",
+        description: "Đã sửa thể loại "+values.category+".",
         status: 'success',
         duration: 2000,
         isClosable: true,
       })
       props.parentCallback("Update")
-      setValues({category: ""})}
+      }
     }
     return(
     <>
-      <Button ml='70px' mt='30px' colorScheme='green' size='lg'
-        shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
-       
+       <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
        <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -72,7 +70,7 @@ function DialogAddCategory(props){
           ><form onSubmit={handleSubmit}>
             <AlertDialogHeader fontSize='2xl' fontWeight='bold'
              color='white' textAlign='center'>
-              Thêm thể loại
+              Sửa thể loại
             </AlertDialogHeader>
 
             <AlertDialogBody color='white'>
@@ -98,8 +96,8 @@ function DialogAddCategory(props){
               <Button colorScheme='red' ref={cancelRef} onClick={onClose}>
                 Hủy
               </Button>
-              <Button type='submit' colorScheme='green'  ml={3}>
-                Thêm
+              <Button type='submit' colorScheme='green'  ml={3} onClick={onClose}>
+                Sửa
               </Button>
             </AlertDialogFooter>
             </form>
@@ -112,4 +110,4 @@ function DialogAddCategory(props){
 
 
 
-export default DialogAddCategory;
+export default DialogUpdateCategory;

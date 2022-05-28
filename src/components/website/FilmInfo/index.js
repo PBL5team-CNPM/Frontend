@@ -49,7 +49,7 @@ const FilmInfo = (props) => {
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
     const bgImg=bgC+locationState.data.imageUrl+")"
     return(
-        <Stack  color='white' 
+        <Stack   color='white' 
         bg={bgImg}
         backgroundPosition= 'center'
         backgroundRepeat= 'no-repeat'
@@ -57,14 +57,14 @@ const FilmInfo = (props) => {
          px={164} py={18} fontFamily='Poppins'>
             <Box>
                 <Heading fontSize='32px'>Thông tin phim</Heading>
-                <Divider size='' mt='10px' mb='15px'/>
+                <hr style={{marginTop:'10px', marginBottom:'15px'}}/>
                 <Flex>
                     <Box>
                         <Image  w='407px' h='600px' src={locationState.data.imageUrl}/>
                     </Box>
                     <Box flex={1} ml='55px'>
                         <Heading fontSize='32px'>{locationState.data.title}</Heading>
-                        <Divider mt='10px' mb='15px'/>
+                        <hr style={{marginTop:'10px', marginBottom:'15px'}}/>
                         <Box mb='23px' fontSize='20px'>
                             <Flex>
                                 <Text fontWeight='bold'>Đạo diễn: </Text>
@@ -97,7 +97,7 @@ const FilmInfo = (props) => {
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
                      
-                        <Divider mt='24px' mb='10px'/>
+                        <hr style={{marginTop:'24px', marginBottom:'10px'}}/>
                         <Box>
                             <Heading fontSize='32px' mb='2px'>Tóm tắt nội dung</Heading>
                             <Text fontSize='20px'>
