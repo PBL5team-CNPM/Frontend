@@ -20,7 +20,7 @@ import axios from 'axios';
 
 function DialogUpdateMovie(props){
     const toast=useToast()
-    const [Theloai,setTheloai]=useState([])
+    const [Theloai,setTheloai]=useState(props.dataphim.theloai)
     const SelectCategory = val => {
       setTheloai(val)
       console.log(Theloai)
@@ -93,6 +93,7 @@ function DialogUpdateMovie(props){
         duration: 2000,
         isClosable: true,
       })
+      props.parentCallback("Update")
      }
     }
 
@@ -222,6 +223,7 @@ function DialogUpdateMovie(props){
                     <Text mb='10px'>Thể loại (*)</Text>
                     <Multiselect className='mse-category' 
                     placeholder='Chọn thể loại' hidePlaceholder='true'
+                    selectedValues={Theloai}
                     options={category} showCheckbox='true' displayValue="ten_the_loai"
                     onSelect={SelectCategory}
                     onRemove={SelectCategory}

@@ -1,9 +1,8 @@
 import {
-    Box, Center, HStack, Image, Flex, Radio, RadioGroup, Link, useRadioGroup, Spacer
+  Center, HStack, Image, Flex, Radio, RadioGroup, Link
 } from '@chakra-ui/react'
 
 import {ArrowBackIcon, ArrowForwardIcon} from '@chakra-ui/icons'
-import DotRadio from './DotRadio';
 import { useState, useEffect } from 'react'
 
 const SliderShow = () => {
@@ -25,7 +24,7 @@ const SliderShow = () => {
         }
     }
     function handleClickLeft() {
-        if(id!=0){
+        if(id!==0){
             setId(id-1)
         }
         else {
@@ -44,9 +43,9 @@ const SliderShow = () => {
                 <Link>
                 <Image
                     src="https://www.thebatman.com/images/share.jpg"
-                    ml = {id==1 ? '-100%'
-                                : id==2 ?
-                                '-200%': id==3 ? '-300%': '0%'}
+                    ml = {id===1 ? '-100%'
+                                : id===2 ?
+                                '-200%': id===3 ? '-300%': '0%'}
                     minW='1090px'
                     objectFit='cover'
                     transition='2s'
@@ -56,9 +55,9 @@ const SliderShow = () => {
                 <Link>
                 <Image
                     src="https://novastreamnetwork.com/wp-content/uploads/2019/12/the_witcher_netflix_promos-2.jpg"
-                    ml = {id==1 ? '-100%'
-                                : id==2 ?
-                                '-200%': id==3 ? '-300%': '0%'}
+                    ml = {id===1 ? '-100%'
+                                : id===2 ?
+                                '-200%': id===3 ? '-300%': '0%'}
                     minW='1090px'
                     objectFit='cover'
                     transition='2s'
@@ -68,9 +67,9 @@ const SliderShow = () => {
                 <Link>
                 <Image
                     src="https://static0.srcdn.com/wordpress/wp-content/uploads/2022/02/Doctor-Strange-2-Poster.jpeg?q=50&fit=crop&w=767&h=450&dpr=1.5"
-                    ml = {id==1 ? '-100%'
-                                : id==2 ?
-                                '-200%': id==3 ? '-300%': '0%'}
+                    ml = {id===1 ? '-100%'
+                                : id===2 ?
+                                '-200%': id===3 ? '-300%': '0%'}
                     minW='1090px'
                     objectFit='cover'
                     transition='2s'
@@ -80,9 +79,9 @@ const SliderShow = () => {
                 <Link>
                 <Image
                     src="https://novastreamnetwork.com/wp-content/uploads/2019/12/the_witcher_netflix_promos-2.jpg"
-                    ml = {id==1 ? '-100%'
-                                : id==2 ?
-                                '-200%': id==3 ? '-300%': '0%'}
+                    ml = {id===1 ? '-100%'
+                                : id===2 ?
+                                '-200%': id===3 ? '-300%': '0%'}
                     minW='1090px'
                     objectFit='cover'
                     transition='2s'

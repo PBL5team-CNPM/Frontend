@@ -15,7 +15,7 @@ import {Button,
     useToast} from '@chakra-ui/react'
 import axios from 'axios';
 
-function DialogAddCategory(){
+function DialogAddCategory(props){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast= useToast()
@@ -52,6 +52,7 @@ function DialogAddCategory(){
         duration: 2000,
         isClosable: true,
       })
+      props.parentCallback("Update")
       setValues({category: ""})}
     }
     return(

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Heading,
+import { Box,  Heading,
     Table,
     Thead,
     Tbody,
@@ -18,9 +18,39 @@ const ShowDataMovies=() => {
   const [listTheloai, setListTheloai] = useState([])
   const [listphim, setListphim] = useState([])
   const listCategory=[]
+  const [message,setMessage]= useState('')
+  const callbackFunction = (childData) => {
+    setMessage(childData)
+  }
   function xulytheloai(item, index, arr){
     listCategory.push(arr[index])
 }
+
+if(message==='Update' || message===""){ 
+  axios.get('http://localhost:8000/api/phims/').
+  then(
+      res => {
+          setListphim(res.data.map((dataphim)=>{
+              return(
+                  {
+                      id: dataphim.id,
+                      title: dataphim.ten,
+                      trailer: dataphim.trailer,
+                      imageUrl: dataphim.poster,
+                      time:dataphim.ngay_chieu,
+                      length: dataphim.thoiluong,
+                      director:dataphim.dao_dien,
+                      actor:dataphim.dien_vien,
+                      content:dataphim.tom_tat,
+                      finish:dataphim.ngay_ketthuc,
+                      theloai:dataphim.theloai
+                  }
+              )
+          }))
+      }
+  ).catch(error => console.log(error))
+  setMessage('wait update')
+    }
   useEffect( ()=> {
     axios.get('http://localhost:8000/api/theloais/').
     then(
@@ -33,35 +63,12 @@ const ShowDataMovies=() => {
                         ten_the_loai: datatheloai.ten_the_loai,
                     }
                 )
-            },
+            }
             ))
         }
     ).catch(error => console.log(error))
    }, [])
-   useEffect(()=>{
-      axios.get('http://localhost:8000/api/phims/').
-    then(
-        res => {
-            setListphim(res.data.map((dataphim)=>{
-                return(
-                    {
-                        id: dataphim.id,
-                        title: dataphim.ten,
-                        trailer: dataphim.trailer,
-                        imageUrl: dataphim.poster,
-                        time:dataphim.ngay_chieu,
-                        length: dataphim.thoiluong,
-                        director:dataphim.dao_dien,
-                        actor:dataphim.dien_vien,
-                        content:dataphim.tom_tat,
-                        finish:dataphim.ngay_ketthuc,
-                        theloai:dataphim.theloai
-                    }
-                )
-            }))
-        }
-    ).catch(error => console.log(error))
-   },[])
+   
         listTheloai.forEach(xulytheloai)
         const renderTableData=listphim.map((phim, index) => {
             const { id, title } = phim
@@ -70,9 +77,11 @@ const ShowDataMovies=() => {
                 <Td >{index+1}</Td>
                 <Td >{title}</Td>
                 <Td ><ViewMovieInFo data={listphim[index]}/></Td>
-                <Td isNumeric> <DialogUpdateMovie dataphim={listphim[index]}
+                <Td isNumeric> <DialogUpdateMovie parentCallback={callbackFunction}
+                 dataphim={listphim[index]}
                  datatheloai={listCategory}/>
-                    <DialogDeleteMovie tenPhim={title} idPhim={id}/></Td>
+                    <DialogDeleteMovie parentCallback={callbackFunction} 
+                    tenPhim={title} idPhim={id}/></Td>
               </Tr>
             )
           })
@@ -80,7 +89,7 @@ const ShowDataMovies=() => {
         return (
             <Box >
                 <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
-                <TableContainer   mt='30px' ml='70px' w='1030px'  overflowY={'auto'} 
+                <TableContainer  mt='30px' ml='70px' w='1030px'  overflowY={'auto'} 
                 boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'  maxH={'450px'}
                >
                  <Table  variant={'striped'} >
@@ -101,7 +110,7 @@ const ShowDataMovies=() => {
                     
                  </Table>
                </TableContainer>
-               <DialogAddMovie data={listCategory}/>
+               <DialogAddMovie data={listCategory} parentCallback={callbackFunction}/>
           </Box>
         );
 }

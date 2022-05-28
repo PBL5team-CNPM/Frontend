@@ -29,7 +29,7 @@ const Navbar = () => {
                   {
                       id: datatheloai.id,
                       category: datatheloai.ten_the_loai,
-                   
+                      movies: datatheloai.phim
                   }
               )
           },

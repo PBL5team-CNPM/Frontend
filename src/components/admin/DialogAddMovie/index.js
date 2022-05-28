@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button,
     AlertDialog,
     AlertDialogBody,
@@ -21,6 +21,9 @@ import axios from 'axios';
 function DialogAddMovie(props){
     const toast=useToast()
     const [Theloai,setTheloai]=useState([])
+    useEffect(()=>{
+      console.log(Theloai)
+    },[Theloai])
     const SelectCategory = val => {
       setTheloai(val)
       console.log(Theloai)
@@ -93,6 +96,7 @@ function DialogAddMovie(props){
         duration: 2000,
         isClosable: true,
       })
+      props.parentCallback("Update")
       setValues({title: "",
       trailer: "",
       imageUrl: "",
@@ -107,7 +111,8 @@ function DialogAddMovie(props){
 
     return(
     <>
-      <Button ml='70px' mt='30px' mb='20px' colorScheme='green' size='lg'
+      <Button ml='70px' mt='30px' mb='20px' 
+      colorScheme='green' size='lg'
         shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
        
        <AlertDialog
@@ -153,7 +158,9 @@ function DialogAddMovie(props){
                                 content: values.content,
                                 finish: values.finish,
                                  
-                              })}}
+                              })
+                            console.log(Theloai)
+                            }}
                     />
                   </Box>
 

@@ -1,13 +1,14 @@
-import {  Button, Center, SimpleGrid, Text } from "@chakra-ui/react";
+import {  Button, Center, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
 function ListCategory(props){
     const {data} = props
     const List = data.map((item)=>(
-        <Link to="  " >
+
+        <Link to={`/home/categorys/${item.id}`} >
         <Center>
-        <Button variant={'link'} color='white' size='sm'> 
+        <Button key={item.id} variant={'link'} color='white' size='sm'> 
         {item.category}
         </Button></Center>
         </Link>

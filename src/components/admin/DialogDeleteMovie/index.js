@@ -31,6 +31,7 @@ function DialogDeleteMovie(props){
           duration: 2000,
           isClosable: true,
         })
+        props.parentCallback("Update")
       }
     return(
         <>
