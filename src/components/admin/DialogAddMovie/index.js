@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button,
     AlertDialog,
     AlertDialogBody,
@@ -21,6 +21,9 @@ import axios from 'axios';
 function DialogAddMovie(props){
     const toast=useToast()
     const [Theloai,setTheloai]=useState([])
+    useEffect(()=>{
+      console.log(Theloai)
+    },[Theloai])
     const SelectCategory = val => {
       setTheloai(val)
       console.log(Theloai)
@@ -153,7 +156,9 @@ function DialogAddMovie(props){
                                 content: values.content,
                                 finish: values.finish,
                                  
-                              })}}
+                              })
+                            console.log(Theloai)
+                            }}
                     />
                   </Box>
 
