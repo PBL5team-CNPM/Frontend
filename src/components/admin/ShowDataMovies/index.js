@@ -11,6 +11,8 @@ import { Box, Button, Heading,
 import DialogAddMovie from '../DialogAddMovie';
 import ViewMovieInFo from '../ViewMovieInfo';
 import axios from 'axios';
+import DialogUpdateMovie from '../DialogUpdateMovie';
+import DialogDeleteMovie from '../DialogDeleteMovie';
 
 const ShowDataMovies=() => {
   const [listTheloai, setListTheloai] = useState([])
@@ -68,8 +70,9 @@ const ShowDataMovies=() => {
                 <Td >{index+1}</Td>
                 <Td >{title}</Td>
                 <Td ><ViewMovieInFo data={listphim[index]}/></Td>
-                <Td isNumeric> <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-                    <Button size='sm' colorScheme='red'>Xóa</Button></Td>
+                <Td isNumeric> <DialogUpdateMovie dataphim={listphim[index]}
+                 datatheloai={listCategory}/>
+                    <DialogDeleteMovie tenPhim={title} idPhim={id}/></Td>
               </Tr>
             )
           })

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { Stack, Box, Center, Flex, Icon} from '@chakra-ui/react'
+import React, { useEffect, useState } from "react";
+import { Stack, Box, Center, Flex, Icon, Button} from '@chakra-ui/react'
 import { Link, Outlet } from 'react-router-dom'
 import Header from "../Header";
 import {FaHome} from 'react-icons/fa';
 import {BiMoviePlay, BiCategory, BiNews} from 'react-icons/bi'
 import {TiTicket} from 'react-icons/ti'
 import {RiUserSearchLine} from 'react-icons/ri'
+import axios from "axios";
+import ListCategory from "../ListCategory";
+import Footer from "../Footer";
 
 const Navbar = () => {
     const [home,setHome]=useState({BColor:"",TColor:""})
@@ -14,11 +17,31 @@ const Navbar = () => {
     const [ticket,setTicket]=useState({BColor:"",TColor:""})
     const [recuit,setRecuit]=useState({BColor:"",TColor:""})
     const [news,setNews]=useState({BColor:"",TColor:""})
+    const [ChonTheLoai,SetChonTheLoai]=useState("hidden")
+    const [ChonPhim,SetChonPhim]=useState("hidden")
+    const [theloai,setListTheloai]=useState([])
+    useEffect(()=>{axios.get('http://localhost:8000/api/theloais/').
+     then(
+      res => {
+          console.log(res.data)
+          setListTheloai(res.data.map((datatheloai)=>{
+              return(
+                  {
+                      id: datatheloai.id,
+                      category: datatheloai.ten_the_loai,
+                   
+                  }
+              )
+          },
+          ))
+      }
+    ).catch(error => console.log(error))
+   }, [])
     return(
         <Box>
 
           <Header/>
-        <Stack bgColor=''>
+        <Stack >
             <Center bgColor='white' h='40px' pt='10px' fontSize='24px' >
                        
                      <Link to="">
@@ -32,29 +55,59 @@ const Navbar = () => {
                                 </Flex>
                         </Center></Link>
                        
-                        <Link to="theloai">
+                        <Box  cursor={'pointer'}
+                         onMouseLeave={() => {setMovie({BColor:"white",TColor:"#020e1a"})
+                                          SetChonPhim("hidden")}}>
                         <Center w='196px' h='50px' bgColor={movie.BColor} color={movie.TColor}
-                        onMouseLeave={() => {setMovie({BColor:"white",TColor:"#020e1a"})}}
-                        onMouseEnter ={() => {setMovie({BColor:"#020e1a",TColor:"white"})}}>
+                        onMouseEnter ={() => {setMovie({BColor:"#020e1a",TColor:"white"})
+                                            SetChonPhim("") 
+                                            }}>
                            
                                <Flex>
                                     <Icon as={BiMoviePlay} mr='5px' mt='4px'/>
                                     Phim
                                 </Flex>
-                           
-                        </Center> </Link>
+
+                        </Center> 
                         
-                        <Link to="theloai">
+                        <Box 
+                         bgColor={"#020e1a"} w='196px'  visibility={ChonPhim}
+                        position={'absolute'} left={'24.2%'} 
+                        >
+                            <Box mb='15px' ml='35px'>
+                                <Link to='movies/now-showing' ><Button  variant={'link'} size='sm' color='white'>
+                                Phim Đang Chiếu</Button></Link>
+                               <Link to='movies/coming-soon'><Button variant={'link'} size='sm' color='white'>
+                                Phim Sắp Chiếu</Button></Link>
+                            </Box>
+                       
+                        </Box>
+                        </Box>
+                        
+                        <Box  cursor={'pointer'}
+                         onMouseLeave={() => {setCategory({BColor:"white",TColor:"#020e1a"})
+                                           SetChonTheLoai("hidden")}} >
                         <Center w='196px' h='50px' bgColor={category.BColor} color={category.TColor}
-                        onMouseLeave={() => {setCategory({BColor:"white",TColor:"#020e1a"})}}
-                        onMouseEnter ={() => {setCategory({BColor:"#020e1a",TColor:"white"})}}>
+                       
+                        onMouseEnter ={() => {setCategory({BColor:"#020e1a",TColor:"white"})
+                                              SetChonTheLoai("")}}>
                            
                                 <Flex>
                                     <Icon as={BiCategory} mr='5px' mt='4px'/>
                                     Thể Loại
                                 </Flex>
-                           
-                        </Center> </Link>
+                        </Center> 
+                        
+                        <Box visibility={ChonTheLoai}
+                         bgColor={'#020e1a'} w='590px' 
+                        position={'absolute'} left={'37.1%'} top='130px'
+                        >
+                            <ListCategory data={theloai}/>
+                        </Box>
+                        
+                      
+                        </Box>
+                        
                         
                         <Link to="ve">
                         <Center w='196px' h='50px' bgColor={ticket.BColor} color={ticket.TColor}
@@ -93,10 +146,13 @@ const Navbar = () => {
                         </Center></Link>
                     
             </Center>
-            <Box h='full'>
+           
+            <Box bgColor='#1F1D36' >
+             
                 <Outlet />
             </Box>
         </Stack>
+        <Footer/>
         </Box>
     )
 }

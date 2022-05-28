@@ -1,7 +1,6 @@
 
 import React from "react"
 import { 
-    Box,
     SimpleGrid
 } from '@chakra-ui/react'
 import Film from "./Film"

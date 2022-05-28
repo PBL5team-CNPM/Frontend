@@ -1,12 +1,12 @@
-import {React, useState, useEffect} from "react"
+import React, { useEffect, useState } from "react"
 import FilmList from "../../../components/website/FilmList"
 import FilmListUpcoming from "../../../components/website/FilmListUpComing"
 import { Box, Tabs, TabList, Tab, TabPanel, TabPanels, Center } from '@chakra-ui/react'
-import Footer from "../../../components/website/Footer"
 import SliderShow from "../../../components/website/SliderShow"
-import axios from 'axios'
+import axios from "axios"
 
-const FilmHome = ()=> {
+
+const FilmHome = (props)=> {
     const listphimdangchieu = []
     const listphimsapchieu = []
     const [listphim, setListphim] = useState([])
@@ -44,19 +44,18 @@ const FilmHome = ()=> {
         ).catch(error => console.log(error))
     }, [])
     
-
+  
     listphim.forEach(xulyphim);
     console.log(listphimdangchieu)
     console.log(listphimsapchieu)
-
     return(
         <Box>
             <SliderShow/>
             <Center  mt='12px'>
-            <Tabs w='6xl' colorScheme='orange'>
+            <Tabs w='6xl' colorScheme='orange' >
                 <TabList>
-                    <Tab>PHIM ĐANG CHIẾU</Tab>
-                    <Tab>PHIM SẮP CHIẾU</Tab>
+                    <Tab color='white'>PHIM ĐANG CHIẾU</Tab>
+                    <Tab color='white'>PHIM SẮP CHIẾU</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>
@@ -68,7 +67,6 @@ const FilmHome = ()=> {
                 </TabPanels>
             </Tabs>
             </Center>
-        <Footer/>
         </Box>
 
     )

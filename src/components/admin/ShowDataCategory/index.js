@@ -9,6 +9,8 @@ import { Box, Button, Heading,
     TableContainer} from '@chakra-ui/react'
 import DialogAddCategory from '../DialogAddCategory';
 import axios from 'axios';
+import DialogUpdateCategory from '../DialogUpdateCategory';
+import DialogDeleteCategory from '../DialogDeleteCategory';
 
 function ShowDataCategory() {
   const [listTheloai,setListTheloai]=useState([])
@@ -37,8 +39,8 @@ function ShowDataCategory() {
         <Td >{index+1}</Td>
         <Td >{category}</Td>
         <Td >8</Td>
-        <Td isNumeric> <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
-            <Button size='sm' colorScheme='red'>Xóa</Button></Td>
+        <Td isNumeric> <DialogUpdateCategory idTL={id} tenTL={category}/>
+               <DialogDeleteCategory idTL={id} tenTL={category}/></Td>
       </Tr>
     )
   })

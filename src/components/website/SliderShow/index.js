@@ -39,7 +39,7 @@ const SliderShow = () => {
         },
     );
     return(
-        <Center bgColor='#1F1D36'>
+        <Center bgColor='#00051D'>
             <Flex w='1090px' h='572px' overflow='hidden'>
                 <Link>
                 <Image

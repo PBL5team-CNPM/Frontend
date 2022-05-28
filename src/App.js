@@ -1,7 +1,6 @@
-
-import React from "react";
+import {React} from "react";
 import { Routes, Route} from "react-router-dom";
-import { Box, HStack, VStack } from '@chakra-ui/react';
+import { Box} from '@chakra-ui/react';
 import Login from "./pages/website/Login";
 import Welcome from "./pages/website/Welcome";
 import Signup from "./pages/website/Signup";
@@ -22,6 +21,8 @@ import EditProfile from "./components/website/EditProfile";
 import MyTickets from "./components/website/MyTickets";
 import ChangePassword from "./components/website/ChangePassword";
 import SeatSelect from "./pages/website/SeatSelect";
+import ComingSoon from "./pages/website/ComingSoon";
+import NowShow from "./pages/website/NowShow";
 
 function App() {
   return (
@@ -39,12 +40,14 @@ function App() {
             <Route path="users" element={<Users />} />
           </Route>
           <Route path="/home" element={<Navbar/>}>
-            <Route path="" element={<FilmHome />} />
-            <Route path="phim" element={<FilmAll />} />
+            <Route path="" element={<FilmHome/>} />
+            <Route path="movie-info" element={<FilmAll />} />
             <Route path="TheLoai" element={<TheLoai />} />
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<SeatSelect />} />
             <Route path="tintuc" element={<TheLoai />} />
+            <Route path="movies/now-showing" element={<NowShow/>} />
+            <Route path="movies/coming-soon" element={<ComingSoon/>} />
           </Route>
           <Route path="/profile" element={<Profile/>}>
             <Route path="viewprofile" element={<ViewProfile/>} />
