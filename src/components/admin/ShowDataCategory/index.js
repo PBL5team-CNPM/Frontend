@@ -21,7 +21,7 @@ function ShowDataCategory() {
                   {
                       id: datatheloai.id,
                       category: datatheloai.ten_the_loai,
-                   
+                      phim: datatheloai.phim
                   }
               )
           },
@@ -31,12 +31,13 @@ function ShowDataCategory() {
  }, [])
  
   const renderTableData=listTheloai.map((theloai, index) => {
-    const { id, category} = theloai
+    const { id, category, phim} = theloai
+    console.log(phim.length)
     return (
       <Tr key={id}>
         <Td >{index+1}</Td>
         <Td >{category}</Td>
-        <Td >8</Td>
+        <Td >{phim.length}</Td>
         <Td isNumeric> <Button mr='5px' size='sm' colorScheme='blue'>Sửa</Button>
             <Button size='sm' colorScheme='red'>Xóa</Button></Td>
       </Tr>
