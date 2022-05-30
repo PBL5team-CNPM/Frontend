@@ -19,7 +19,7 @@ function ViewProfile() {
                m='10px 0px 10px 60px'  borderColor='blue'
                borderRadius="10px"
                border="2px">
-              <Text ml='10px' color='black' fontSize='18px'>Nguyễn Văn A</Text>
+              <Text ml='10px' color='black' fontSize='18px'>{JSON.parse(localStorage.getItem('user-info')).realname}</Text>
             </Box>
 
             <Text color='black' marginLeft='60px'>Số điện thoại</Text>
@@ -29,7 +29,7 @@ function ViewProfile() {
                m='10px 0px 10px 60px'  borderColor='blue'
                borderRadius="10px"
                border="2px">
-              <Text ml='10px' color='black' fontSize='18px'>0935218596</Text>
+              <Text ml='10px' color='black' fontSize='18px'>{JSON.parse(localStorage.getItem('user-info')).phone_number}</Text>
             </Box>
           
             <Text color='black' marginLeft='60px'>Email</Text>
@@ -38,7 +38,7 @@ function ViewProfile() {
                m='10px 0px 10px 60px'  borderColor='blue'
                borderRadius="10px"
                border="2px">
-               <Text ml='10px' color='black' fontSize='18px'>ngvana@gmail.com</Text>
+               <Text ml='10px' color='black' fontSize='18px'>{JSON.parse(localStorage.getItem('user-info')).email}</Text>
             </Box>
             <Text color='black' marginLeft='60px'>Ngày sinh</Text>
             <Box  w="310px"
@@ -46,7 +46,7 @@ function ViewProfile() {
                m='10px 0px 10px 60px'  borderColor='blue'
                borderRadius="10px"
                border="2px">
-               <Text ml='10px' color='black' fontSize='18px'>01/01/2022</Text>
+               <Text ml='10px' color='black' fontSize='18px'>{JSON.parse(localStorage.getItem('user-info')).birth}</Text>
             </Box>
 
                 

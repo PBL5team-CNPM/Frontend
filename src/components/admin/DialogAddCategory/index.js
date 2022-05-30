@@ -57,8 +57,15 @@ function DialogAddCategory(props){
     }
     return(
     <>
-      <Button ml='70px' mt='30px' colorScheme='green' size='lg'
-        shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
+      {
+        (JSON.parse(localStorage.getItem('user-info')).action.includes("AddTheLoai"))
+        ?
+        <Button ml='70px' mt='30px' colorScheme='green' size='lg'
+          shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
+        :
+        <Button ml='70px' mt='30px' colorScheme='green' size='lg'
+          shadow='0px 3px 3px 3px #344a3b' disabled onClick={onOpen}>Thêm mới</Button>
+      }
        
        <AlertDialog
         isOpen={isOpen}

@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 import { Box} from '@chakra-ui/react';
 import Login from "./pages/website/Login";
 import Welcome from "./pages/website/Welcome";
@@ -26,6 +26,12 @@ import MoviesByCategory from "./pages/website/MoviesByCategory";
 import axios from "axios";
 
 function App() {
+  useEffect(()=>{
+    if(localStorage.getItem('user-info')){
+        // navigate("/home")
+        // {<Navigate to="/" replace />}
+    }
+  })
   const listphimdangchieu = []
   const listphimsapchieu = []
   const [listphim, setListphim] = useState([])
