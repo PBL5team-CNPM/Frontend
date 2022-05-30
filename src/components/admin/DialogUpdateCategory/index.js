@@ -57,7 +57,13 @@ function DialogUpdateCategory(props){
     }
     return(
     <>
-       <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
+      {
+        (JSON.parse(localStorage.getItem('user-info')).action.includes("EditTheLoai"))
+        ?
+        <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
+        :
+        <Button mr='5px' size='sm' disabled colorScheme='blue' onClick={onOpen}>Sửa</Button>
+      }
        <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
