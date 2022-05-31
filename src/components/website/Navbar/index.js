@@ -21,22 +21,22 @@ const Navbar = () => {
     const [ChonPhim,SetChonPhim]=useState("hidden")
     const [theloai,setListTheloai]=useState([])
     useEffect(()=>{axios.get('http://localhost:8000/api/theloais/').
-     then(
-      res => {
-          console.log(res.data)
-          setListTheloai(res.data.map((datatheloai)=>{
-              return(
-                  {
-                      id: datatheloai.id,
-                      category: datatheloai.ten_the_loai,
-                      movies: datatheloai.phim
-                  }
-              )
-          },
-          ))
-      }
+    then(
+        res => {
+            // console.log(res.data)
+            setListTheloai(res.data.map((datatheloai)=>{
+                return(
+                    {
+                        id: datatheloai.id,
+                        category: datatheloai.ten_the_loai,
+                        movies: datatheloai.phim
+                    }
+                )
+            },
+            ))
+        }
     ).catch(error => console.log(error))
-   }, [])
+    }, [])
     return(
         <Box>
 

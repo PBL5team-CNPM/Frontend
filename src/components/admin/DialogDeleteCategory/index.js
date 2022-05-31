@@ -35,7 +35,13 @@ function DialogDeleteCategory (props){
       }
     return(
         <>
-        <Button size='sm' colorScheme='red' onClick={onOpen}>Xóa</Button>
+        {
+          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeleteTheLoai"))
+          ?
+          <Button size='sm' colorScheme='red' onClick={onOpen}>Xóa</Button>
+          :
+          <Button size='sm' disabled colorScheme='red' onClick={onOpen}>Xóa</Button>
+        }
         <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}

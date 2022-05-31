@@ -7,12 +7,18 @@ import {
     Flex, 
     Center, 
     Button,
+    Spacer,
 } from '@chakra-ui/react'
 
 import SearchBar from "../SearchBar";
-
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate()
+    const logout = () => {
+        localStorage.clear();
+        navigate("/")
+    }
     return(
         <HStack bgColor='#00051D' h='80px' spacing='6'>
             <Box w='500px' h='80px' ml='50px'>
@@ -35,28 +41,58 @@ const Header = () => {
                     </Flex>
                 </Link>
             </Box>
-          
+            <Spacer/>
             <Box color='white' fontFamily='Poppins' fontSize='36px'>
                 <SearchBar/>    
             </Box>
-
-            <Box w='170px' color='white' fontFamily='Poppins' fontSize='20px' >
-                <Flex ml='60px'>
-                    <Box w='80px' mr='60px'>
-                       <Link to="/login">
-                          <Button  colorScheme='white' variant='link'>
-                            Đăng nhập
-                         </Button>
-                        </Link>
-                    </Box>
-                    <Box >
-                       <Link to="/signup">
-                        <Button colorScheme='white' variant='link'>
-                            Đăng ký
-                       </Button>
-                        </Link>
-                    </Box>
-                </Flex>
+            <Spacer/>
+            <Box mr='50px' color='white' fontFamily='Poppins' fontSize='20px' >
+                {
+                    localStorage.getItem('user-info')?
+                    <Flex mr='60px'>
+                        <Box w='80px' mr='60px'>
+                        <Link to="/profile/viewprofile">
+                            <Button  colorScheme='white' variant='link'>
+                                {JSON.parse(localStorage.getItem('user-info')).name}
+                            </Button>
+                            </Link>
+                        </Box>
+                        { (JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD"))?
+                        <Box w='80px' mr='60px'>
+                            <Link to="/admin/film">
+                                <Button colorScheme='white' variant='link'
+                                >
+                                    DashBoard
+                                </Button>
+                            </Link>
+                        </Box>:null
+                        } 
+                        <Box>
+                            <Button colorScheme='white' variant='link'
+                                onClick={logout}
+                            >
+                                Đăng xuất
+                            </Button>
+                        </Box>
+                    </Flex>
+                    :
+                    <Flex mr='60px'>
+                        <Box w='80px' mr='60px'>
+                        <Link to="/login">
+                            <Button  colorScheme='white' variant='link'>
+                                Đăng nhập
+                            </Button>
+                            </Link>
+                        </Box>
+                        <Box >
+                        <Link to="/signup">
+                            <Button colorScheme='white' variant='link'>
+                                Đăng ký
+                        </Button>
+                            </Link>
+                        </Box>
+                    </Flex>
+                }
             </Box>
         </HStack>
     );
