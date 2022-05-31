@@ -42,7 +42,7 @@ const Navbar = () => {
 
           <Header/>
         <Stack >
-            <Center bgColor='white' h='40px' pt='10px' fontSize='24px' >
+            <Center bgColor='white' h='40px' pt='10px' fontSize='24px' zIndex={10} >
                        
                      <Link to="">
                         <Center w='196px' h='50px' bgColor={home.BColor} color={home.TColor}

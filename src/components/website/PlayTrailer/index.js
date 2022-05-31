@@ -26,7 +26,7 @@ function PlayTrailer(props){
             <Center>
            <AspectRatio w='650px' h='400px' mt='5px' ratio={1}>
              <iframe 
-              title='The Batman'
+              title=''
               src={props.trailerProp}
               allowFullScreen
              />
