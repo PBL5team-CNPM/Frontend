@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, Center, Flex, HStack, Image,Input,Spacer,Text, toast} from '@chakra-ui/react'
+import { Box, Button, Center, Flex, HStack, Image,Input,Spacer,Text, useToast} from '@chakra-ui/react'
 import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import Footer from '../../../components/website/Footer';
@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 function Profile() {
+    const toast = useToast()
     const inputFile = useRef()
     const [file, setFile] = useState("")
     const [preview, setPreview] = useState("")
@@ -47,15 +48,17 @@ function Profile() {
         console.log(res.data.data)
         localStorage.setItem('user-info',JSON.stringify(res.data.data))
         setAvatar("http://localhost:8000/"+res.data.data.avatar)
-        toast({
-          title: 'Successfully!',
-          description: "Thay đổi avatar thành công",
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        })
+        inputFile.current.value = ""
+        setFile("")
       }).catch(error=>{
         console.log(error)
+      })
+      toast({
+        title: 'Successfully!',
+        description: "Thay đổi avatar thành công",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
       })
       inputFile.current.value = ""
       setFile("")
