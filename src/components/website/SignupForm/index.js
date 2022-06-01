@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Center, Input, Radio, RadioGroup, Stack, Text, useToast} from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link,  useNavigate} from 'react-router-dom'
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function SignupForm() {
       const navigate = useNavigate()
-      useEffect(()=>{
-         if(localStorage.getItem('user-info')){
-            navigate("/home")
-         }
-      })
       const toast=useToast()
       const [email, setEmail] = useState("")
       const [name, setName] = useState("")
@@ -62,7 +56,7 @@ function SignupForm() {
          else if(password !== password2){
             toast({
                title: 'Warning!',
-               description: "hãy xác nhận password chính xác.",
+               description: "Hãy xác nhận mật khẩu chính xác.",
                status: 'warning',
                duration: 2000,
                isClosable: true,
@@ -89,8 +83,14 @@ function SignupForm() {
                }
             ).then(res => {
                console.log(res.data.data)
-               localStorage.setItem('user-info',JSON.stringify(res.data.data))
-               navigate("/home")
+               navigate("/login")
+               toast({
+                  title: 'Successfully!',
+                  description: "Đăng ký tài khoản thành công.",
+                  status: 'success',
+                  duration: 2000,
+                  isClosable: true,
+               })
             }).catch(error=>{
                   console.log(error)
                   console.log(item)

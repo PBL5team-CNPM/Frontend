@@ -38,11 +38,11 @@ const Navbar = () => {
     ).catch(error => console.log(error))
     }, [])
     return(
-        <Box>
+        <Box w='100%'>
 
           <Header/>
-        <Stack >
-            <Center bgColor='white' h='40px' pt='10px' fontSize='24px' >
+            <Center bgColor='white' h='50px' w='100%' fontSize='24px' zIndex={100} position='fixed'
+            top='80px' left={'0'} right='0' >
                        
                      <Link to="">
                         <Center w='196px' h='50px' bgColor={home.BColor} color={home.TColor}
@@ -100,12 +100,10 @@ const Navbar = () => {
                         
                         <Box visibility={ChonTheLoai}
                          bgColor={'#020e1a'} w='590px' 
-                        position={'absolute'} left={'37.1%'} top='130px'
+                        position={'absolute'} left={'37.1%'}
                         >
                             <ListCategory data={theloai}/>
                         </Box>
-                        
-                      
                         </Box>
                         
                         
@@ -146,8 +144,8 @@ const Navbar = () => {
                         </Center></Link>
                     
             </Center>
-           
-            <Box bgColor='#1F1D36' >
+        <Stack mt='130px' >
+            <Box bgColor='#1F1D36'>
              
                 <Outlet />
             </Box>

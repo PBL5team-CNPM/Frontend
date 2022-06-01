@@ -41,8 +41,7 @@ function ShowDataRevenue() {
                              16</Text>
                   </Box>
                </Box>
-               <TableContainer  mt='30px' ml='70px' w='1020px' h='350px' boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
-               overflowY='auto'>
+               <TableContainer  mt='30px' ml='50px' w='1130px' boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                  <Table variant='striped'>
                      <Thead>
                        <Tr>

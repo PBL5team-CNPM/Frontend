@@ -1,9 +1,16 @@
 import { Box, Button, Center, Flex, Heading, HStack, Image, Spacer, Text } from '@chakra-ui/react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../../components/website/Footer';
 
-const Welcome=() =>( 
+const Welcome=() =>{
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(localStorage.getItem('user-info')){
+        navigate("/home")
+    }
+  })
+    return(
      <Box>
            
           <HStack bgColor='#1F1D36' h='55px' padding='10px'>
@@ -103,7 +110,8 @@ const Welcome=() =>(
            </Box>
             <Footer/>
          </Box>
-)
+    )
+}
 
 
 

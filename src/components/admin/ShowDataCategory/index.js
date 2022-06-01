@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box,  Heading,
     Table,
     Thead,
@@ -12,7 +12,7 @@ import axios from 'axios';
 import DialogUpdateCategory from '../DialogUpdateCategory';
 import DialogDeleteCategory from '../DialogDeleteCategory';
 
-function ShowDataCategory() {
+function ShowDataCategory(props) {
   const [listTheloai,setListTheloai]=useState([])
   const [message,setMessage]= useState('')
   const callbackFunction = (childData) => {
@@ -33,6 +33,7 @@ function ShowDataCategory() {
                   }
               )
                 }))}).catch(error => console.log(error))
+              props.parentCallback(message)
               setMessage('waiting update')
               }
    
@@ -53,10 +54,9 @@ function ShowDataCategory() {
   })
         return (
             <Box >
-                <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách thể loại</Heading>
-                <TableContainer  mt='30px' ml='70px' w='1020px' maxH='450px' 
-                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
-               overflowY='auto'>
+                <Heading fontSize={'6vh'} textAlign='center' textShadow='2px 3px 4px #000'>Danh sách thể loại</Heading>
+                <TableContainer  mt='30px' w='100%' 
+                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                  <Table variant='striped'>
                      <Thead bgColor={'#1F1D36'}>
                        <Tr>

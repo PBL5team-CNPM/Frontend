@@ -134,8 +134,8 @@ const MoviesSlider=styled.div`
             draggable='true'>
                 {
                     props.data.map((movie,index)=>(
-                        <Box key={index} className='movieItem' ref={movieRef} w='100%' h='100%' maxH='500px'
-                        maxW='400px' userSelect='none' overflow='hidden' borderRadius='6px'
+                        <Box key={index} className='movieItem' ref={movieRef} w='100%' h='100%' minH='452px'
+                        minW='300px' userSelect='none' overflow='hidden' borderRadius='6px'
                         position='relative' draggable='false' border={'2px'} borderColor='white'>
                             <Image src={"http://localhost:8000/"+movie.imageUrl} w='100%' h='100%' objectFit='cover'
                             draggable='false'/>
@@ -144,9 +144,14 @@ const MoviesSlider=styled.div`
                              bgColor={'rgba(0,0,0,0.65)'}>{movie.title}</Text>
                              <Flex className="btnGroup" opacity={'0'} position={'absolute'} right='10px' bottom='35px'>
                                  
+                             {localStorage.getItem('user-info')?
                                  <Button transition={'0.7s'} mr='7px' colorScheme='red' size='sm' bgColor='rgb(255,0,0,0.5)'>
-                                     Mua vé
-                                 </Button>
+                                 Mua vé
+                             </Button>:
+                             <Link to='/login'>
+                               <Button transition={'0.7s'} mr='7px' colorScheme='red' size='sm' bgColor='rgb(255,0,0,0.5)'>
+                                 Mua vé
+                               </Button></Link>}
                                  <Link to='/home/movie-info' state={{data:movie, check:'0'}}>
                                  <Button transition={'0.7s'} colorScheme='blue' size='sm' bgColor='rgb(0,0,255,0.5)'>
                                      Chi tiết

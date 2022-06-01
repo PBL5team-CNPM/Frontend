@@ -34,6 +34,10 @@ function Profile() {
       }
       reader.readAsDataURL(e.target.files[0])
     }
+
+    useEffect(()=>{
+      console.log({avatar})
+    },[avatar])
     async function uploadimg(){
       const formData = new FormData()
       formData.append('avatar', file)
@@ -114,7 +118,8 @@ function Profile() {
                     marginLeft='65px'/>
                   :
                   <Image border='2px' borderColor='#42C2FF' borderRadius='50%'
-                  src={avatar} h='150px' w='150px' marginTop='30px'
+                  src={(JSON.parse(localStorage.getItem('user-info')).avatar)?avatar:
+                require('../../../imgs/default_avatar.png')} h='150px' w='150px' marginTop='30px'
                   marginLeft='65px'/>
                 }
                 {/* upload avatar */}
