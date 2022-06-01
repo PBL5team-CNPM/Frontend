@@ -1,9 +1,17 @@
-import React from 'react';
+import React,  { useState }  from 'react';
 import ShowDataCategory from '../../../components/admin/ShowDataCategory';
 
-function Category() {
+function Category(props) {
+        const [message,setMessage]= useState('')
+        const callbackFunction = (childData) => {
+        setMessage(childData)
+        }
+        if(message==="Update"){
+            props.parentCallback(message)
+            setMessage("wait update")
+        }
         return (
-            <ShowDataCategory/>
+            <ShowDataCategory parentCallback={callbackFunction}/>
         );
 }
 

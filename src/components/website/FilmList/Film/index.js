@@ -19,7 +19,11 @@ const Film = (props) => {
             onMouseEnter ={(e) => {setStyle({opacity: 1})}} 
             >
             <Box ml='80px' mt='392px' pos='absolute'>
-                <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
+              {localStorage.getItem('user-info')?
+              <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
+              :<Link to='/login'>
+              <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red'>Mua vé</Button>
+              </Link>}
                 <Link to="/home/movie-info" state={{data:props.data, check:'0'}}>
                 <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>

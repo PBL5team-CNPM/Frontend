@@ -11,7 +11,7 @@ import { Image,Modal,
 import React from 'react';
 
 
-function ViewUsersInFo(){
+function ViewUsersInFo(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
     <>
@@ -23,45 +23,52 @@ function ViewUsersInFo(){
         <ModalOverlay />
         <ModalContent alignSelf='center' h='600px' mt='10px'
         color='white' bgColor='#1F1D36'>
+            {props.data.avatar?
+            <Image objectFit='cover' opacity='0.6'
+            w='480px' h='250px' borderRadius='10px' src={'http://localhost:8000/'+props.data.avatar}/>
+             :
+             <Image objectFit='cover' opacity='0.6'
+             w='480px' h='250px' borderRadius='10px' src={require('../../../imgs/default_avatar.png')}/>}
             
-            <Image objectFit='cover' opacity='0.6's
-             w='480px' h='250px' borderRadius='10px' src={require('../../../imgs/user1.png')}/>
              <Box  position='relative' bottom='120px'>
                  <Center>
+                {props.data.avatar?
                 <Image  objectFit='cover' w='180px' h='180px'
-                 borderRadius='50%' border='2px'
-                borderColor="#42C2FF" src={require('../../../imgs/user1.png')}/></Center>
-               <Text textAlign='center' fontSize='25px' fontWeight='bold'>Lê Thị B</Text>
+                    borderRadius='50%' border='2px'
+                   borderColor="#42C2FF" src={'http://localhost:8000/'+props.data.avatar}/>
+                :
+                <Image  objectFit='cover' w='180px' h='180px'
+                borderRadius='50%' border='2px'
+               borderColor="#42C2FF" src={require('../../../imgs/default_avatar.png')}/>}
+               </Center>
+               <Text textAlign='center' fontSize='25px' fontWeight='bold'>{props.data.fullname}</Text>
                <Center>
-                <Box>
+                <Box mb='10px'>
                <Flex  mt='10px'>
                    <Text mr='55px'>Tên tài khoản:</Text>
-                   <Text fontWeight='bold'>lethib140121</Text>
-               </Flex>
- 
-               <Flex mt='10px'>
-                   <Text mr='50px'>Ngày đăng ký:</Text>
-                   <Text fontWeight='bold'>28/03/2022</Text>
+                   <Text fontWeight='bold'>{props.data.username}</Text>
                </Flex>
 
                <Flex  mt='10px'>
                    <Text mr='96px'>Giới tính:</Text>
-                   <Text fontWeight='bold'>Nữ</Text>
+                   <Text fontWeight='bold'>
+                       {props.data.gender===0?"Nam":"Nữ"}
+                   </Text>
                </Flex>
 
                <Flex  mt='10px'>
                    <Text mr='82px' >Ngày sinh:</Text>
-                   <Text fontWeight='bold'>14/01/2001</Text>
+                   <Text fontWeight='bold'>{props.data.birth}</Text>
                </Flex>
 
-               <Flex  mt='10px'>
+               <Flex  mt='10px' >
                    <Text mr='125px'>Email:</Text>
-                   <Text fontWeight='bold'>ltb@gmail.com</Text>
+                   <Text fontWeight='bold' maxW='280px'>{props.data.email}</Text>
                </Flex> 
 
-               <Flex  mt='10px'>
+               <Flex  mt='10px' >
                    <Text mr='55px'>Số điện thoại:</Text>
-                   <Text fontWeight='bold'>0935218596</Text>
+                   <Text fontWeight='bold'>{props.data.phoneNumber}</Text>
                </Flex> 
                </Box>
                </Center>

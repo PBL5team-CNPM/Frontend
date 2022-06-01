@@ -55,11 +55,11 @@ function LoginForm() {
       textAlign='center' marginTop='20px'
         >ĐĂNG NHẬP</Text>
 
-        <Text color='white'marginTop='20px' marginLeft='60px'>Email</Text>
+        <Text color='white'marginTop='20px' marginLeft='60px'>Email hoặc Tên tài khoản</Text>
 
         <Input
           type='email'
-          placeholder='Nhập Email'
+          placeholder='Nhập Email hoặc Tên tài khoản'
           color="white"
           outline={"2px"}
           focusBorderColor='white'

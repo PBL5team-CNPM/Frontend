@@ -18,8 +18,7 @@ const FilmUpcoming = (props) => {
             onMouseLeave={(e) => {setStyle({opacity: 0})}}
             onMouseEnter ={(e) => {setStyle({opacity: 1})}} 
             >
-            <Box ml='80px' mt='392px' pos='absolute'>
-                <Button transition='0.7s' style={style} bgColor='rgb(255,0,0,0.5)' mr='10px' colorScheme='red' disabled>Mua vé</Button>
+            <Box ml='190px' mt='392px' pos='absolute'>
                 <Link to="/home/movie-info" state={{data:props.data, check: '1'}}>
                 <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>

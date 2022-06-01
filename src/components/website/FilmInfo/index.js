@@ -5,13 +5,12 @@ import {
     Box,
     Image,
     Heading,
-    Divider,
     Flex,
     Text,
+    Button,
 } from "@chakra-ui/react"
 import TrailerInfo from "../TrailerInfo";
 import { useLocation } from "react-router-dom";
-import XulyDisable from "../xulyDisable";
 const FilmInfo = (props) => {
     const location=useLocation()
     const [locationState, setLocationState]=useState({data:{
@@ -47,7 +46,7 @@ const FilmInfo = (props) => {
     }
     locationState.data.theloai.forEach(xuliTL)
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
-    const bgImg=bgC+locationState.data.imageUrl+")"
+    const bgImg=bgC+"http://localhost:8000/"+locationState.data.imageUrl+")"
     return(
         <Stack   color='white' 
         bg={bgImg}
@@ -60,7 +59,7 @@ const FilmInfo = (props) => {
                 <hr style={{marginTop:'10px', marginBottom:'15px'}}/>
                 <Flex>
                     <Box>
-                        <Image  w='407px' h='600px' src={locationState.data.imageUrl}/>
+                        <Image  w='407px' h='600px' src={"http://localhost:8000/"+locationState.data.imageUrl}/>
                     </Box>
                     <Box flex={1} ml='55px'>
                         <Heading fontSize='32px'>{locationState.data.title}</Heading>
@@ -93,7 +92,10 @@ const FilmInfo = (props) => {
                             </Flex>
                         </Box>
                         <Flex>
-                          <XulyDisable Check={locationState.check}/>
+                          {locationState.check==='0'?
+                          <Button mr='20px' fontSize='24px' h='63px' w='164px' 
+                          colorScheme='blue'>Mua Vé</Button> : null}
+                          
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
                      

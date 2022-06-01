@@ -148,11 +148,11 @@ function DialogAddMovie(props){
       {
       (JSON.parse(localStorage.getItem('user-info')).action.includes("AddPhim"))
         ?
-        <Button ml='70px' mt='30px' mb='20px' 
+        <Button  mt='30px' 
         colorScheme='green' size='lg'
           shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
         :
-        <Button ml='70px' mt='30px' mb='20px' 
+        <Button mt='30px' 
         colorScheme='green' size='lg'
           shadow='0px 3px 3px 3px #344a3b' disabled onClick={onOpen}>Thêm mới</Button>
       }

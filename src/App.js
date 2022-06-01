@@ -1,5 +1,5 @@
-import {React, useEffect, useState} from "react";
-import { Routes, Route, Navigate} from "react-router-dom";
+import {React, useState} from "react";
+import { Routes, Route} from "react-router-dom";
 import { Box} from '@chakra-ui/react';
 import Login from "./pages/website/Login";
 import Welcome from "./pages/website/Welcome";
@@ -24,14 +24,13 @@ import ComingSoon from "./pages/website/ComingSoon";
 import NowShow from "./pages/website/NowShow";
 import MoviesByCategory from "./pages/website/MoviesByCategory";
 import axios from "axios";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
-  useEffect(()=>{
-    if(localStorage.getItem('user-info')){
-        // navigate("/home")
-        // {<Navigate to="/" replace />}
-    }
-  })
+  const [message,setMessage]= useState('')
+  const callbackFunction = (childData) => {
+        setMessage(childData)
+       }
   const listphimdangchieu = []
   const listphimsapchieu = []
   const [listphim, setListphim] = useState([])
@@ -43,7 +42,7 @@ function App() {
           listphimsapchieu.push(arr[index])
       }
   }
-  useEffect( ()=> {
+  if(message==="Update" || message===""){
       axios.get('http://localhost:8000/api/phims/').
       then(
           res => {
@@ -66,22 +65,21 @@ function App() {
               }))
           }
       ).catch(error => console.log(error))
-  }, [])
-  
+      setMessage("wait update")
+      }  
 
   listphim.forEach(xulyphim);
   return (
-    <Box fontFamily='Poppins'>
-   
       <Box>
+        <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Welcome/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/admin" element={<Dashboard/>}>
             <Route path="revenue" element={<Revenue />} />
-            <Route path="film" element={<Film/>} />
-            <Route path="category" element={<Category/>} />
+            <Route path="film" element={<Film parentCallback={callbackFunction}/>} />
+            <Route path="category" element={<Category parentCallback={callbackFunction}/>} />
             <Route path="users" element={<Users />} />
           </Route>
           <Route path="/home" element={<Navbar/>}>
@@ -105,7 +103,6 @@ function App() {
           </Route>
         </Routes>
       </Box>
-    </Box>
   );
 }
 

@@ -20,7 +20,8 @@ const Header = () => {
         navigate("/")
     }
     return(
-        <HStack bgColor='#00051D' h='80px' spacing='6'>
+        <HStack bgColor='#00051D' h='80px' spacing='6' position={'fixed'} top='0' left='0'
+        right='0' zIndex={'100'}>
             <Box w='500px' h='80px' ml='50px'>
                 <Link to="/" >
                     <Flex>  
@@ -33,7 +34,7 @@ const Header = () => {
                             />
                         </Box>
                         <Center h ='80px'>
-                            <Box ml='11px' color='white' fontFamily='Poppins' fontSize='36px' fontWeight='bold.400'>
+                            <Box ml='11px' color='white' fontFamily='Poppins' fontSize='30px' fontWeight='bold.400'>
                                 CINEMA PRO MAX
                             </Box>
                         </Center>

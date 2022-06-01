@@ -5,7 +5,6 @@ import NowShowingSlider from "../../../components/website/NowShowingSlider"
 import ComingSoonSlider from "../../../components/website/ComingSoonSlider"
 
 const FilmHome = (props)=> {
-   
     return(
         <Box>
             <SliderShow/>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Heading,
+import React, { useState } from 'react';
+import { Box, Heading,Image,
     Table,
     Thead,
     Tbody,
@@ -12,27 +12,98 @@ import { Box, Heading,
     InputGroup,
     Input,
     InputRightElement,
-    IconButton} from '@chakra-ui/react'
+    IconButton,
+    Spacer,} from '@chakra-ui/react'
 import ViewUsersInFo from '../ViewUsersInfo';
 import { Search2Icon } from '@chakra-ui/icons';
+import axios from 'axios'
+import DialogDeleteUsers from '../DialogDeleteUsers';
 
 function ShowDataUsers() {
-       const [show, setShow] = React.useState(false)
+       const [show, setShow] = useState(false)
        const handleClick = () => setShow(!show)
-        return (
-            <Box >
-                <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Thông tin khách hàng</Heading>
 
-                <Flex mt='20px'>
-                 <Select focusBorderColor='none' size='sm' w='135px' 
-                  shadow='0px 3px 3px 3px rgb(131, 131, 131)'
-                   mt='10px' ml='70px'>
+
+      const [listusers, setListUsers] = useState([])
+      const [message,setMessage]= useState('')
+      const callbackFunction = (childData) => {
+        setMessage(childData)
+      }
+
+      if(message==='Update' || message===""){ 
+        axios.get('http://localhost:8000/api/users/').
+        then(
+            res => {
+                setListUsers(res.data.map((dataUser)=>{
+                    return(
+                        {
+                            id: dataUser.id,
+                            username: dataUser.name,
+                            email: dataUser.email,
+                            fullname: dataUser.realname,
+                            phoneNumber:dataUser.phone_number,
+                            gender: dataUser.gender,
+                            birth:dataUser.birth,
+                            avatar :dataUser.avatar,
+                            permission:dataUser.permission,
+                            action:dataUser.action,
+                            role:dataUser.role
+                        }
+                    )
+                }))
+            }
+        ).catch(error => console.log(error))
+        setMessage('wait update')
+          }
+
+        const renderTableData=listusers.map((user, index) => {
+          const { id, username , email, avatar} = user
+          return (
+            <Tr key={id}>
+              <Td >{index+1}</Td>
+              <Td >
+                <Flex alignItems={'center'}>
+                <Box mr='10px' w='84px'  h='84px' bgColor={'black'} pt='3px' pl='3px' 
+                borderRadius='50%'>
+                <Box w='78px'  h='78px' bgColor={'white'} pt='1px' pl='1px' borderRadius='50%'>
+                <Box w='76px'  h='76px' bgColor={'black'} pt='3px' pl='3px' borderRadius='50%'>
+                {avatar?<Image src={'http://localhost:8000/'+ avatar} 
+                 w='70px'  h='70px' borderRadius='50%'/>
+                 :
+                 <Image src={require('../../../imgs/default_avatar.png')} 
+                 w='70px'  h='70px' borderRadius='50%'/>}  
+      
+                </Box>
+                </Box>
+                </Box>
+                 {username}
+                </Flex>
+                </Td>
+              <Td >{email}</Td>
+              <Td ><ViewUsersInFo data={user}/></Td>
+              <Td isNumeric> 
+              {/* <DialogUpdateMovie parentCallback={callbackFunction}
+                dataphim={listphim[index]}
+                datatheloai={listCategory}/> */}
+                  <DialogDeleteUsers parentCallback={callbackFunction}
+                  username={username} idUser={id}/></Td>
+            </Tr>
+          )
+        }) 
+        return (
+            <Box w='100%' h='100%'>
+                <Heading textAlign='center' textShadow='2px 3px 4px #000'
+                fontSize='6vh'>Thông tin khách hàng</Heading>
+
+                <Flex mt='2%' w='100%' h='9%' alignItems={'center'}>
+                 <Select focusBorderColor='none' w='125px' h='100%' size={'sm'}
+                  shadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                    <option value='option1'>Mới nhất</option>
                    <option value='option2'>A-Z</option>
                    <option value='option3'>Z-A</option>
                  </Select>
-                
-                 <InputGroup ml='435px' size='md' w='450px' mt='5px'>
+                 <Spacer/>
+                 <InputGroup size='md' w='35%' h='100%'>
                  <Input
                     border='2px'
                     focusBorderColor='none'
@@ -54,57 +125,20 @@ function ShowDataUsers() {
                  </InputGroup>
 
                 </Flex>
-                <TableContainer  mt='30px' ml='70px' w='1020px' h='450px' 
-                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
-               overflowY='auto'>
-                 <Table variant='striped'>
-                     <Thead>
-                       <Tr>
-                         <Th>Ngày đăng kí</Th>
-                         <Th>Tên khách hàng</Th>
-                         <Th>Email</Th>
-                         <Th >Chi tiết
-                         </Th>
+                <TableContainer  mt='3%'  w='100%' 
+                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
+                 <Table variant='striped' >
+                   <Thead bgColor={'#1F1D36'}  >
+                       <Tr >
+                         <Th  color={'white'}>STT</Th>
+                         <Th  color={'white'}>Tài khoản</Th>
+                         <Th  color={'white'}>Email</Th>
+                         <Th  color={'white'}>Chi tiết </Th>
+                         <Th isNumeric color={'white'}>Action</Th>
                        </Tr>
                     </Thead>
                     <Tbody>
-                      <Tr>
-                        <Td>02/04/2022</Td>
-                        <Td>Bùi Văn Nhật Trường</Td>
-                        <Td>bvnt@gmail.com</Td>
-                        <Td ><ViewUsersInFo/></Td>
-                       </Tr>
-                      <Tr>
-                        <Td>01/04/2022</Td>
-                        <Td>Lê Công Phúc</Td>
-                        <Td>lcp@gmail.com</Td>
-                        <Td ><ViewUsersInFo/></Td>
-                     </Tr>
-                     <Tr>
-                        <Td>31/03/2022</Td>
-                        <Td>Huỳnh Hải Phong</Td>
-                        <Td>hhp@gmail.com</Td>
-                        <Td ><ViewUsersInFo/></Td>
-                     </Tr>
-                     <Tr>
-                        <Td>30/03/2022</Td>
-                        <Td>Bùi Quốc Huy</Td>
-                        <Td>bqh@gmail.com</Td>
-                        <Td><ViewUsersInFo/></Td>
-                     </Tr>
-                     <Tr>
-                        <Td>29/03/2022</Td>
-                        <Td>Nguyễn Văn A</Td>
-                        <Td>nva@gmail.com</Td>
-                        <Td><ViewUsersInFo/></Td>
-                     </Tr>
-                     <Tr>
-                        <Td>28/03/2022</Td>
-                        <Td>Lê Thị B</Td>
-                        <Td>ltb@gmail.com</Td>
-                        <Td><ViewUsersInFo/></Td>
-                     </Tr>
-                     
+                    {renderTableData}
                    </Tbody>
                  </Table>
                </TableContainer>

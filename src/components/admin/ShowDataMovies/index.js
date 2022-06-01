@@ -14,7 +14,7 @@ import axios from 'axios';
 import DialogUpdateMovie from '../DialogUpdateMovie';
 import DialogDeleteMovie from '../DialogDeleteMovie';
 
-const ShowDataMovies=() => {
+const ShowDataMovies=(props) => {
   const [listTheloai, setListTheloai] = useState([])
   const [listphim, setListphim] = useState([])
   const listCategory=[]
@@ -49,6 +49,7 @@ if(message==='Update' || message===""){
           }))
       }
   ).catch(error => console.log(error))
+  props.parentCallback(message)
   setMessage('wait update')
     }
   useEffect( ()=> {
@@ -76,7 +77,7 @@ if(message==='Update' || message===""){
               <Tr key={id}>
                 <Td >{index+1}</Td>
                 <Td >{title}</Td>
-                <Td ><ViewMovieInFo data={listphim[index]}/></Td>
+                <Td ><ViewMovieInFo data={phim}/></Td>
                 <Td isNumeric> <DialogUpdateMovie parentCallback={callbackFunction}
                  dataphim={listphim[index]}
                  datatheloai={listCategory}/>
@@ -88,9 +89,9 @@ if(message==='Update' || message===""){
         
         return (
             <Box >
-                <Heading mt='10px' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
-                <TableContainer  mt='30px' ml='70px' w='1030px'  overflowY={'auto'} 
-                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'  maxH={'450px'}
+                <Heading fontSize='6vh' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
+                <TableContainer  mt='30px'  w='100%' 
+                boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
                >
                  <Table  variant={'striped'} >
                      <Thead bgColor={'#1F1D36'} >
