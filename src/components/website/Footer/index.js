@@ -97,7 +97,7 @@ const Footer = () => {
             <Box color='white'>
                 <Box ml='164px' fontSize='20px'>
                     <Text>
-                        CONNECT US
+                        CONTACT US
                     </Text>
                 </Box>
                 <Box ml='164px' fontSize='16px'>
