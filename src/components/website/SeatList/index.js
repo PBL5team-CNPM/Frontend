@@ -74,42 +74,44 @@ const SeatList = () => {
                             </Center>
                         </Stack>
                         <Spacer/>
-                        <Box borderRadius='10px' w='1240px' h='400px' py='55px' px='98px' ml='84px'>
+                        <Box borderRadius='10px' w='1240px' h='350px' py='55px' px='98px' ml='84px'>
                         <div className="Cinema">
                         <div className="screen" />
                         </div>    
-                            <ul className="ShowCase">
-                                <li>
-                                    <span className="seat" /> <small>N/A</small>
-                                </li>
-                                <li>
-                                    <span className="seat selected" /> <small>Selected</small>
-                                </li>
-                                <li>
-                                    <span className="seat occupied" /> <small>Occupied</small>
-                                </li>
-                            </ul>
-                            <Button 
-                                colorScheme='blue'
-                                bgColor='red'
-                                color='white'
-                                size='lg'
-                                borderRadius="10px"
-                                w="80px"
-                                h="35px"
-                                margin='10px 0px 20px 92px'
-                            >Trở lại</Button>
-                            <Button 
-                                colorScheme='blue'
-                                bgColor='green'
-                                color='white'
-                                size='lg'
-                                borderRadius="10px"
-                                w="80px"
-                                h="35px"
-                                margin='10px 0px 20px 92px'
-                            >Tiếp theo</Button>
+                        <SimpleGrid columns={[2, null, 12]} spacing='20px' spacingX='25px' spacingY='28px'>
+                        {
+                            List.map((item)=>{ return(
+                                <Link>
+                                    <Image
+                                        src={require('../../../imgs/office-chair 1.png')}
+                                        key={item}
+                                    />
+                                </Link>
+                            )})
+                        }
+                    </SimpleGrid>
+                    <Button 
+                    colorScheme='blue'
+                    bgColor='red'
+                    color='white'
+                    size='lg'
+                    borderRadius="10px"
+                    w="80px"
+                    h="35px"
+                    margin='30px 0px 20px 92px'
+                >Back</Button>
+                <Button 
+                    colorScheme='blue'
+                    bgColor='green'
+                    color='white'
+                    size='lg'
+                    borderRadius="10px"
+                    w="80px"
+                    h="35px"
+                    margin='30px 0px 20px 92px'
+                >Next</Button>
                         </Box>
+                        
                         <Spacer/>
                     </Flex>
                 </Box>

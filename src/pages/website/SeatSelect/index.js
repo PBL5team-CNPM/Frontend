@@ -7,7 +7,6 @@ const SeatSelect = () => {
     return(
         <Box>
             <SeatList/>
-        <Footer/>
         </Box>
     )
 }
