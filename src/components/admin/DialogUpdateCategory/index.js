@@ -58,7 +58,7 @@ function DialogUpdateCategory(props){
     return(
     <>
       {
-        (JSON.parse(localStorage.getItem('user-info')).action.includes("EditTheLoai"))
+        (JSON.parse(localStorage.getItem('user-info')).action.includes("EditCategory"))
         ?
         <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
         :

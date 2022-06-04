@@ -15,8 +15,6 @@ function SignupForm() {
       const [phone_number, setPhone_number] = useState("")
       const [gender, setGender] = useState("0")
       const [birth, setBirth] = useState("")
-
-      const [value, setValue] = React.useState('1');
       const [type1, setType1]=useState('password');
       const [type2, setType2]=useState('password');
       const [icon1, setIcon1]=useState(FaEyeSlash);

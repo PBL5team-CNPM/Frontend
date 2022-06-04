@@ -146,7 +146,7 @@ function DialogAddMovie(props){
     return(
     <>
       {
-      (JSON.parse(localStorage.getItem('user-info')).action.includes("AddPhim"))
+      (JSON.parse(localStorage.getItem('user-info')).action.includes("AddMovie"))
         ?
         <Button  mt='30px' 
         colorScheme='green' size='lg'

@@ -101,7 +101,6 @@ function DialogUpdateMovie(props){
         theloai: []
       }
       function xulyTheloai(item,index,arr){
-        // phim.theloai.push(arr[index].id)
         inputTheloai.push(arr[index].id)
       }
       if(imageUrl!==""){
@@ -140,7 +139,7 @@ function DialogUpdateMovie(props){
     return(
     <>
       {
-        (JSON.parse(localStorage.getItem('user-info')).action.includes("EditPhim"))
+        (JSON.parse(localStorage.getItem('user-info')).action.includes("EditMovie"))
         ?
         <Button mr='5px' size='sm' colorScheme='blue' onClick={onOpen}>Sửa</Button>
         :

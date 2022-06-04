@@ -18,6 +18,7 @@ import ViewUsersInFo from '../ViewUsersInfo';
 import { Search2Icon } from '@chakra-ui/icons';
 import axios from 'axios'
 import DialogDeleteUsers from '../DialogDeleteUsers';
+import DialogGrantPermission from '../DialogGrantPermission';
 
 function ShowDataUsers() {
        const [show, setShow] = useState(false)
@@ -82,9 +83,9 @@ function ShowDataUsers() {
               <Td >{email}</Td>
               <Td ><ViewUsersInFo data={user}/></Td>
               <Td isNumeric> 
-              {/* <DialogUpdateMovie parentCallback={callbackFunction}
-                dataphim={listphim[index]}
-                datatheloai={listCategory}/> */}
+              <DialogGrantPermission parentCallback={callbackFunction}
+                datauser={user}/>
+
                   <DialogDeleteUsers parentCallback={callbackFunction}
                   username={username} idUser={id}/></Td>
             </Tr>

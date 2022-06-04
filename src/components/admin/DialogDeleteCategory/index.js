@@ -36,7 +36,7 @@ function DialogDeleteCategory (props){
     return(
         <>
         {
-          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeleteTheLoai"))
+          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeleteCategory"))
           ?
           <Button size='sm' colorScheme='red' onClick={onOpen}>Xóa</Button>
           :
