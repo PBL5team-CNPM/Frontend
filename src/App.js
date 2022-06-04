@@ -25,6 +25,7 @@ import NowShow from "./pages/website/NowShow";
 import MoviesByCategory from "./pages/website/MoviesByCategory";
 import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
+import Payment from "./pages/website/Payment";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -59,7 +60,8 @@ function App() {
                           actor:dataphim.dien_vien,
                           content:dataphim.tom_tat,
                           finish:dataphim.ngay_ketthuc,
-                          theloai:dataphim.theloai
+                          theloai:dataphim.theloai,
+                          suatchieu:dataphim.suatchieu
                       }
                   )
               }))
@@ -86,10 +88,12 @@ function App() {
             <Route path="" element={<FilmHome listphimdangchieu={listphimdangchieu}
             listphimsapchieu={listphimsapchieu}/>} />
             <Route path="movie-info" element={<FilmAll />} />
+            <Route path="movie-info/lich-chieu" element={<Showtimes />} />
+            <Route path="movie-info/lich-chieu/chon-ghe" element={<SeatSelect />} />
             <Route path="categorys/:id" element={<MoviesByCategory />} />
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<SeatSelect />} />
-            <Route path="tintuc" element={<Showtimes />} />
+            <Route path="tintuc" element={<Payment />} />
             <Route path="movies/now-showing" element={<NowShow 
             listphimdangchieu={listphimdangchieu}/>} />
             <Route path="movies/coming-soon" element={<ComingSoon
