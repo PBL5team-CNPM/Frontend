@@ -1,14 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import Footer from "../../../components/website/Footer";
-import SeatList from "../../../components/website/SeatList";
+import PaymentInfo from "../../../components/website/PaymentInfo";
 
-const SeatSelect = () => {
+const Payment = () => {
     return(
         <Box>
-            <SeatList/>
+            <PaymentInfo/>
         </Box>
     )
 }
 
-export default SeatSelect
+export default Payment

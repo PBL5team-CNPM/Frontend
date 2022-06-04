@@ -1,4 +1,3 @@
-import './Styles.css';
 import React from "react";
 import {
     Stack, 
@@ -20,8 +19,9 @@ import {
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
-const SeatList = () => {
-    const List = [...Array(60).keys()]
+const PaymentInfo = () => {
+    const options = ['Monday', 'Tuesday', 'Thursday', 
+  'Friday', 'Saturday', 'Sunday']
     return(
         <Box>
         <Stack minH='640px' color='white' bgColor='#1F1D36' px={164} py={18} fontFamily='Poppins'>
@@ -74,42 +74,15 @@ const SeatList = () => {
                             </Center>
                         </Stack>
                         <Spacer/>
-                        <Box borderRadius='10px' w='1240px' h='350px' py='55px' px='98px' ml='84px'>
-                        <div className="Cinema">
-                        <div className="screen" />
-                        </div>    
-                        <SimpleGrid columns={[2, null, 12]} spacing='20px' spacingX='25px' spacingY='28px'>
-                        {
-                            List.map((item)=>{ return(
-                                <Link>
-                                    <Image
-                                        src={require('../../../imgs/office-chair 1.png')}
-                                        key={item}
-                                    />
-                                </Link>
-                            )})
-                        }
-                    </SimpleGrid>
-                    <Button 
-                    colorScheme='blue'
-                    bgColor='red'
-                    color='white'
-                    size='lg'
-                    borderRadius="10px"
-                    w="80px"
-                    h="35px"
-                    margin='30px 0px 20px 92px'
-                >Back</Button>
-                <Button 
-                    colorScheme='blue'
-                    bgColor='green'
-                    color='white'
-                    size='lg'
-                    borderRadius="10px"
-                    w="80px"
-                    h="35px"
-                    margin='30px 0px 20px 92px'
-                >Next</Button>
+                        <Box borderRadius='10px' border='4px' w='1240px' h='350px' py='55px' px='98px' ml='84px'>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridGap: 20 }}>
+                            <div>Vật phẩm</div>
+                            <div>Đơn giá</div>
+                            <div>Số lượng</div>
+                            <div>Giá</div>
+                        </div>
+                        <Heading>Tổng cộng</Heading>
+                        <p>Chọn phương thức thanh toán</p>
                         </Box>
                         
                         <Spacer/>
@@ -122,4 +95,4 @@ const SeatList = () => {
     )
 }
 
-export default SeatList
+export default PaymentInfo
