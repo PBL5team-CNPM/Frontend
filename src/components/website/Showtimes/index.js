@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import {
     Stack, 
     Box,
@@ -11,13 +11,61 @@ import {
     BreadcrumbLink,
  
     SimpleGrid,
-    Center
+    Center,
+    list,
+    Text
 } from "@chakra-ui/react"
 
+import Moment from  'moment'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Footer from "../Footer";
+import { Link, useLocation } from "react-router-dom";
 
-const Showtimes = () => {
+const Showtimes = (props) => {
+    const location=useLocation()
+    const [locationState, setLocationState]=useState({data:[
+
+    ], tenphim: ''})
+    React.useEffect(() =>{
+        if(location.state){
+            let _state=location.state
+            setLocationState(_state)
+            console.log(_state)
+        }
+    }, [])
+
+    const List = locationState.data.map((item)=>{
+        // <FilmUpcoming key = {item.id} data = {item} />
+        return(
+            <Link key={item.id} to="/home/movie-info/lich-chieu/chon-ghe" state={{data:item, tenphim: locationState.tenphim}}>
+                <Center borderRadius='10px' border='4px' py={2}>
+                    <Box ml ="50px">
+                        <Text fontSize='18px'>
+                            Tên phòng : {item.phongchieu_name}
+                        </Text>
+                        <Text fontSize='18px'>
+                            Ngày chiếu: {Moment(item.ngay_chieu).format("ddd, DD/MM/YYYY")}
+                        </Text>
+                        <Text fontSize='18px'>
+                            Tình trạng : { item.ghe_da_chon} / {item.soluong_ghe}
+                        </Text>
+                        <Text fontSize='18px'>
+                            Thời gian :
+                        </Text>
+                        <Flex w='255px'>
+                            <Text fontSize='18px'>
+                                {Moment(item.gio_bat_dau, "h:mm:ss").format("LT")} {"-"}
+                            </Text>
+                            <Text fontSize='18px' ml="1">
+                                {Moment(item.gio_ket_thuc, "h:mm:ss").format("LT")}
+                            </Text>
+                        </Flex>
+                    </Box>
+                </Center>
+            </Link>
+        )
+    })
+
     return(
         <Box>
         <Stack minH='640px' color='white' bgColor='#1F1D36' px={164} py={18} fontFamily='Poppins'>
@@ -26,7 +74,7 @@ const Showtimes = () => {
                 <Divider size='' mb='24px'/>
                 <Breadcrumb spacing='8px' separator={<Heading><ChevronRightIcon /></Heading>}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>THE BATMAN</Heading></BreadcrumbLink>
+                        <BreadcrumbLink href='#'><Heading fontSize='32px'>{locationState.tenphim}</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem>
                         <BreadcrumbLink href='#'><Heading fontSize='32px'>MUA VÉ</Heading></BreadcrumbLink>
@@ -38,160 +86,13 @@ const Showtimes = () => {
                 <Box>
                     <Divider mt='24px' mb='24px'/>
                     <Flex>
-                        <Center borderRadius='10px' border='4px' w='255px' h='150px' p='27px'>
-                            <Flex>
-                                <Box>
-                                    <Heading>
-                                        04
-                                    </Heading>
-                                    <Heading>
-                                        Sun
-                                    </Heading>
-                                </Box>
-                                <Box ml='25px'>
-                                    <Heading fontSize='96px'>
-                                        24
-                                    </Heading>
-                                </Box>
-                            </Flex>
-                        </Center>
                         <Box ml='84px'>
                             <SimpleGrid columns={[2, null, 3]} spacing='20px' spacingX='84px'>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            20:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            18:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            21:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            16:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            15:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            22:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
+                                {List}
                             </SimpleGrid>
                         </Box>
                     </Flex>
                     <Divider mt='24px' mb='24px'/>
-                    <Flex>
-                        <Center borderRadius='10px' border='4px' w='255px' h='150px' p='27px'>
-                            <Flex>
-                                <Box>
-                                    <Heading>
-                                        04
-                                    </Heading>
-                                    <Heading>
-                                        Sun
-                                    </Heading>
-                                </Box>
-                                <Box ml='25px'>
-                                    <Heading fontSize='96px'>
-                                        25
-                                    </Heading>
-                                </Box>
-                            </Flex>
-                        </Center>
-                        <Box ml='84px'>
-                            <SimpleGrid columns={[2, null, 3]} spacing='20px' spacingX='84px'>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            20:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            18:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            21:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            16:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            15:00 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
-                                <Flex>
-                                    <Box>
-                                        <Heading fontSize='36px'>
-                                            22:30 PM
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Center>
-                            </SimpleGrid>
-                        </Box>
-                    </Flex>
                 </Box>
             </Box>
         </Stack>

@@ -12,29 +12,30 @@ import { FaFacebook, FaTwitter, FaGithub, FaApple, FaGooglePlay, FaInstagram, Fa
 
 const Footer = () => {
     return(
-        <HStack as='footer' bgColor='#00051D' h='200px'>
+        <HStack color='white' as='footer' bgColor='#00051D' h='200px'>
+            <Spacer/>
             <Box color='white'>
-                <Box ml='164px' fontSize='20px'>
+                <Box fontSize='20px'>
                     <Text>
                         INTRODUCE
                     </Text>
                 </Box>
-                <Box ml='164px' fontSize='16px'>
+                <Box fontSize='16px'>
                     <Link>
                         About Us
                     </Link>
                 </Box>
-                <Box ml='164px' fontSize='16px'>
+                <Box fontSize='16px'>
                     <Link>
                         Operational Regulations
                     </Link>
                 </Box>
-                <Box ml='164px' fontSize='16px'>
+                <Box fontSize='16px'>
                     <Link>
                         Usage Agreement
                     </Link>
                 </Box>
-                <Box ml='164px' fontSize='16px'>
+                <Box fontSize='16px'>
                     <Link>
                         Privacy Policy
                     </Link>
@@ -130,7 +131,8 @@ const Footer = () => {
                 
                 
             </Box>
-            
+            <Spacer/>
+
         </HStack>
     )
 }

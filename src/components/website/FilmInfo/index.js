@@ -10,7 +10,7 @@ import {
     Button,
 } from "@chakra-ui/react"
 import TrailerInfo from "../TrailerInfo";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const FilmInfo = (props) => {
     const location=useLocation()
     const [locationState, setLocationState]=useState({data:{
@@ -28,7 +28,8 @@ const FilmInfo = (props) => {
         theloai: [{
             id: '',
             ten_the_loai: ''
-        }]
+        }],
+        suatchieu: []
     }, check: ''})
     React.useEffect(() =>{
         if(location.state){
@@ -93,8 +94,9 @@ const FilmInfo = (props) => {
                         </Box>
                         <Flex>
                           {locationState.check==='0'?
+                          <Link to='/home/movie-info/lich-chieu' state={{data:locationState.data.suatchieu, tenphim: locationState.data.title}}>
                           <Button mr='20px' fontSize='24px' h='63px' w='164px' 
-                          colorScheme='blue'>Mua Vé</Button> : null}
+                          colorScheme='blue'>Mua Vé</Button></Link> : null}
                           
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>
