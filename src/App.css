@@ -37,6 +37,15 @@
   outline-color: red;
 }
 
+.mse-permission {
+  max-block-size: 45px;
+  width: 490px;
+  color: black;
+  border-color: #42C2FF;
+  border-radius: 10px;
+  outline-color: red;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

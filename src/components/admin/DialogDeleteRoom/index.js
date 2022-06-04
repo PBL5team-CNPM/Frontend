@@ -11,7 +11,7 @@ import {
     useToast,
   } from '@chakra-ui/react'
 import axios from "axios";
-function DialogDeleteCategory (props){
+function DialogDeleteRoom (props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast=useToast()
@@ -19,14 +19,14 @@ function DialogDeleteCategory (props){
         
     e.preventDefault();
         
-     axios.post(`http://localhost:8000/api/deletetheloai/${props.idTL}`).then(res => {
+     axios.post(`http://localhost:8000/api/deletephongchieu/${props.data.id}`).then(res => {
   
         }).catch(error=>{
               console.log(error)
         })
         toast({
           title: 'Successfully!',
-          description: "Đã xóa thể loại "+props.tenTL+".",
+          description: "Đã xóa phòng "+props.data.name+".",
           status: 'success',
           duration: 2000,
           isClosable: true,
@@ -51,11 +51,11 @@ function DialogDeleteCategory (props){
           <AlertDialogContent alignSelf='center'>
             <form onSubmit={handleSubmit}>
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
-              Xóa thể loại
+              Xóa phòng chiếu
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Chắc chắn xóa thể loại {props.tenTL} khỏi danh sách?
+              Chắc chắn xóa phòng {props.data.name} khỏi danh sách?
             </AlertDialogBody>
 
             <AlertDialogFooter>
@@ -73,4 +73,4 @@ function DialogDeleteCategory (props){
         </>
     )
 }
-export default DialogDeleteCategory
+export default DialogDeleteRoom

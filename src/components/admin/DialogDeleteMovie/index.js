@@ -36,7 +36,7 @@ function DialogDeleteMovie(props){
     return(
         <>
         {
-          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeletePhim"))
+          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeleteMovie"))
           ?
           <Button size='sm' colorScheme='red' onClick={onOpen}>Xóa</Button>
           :

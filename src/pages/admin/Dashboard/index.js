@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Center, Flex, HStack, Image,Spacer,Text, VStack} from '@chakra-ui/react'
+import { Box,  Flex, HStack, Image,Spacer,Text, VStack} from '@chakra-ui/react'
 import { Link, Navigate, Outlet} from 'react-router-dom';
 
 function Dashboard() {
@@ -7,6 +7,8 @@ function Dashboard() {
         const [bgStyle2,setBgStyle2]=useState("")
         const [bgStyle3,setBgStyle3]=useState("")
         const [bgStyle4,setBgStyle4]=useState("")
+        const [bgStyle5,setBgStyle5]=useState("")
+        const [bgStyle6,setBgStyle6]=useState("")
         
         if(JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD")){
           return (
@@ -81,6 +83,30 @@ function Dashboard() {
                         w='15%' h='60%'/>
                         <Text color='white' fontFamily='Poppins' fontSize='4vh' ml='7%'
                           mt='5%'>Tài khoản</Text>
+                      </Flex>
+                    </Link>
+
+                    <Link to='cinema-room' style={{width:'90%', height:'10%'}}>
+                      <Flex h='100%'  w='100%' borderRadius='6px' 
+                      onMouseLeave={(e) => {setBgStyle5("")}}
+                      onMouseEnter ={(e) => {setBgStyle5("#1F1D36")}}  
+                      bgColor={bgStyle5} alignItems='center'>
+                        <Image ml='10%' src={require('../../../imgs/room.png')}
+                        w='15%' h='60%'/>
+                        <Text color='white' fontFamily='Poppins' fontSize='4vh' ml='7%'
+                          mt='5%'>Phòng chiếu</Text>
+                      </Flex>
+                    </Link>
+
+                    <Link to='showtime' style={{width:'90%', height:'10%'}}>
+                      <Flex h='100%'  w='100%' borderRadius='6px' 
+                      onMouseLeave={(e) => {setBgStyle6("")}}
+                      onMouseEnter ={(e) => {setBgStyle6("#1F1D36")}}  
+                      bgColor={bgStyle6} alignItems='center'>
+                        <Image ml='10%' src={require('../../../imgs/showtime.png')}
+                        w='15%' h='60%'/>
+                        <Text color='white' fontFamily='Poppins' fontSize='4vh' ml='7%'
+                          mt='5%'>Suất chiếu</Text>
                       </Flex>
                     </Link>
                  </VStack>

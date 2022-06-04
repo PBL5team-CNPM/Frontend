@@ -25,7 +25,8 @@ import NowShow from "./pages/website/NowShow";
 import MoviesByCategory from "./pages/website/MoviesByCategory";
 import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
-import Payment from "./pages/website/Payment";
+import Showtime from "./pages/admin/Showtime";
+import CinemaRoom from "./pages/admin/CinemaRoom";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -82,7 +83,9 @@ function App() {
             <Route path="revenue" element={<Revenue />} />
             <Route path="film" element={<Film parentCallback={callbackFunction}/>} />
             <Route path="category" element={<Category parentCallback={callbackFunction}/>} />
-            <Route path="users" element={<Users />} />
+            <Route path="users" element={<Users />}  />
+            <Route path="cinema-room" element={<CinemaRoom/>} />
+            <Route path="showtime" element={<Showtime/>}  />
           </Route>
           <Route path="/home" element={<Navbar/>}>
             <Route path="" element={<FilmHome listphimdangchieu={listphimdangchieu}
