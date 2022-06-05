@@ -26,6 +26,7 @@ import MoviesByCategory from "./pages/website/MoviesByCategory";
 import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
 import Payment from "./pages/website/Payment";
+import FoodDrinkSelect from "./pages/website/FoodDrinkSelect";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -90,6 +91,7 @@ function App() {
             <Route path="movie-info" element={<FilmAll />} />
             <Route path="movie-info/lich-chieu" element={<Showtimes />} />
             <Route path="movie-info/lich-chieu/chon-ghe" element={<SeatSelect />} />
+            <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink" element={<FoodDrinkSelect />} />
             <Route path="categorys/:id" element={<MoviesByCategory />} />
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<SeatSelect />} />

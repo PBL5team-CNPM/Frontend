@@ -1,4 +1,3 @@
-import './Styles.css';
 import React, { useEffect, useState } from "react";
 import {
     Stack, 
@@ -19,49 +18,38 @@ import {
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { Link, useLocation } from 'react-router-dom';
-import CheckboxCard from './CheckboxCard';
+import moment from "moment";
+import axios from "axios";
 
-const SeatList = () => {
-    const [checked, setChecked] = useState([])
+const FoodDrinkList = () => {
     const location=useLocation()
     const [locationState, setLocationState]=useState({data:[
 
-    ], tenphim: ''})
+    ], ghe: []})
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
             setLocationState(_state)
             console.log(_state)
-            console.log(_state.data.ghe)
-            console.log(checked)
+            console.log(_state.data.data.phim_id)
         }
     }, [])
-    useEffect(()=>{
-        console.log(checked)
-    },[checked])
 
-    const handleCheck = (e) => {
-        var updateList = [...checked];
-        if (e.target.checked){
-            updateList = [...checked, e.target.value]
+    const handleClick = () => {
+        const data = {
+            "user_id": JSON.parse(localStorage.getItem('user-info')).id,
+            "suatchieu_id": location.state.data.data.id,
+            "ghe_id": location.state.ghe,
+            "gia_ve": 100000
         }
-        else{
-            updateList.splice(checked.indexOf(e.target.value), 1)
-        }
-        console.log(e.target.value)
-        setChecked(updateList)
+        console.log(data)
+        axios.post('http://localhost:8000/api/addhoadon', data
+        ).then(res => {
+            console.log(res.data)
+        }).catch(error=>{
+                console.log(error)
+        })
     }
-
-
-    const List = location.state.data.ghe.map((item)=>{
-        return(
-            <div key={item.id}>
-                <input style={{width: "30px",
-                                height: "30px",
-                }} value={item.id} type="checkbox" onChange={handleCheck}/>
-            </div>
-        )
-    })
     
     return(
         <Box>
@@ -91,15 +79,11 @@ const SeatList = () => {
                                 <Flex>
                                     <Box>
                                         <Heading>
-                                            04
-                                        </Heading>
-                                        <Heading>
-                                            Sun
+                                            {moment(location.state.data.data.ngay_chieu).format("ddd DD/MM/YY")}
                                         </Heading>
                                     </Box>
                                     <Box ml='25px'>
                                         <Heading fontSize='96px'>
-                                            {checked}
                                         </Heading>
                                     </Box>
                                 </Flex>
@@ -108,20 +92,40 @@ const SeatList = () => {
                                     <Flex>
                                         <Box>
                                             <Heading fontSize='36px'>
-                                                20:00 PM
+                                                {moment(location.state.data.data.gio_bat_dau,'h:mm:ss').format("LT")}
                                             </Heading>
                                         </Box>
                                     </Flex>
                             </Center>
+                            <Box borderRadius='10px' border='4px' w='255px' p='10px'>
+                                <Heading fontSize='24px' ml="27px">
+                                    Ghế đang chọn:
+                                </Heading>
+                                <Flex ml="27px">
+                                    <Box>
+                                        <Heading fontSize='24px'>
+                                            {location.state.ghe.join(", ")}
+                                        </Heading>
+                                    </Box>
+                                </Flex>
+                            </Box>
                         </Stack>
                         <Spacer/>
                         <Box borderRadius='10px' w='1240px' py='55px' px='98px' ml='84px'>
-                            <div className="Cinema">
-                            <div className="screen" />
-                            </div>    
-                            <SimpleGrid columns={[2, null, location.state.data.soluong_cot]} spacing='20px' spacingX='25px' spacingY='28px'>
-                                {List}
-                            </SimpleGrid>
+                            <Box borderRadius='10px' border='4px' w='1000px' h="300px">
+                                <Center>
+                                <Box fontSize="90px">
+                                    Tổng cộng:  
+                                </Box>
+                                <Box ml="20" fontSize="90px">
+                                    {location.state.ghe.length} x Vé
+                                </Box>
+                                </Center>
+                                <Center fontSize="90px">
+                                    {location.state.ghe.length*100000} Đ
+                                </Center>
+                            </Box>
+
                             <Center mt="60px">
                             <Button 
                                 colorScheme='blue'
@@ -134,7 +138,6 @@ const SeatList = () => {
                                 mr ="50px"
                             >Back
                             </Button>
-                            <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked}}>
                                 <Button 
                                     colorScheme='blue'
                                     bgColor='green'
@@ -143,9 +146,9 @@ const SeatList = () => {
                                     borderRadius="10px"
                                     w="80px"
                                     h="35px"
+                                    onClick={handleClick}
                                 >Next
                                 </Button>
-                            </Link>
                             </Center>
                         </Box>
                         
@@ -159,4 +162,4 @@ const SeatList = () => {
     )
 }
 
-export default SeatList
+export default FoodDrinkList
