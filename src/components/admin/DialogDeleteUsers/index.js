@@ -36,7 +36,7 @@ function DialogDeleteUsers(props){
     return(
         <>
         {
-          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeletePhim"))
+          (JSON.parse(localStorage.getItem('user-info')).action.includes("DeleteUser"))
           ?
           <Button size='sm' colorScheme='red' onClick={onOpen}>Xóa</Button>
           :

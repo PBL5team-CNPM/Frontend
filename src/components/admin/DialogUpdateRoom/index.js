@@ -15,22 +15,22 @@ import {Button,
     useToast} from '@chakra-ui/react'
 import axios from 'axios';
 
-function DialogUpdateCategory(props){
+function DialogUpdateRoom(props){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast= useToast()
     const [values, setValues] = useState(
       {
-        category: props.tenTL
+        name: props.data.name
       }
     )
 
     const handleSubmit = (e) => {
-      if(values.category===""){
+      if(values.name===""){
         e.preventDefault();
         toast({
           title: 'Warning!',
-          description: "Hãy nhập thể loại muốn thêm",
+          description: "Hãy nhập tên phòng",
           status: 'warning',
           duration: 2000,
           isClosable: true,
@@ -38,16 +38,16 @@ function DialogUpdateCategory(props){
       }
       else{
       e.preventDefault();
-      const theloai = {ten_the_loai: values.category}
+      
 
-    axios.put(`http://localhost:8000/api/updatetheloai/${props.idTL}`,theloai).then(res => {
+    axios.put(`http://localhost:8000/api/updateroom/${props.data.id}`,{"ten_phong":values.name}).then(res => {
 
       }).catch(error=>{
             console.log(error)
       })
       toast({
         title: 'Successfully!',
-        description: "Đã sửa thể loại "+values.category+".",
+        description: "Đã sửa phòng "+values.name+".",
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -76,22 +76,22 @@ function DialogUpdateCategory(props){
           ><form onSubmit={handleSubmit}>
             <AlertDialogHeader fontSize='2xl' fontWeight='bold'
              color='white' textAlign='center'>
-              Sửa thể loại
+              Sửa phòng chiếu
             </AlertDialogHeader>
 
             <AlertDialogBody color='white'>
               <Box >
                 <Center>
                 <Flex mb='20px'>
-                  <Text mr='30px'>Thể loại</Text>
+                  <Text mr='30px'>Tên phòng</Text>
                   <Input w='380px' h='45px' type='text'
-                  value={values.category}
+                  value={values.name}
                   focusBorderColor='white'
                   border='2px'
                   borderRadius='10px'
                   borderColor='#42C2FF'
-                  placeholder='Nhập tên thể loại' 
-                  onChange={(e)=>{setValues({category:e.target.value})}} />
+                  placeholder='Nhập tên phòng chiếu' 
+                  onChange={(e)=>{setValues({name:e.target.value})}} />
                 </Flex>
                 </Center>
               </Box>
@@ -116,4 +116,4 @@ function DialogUpdateCategory(props){
 
 
 
-export default DialogUpdateCategory;
+export default DialogUpdateRoom;

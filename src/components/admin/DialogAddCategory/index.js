@@ -58,7 +58,7 @@ function DialogAddCategory(props){
     return(
     <>
       {
-        (JSON.parse(localStorage.getItem('user-info')).action.includes("AddTheLoai"))
+        (JSON.parse(localStorage.getItem('user-info')).action.includes("AddCategory"))
         ?
         <Button  mt='30px' colorScheme='green' size='lg'
           shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
