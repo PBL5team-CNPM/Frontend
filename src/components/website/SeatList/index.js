@@ -20,6 +20,7 @@ import {
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { Link, useLocation } from 'react-router-dom';
 import CheckboxCard from './CheckboxCard';
+import moment from 'moment';
 
 const SeatList = () => {
     const [checked, setChecked] = useState([])
@@ -55,11 +56,14 @@ const SeatList = () => {
 
     const List = location.state.data.ghe.map((item)=>{
         return(
-            <div key={item.id}>
-                <input style={{width: "30px",
-                                height: "30px",
-                }} value={item.id} type="checkbox" onChange={handleCheck}/>
-            </div>
+                (item.suatchieu_ID.includes(location.state.data.id))?
+                <Box bgColor="red.400" borderRadius="2px" w="32px" h="32px" key={item.id}>
+                </Box>:
+                <div key={item.id}>
+                    <input style={{width: "30px",
+                                    height: "30px",
+                    }} value={item.id} type="checkbox" onChange={handleCheck}/>
+                </div>
         )
     })
     
@@ -91,15 +95,11 @@ const SeatList = () => {
                                 <Flex>
                                     <Box>
                                         <Heading>
-                                            04
-                                        </Heading>
-                                        <Heading>
-                                            Sun
+                                            {moment(location.state.data.ngay_chieu).format("ddd DD/MM/YY")}
                                         </Heading>
                                     </Box>
                                     <Box ml='25px'>
                                         <Heading fontSize='96px'>
-                                            {checked}
                                         </Heading>
                                     </Box>
                                 </Flex>
@@ -107,8 +107,8 @@ const SeatList = () => {
                             <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
                                     <Flex>
                                         <Box>
-                                            <Heading fontSize='36px'>
-                                                20:00 PM
+                                        <Heading fontSize='36px'>
+                                                {moment(location.state.data.gio_bat_dau,'h:mm:ss').format("LT")}
                                             </Heading>
                                         </Box>
                                     </Flex>

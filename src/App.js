@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import { Routes, Route} from "react-router-dom";
 import { Box} from '@chakra-ui/react';
 import Login from "./pages/website/Login";
@@ -46,7 +46,8 @@ function App() {
           listphimsapchieu.push(arr[index])
       }
   }
-  if(message==="Update" || message===""){
+  useEffect(()=>{
+      if(message==="Update" || message===""){
       axios.get('http://localhost:8000/api/phims/').
       then(
           res => {
@@ -72,6 +73,7 @@ function App() {
       ).catch(error => console.log(error))
       setMessage("wait update")
       }  
+    },[])
 
   listphim.forEach(xulyphim);
   return (
