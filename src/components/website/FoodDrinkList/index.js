@@ -14,6 +14,11 @@ import {
     Image,
     Spacer,
     Button,
+    NumberInput,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
+    NumberInputField,
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
@@ -26,14 +31,56 @@ const FoodDrinkList = () => {
     const [locationState, setLocationState]=useState({data:[
 
     ], ghe: []})
+    const [foodDrink, setFoodDrink]=useState([])
+    const [FD_data, setFD_data]=useState([])
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
             setLocationState(_state)
             console.log(_state)
-            console.log(_state.data.data.phim_id)
         }
     }, [])
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/food_drinks').
+            then(
+                res => {
+                    setFoodDrink(res.data)
+                    setFD_data({data: res.data.map((item)=>{
+                        return(
+                            {
+                                "food_drink_id": item.id,
+                                "so_luong": 0
+                            }
+                        )
+                    })})
+                }
+            ).catch(error => console.log(error))
+        },[])
+    
+    const List = foodDrink.map((item)=>{
+            return(
+                <Stack>
+                    <Box fontSize='24px'>
+                        {item.ten}
+                        <Box fontSize='24px'>
+                            {item.gia} Đ
+                        </Box>
+                    </Box>
+                    <NumberInput size='xs' maxW={16} min={0} 
+                    onChange={(e)=>{
+                        console.log({"food_drink_id":item.id,"so_luong":e})
+                        setFD_data(FD_data.data[item.id-1].so_luong = e)
+                        console.log(FD_data)
+                        }} defaultValue={0}>
+                        <NumberInputField  />
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                </Stack>
+            )
+    })
 
     const handleClick = () => {
         const data = {
@@ -112,7 +159,7 @@ const FoodDrinkList = () => {
                         </Stack>
                         <Spacer/>
                         <Box borderRadius='10px' w='1240px' py='55px' px='98px' ml='84px'>
-                            <Box borderRadius='10px' border='4px' w='1000px' h="300px">
+                            <Box borderRadius='10px' border='4px' w='1000px'>
                                 <Center>
                                 <Box fontSize="90px">
                                     Tổng cộng:  
@@ -123,6 +170,15 @@ const FoodDrinkList = () => {
                                 </Center>
                                 <Center fontSize="90px">
                                     {location.state.ghe.length*100000} Đ
+                                </Center>
+                                <Divider mt='24px' mb='24px'/>
+                                <Center fontSize="90px">
+                                    Chọn báp và nước
+                                </Center>
+                                <Center mb="20px">
+                                    <SimpleGrid columns={[2, null, 2]} spacing='50px' spacingX='300px' spacingY='28px'>
+                                        {List}
+                                    </SimpleGrid>
                                 </Center>
                             </Box>
 
