@@ -61,8 +61,7 @@ const Header = () => {
                         { (JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD"))?
                         <Box w='80px' mr='60px'>
                             <Link to="/admin/film">
-                                <Button colorScheme='white' variant='link'
-                                >
+                                <Button colorScheme='white' variant='link'>
                                     DashBoard
                                 </Button>
                             </Link>

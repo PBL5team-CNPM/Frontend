@@ -22,12 +22,13 @@ import {
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from "moment";
 import axios from "axios";
 
 const FoodDrinkList = () => {
     const location=useLocation()
+    const navigate= useNavigate()
     const [locationState, setLocationState]=useState({data:[
 
     ], ghe: []})
@@ -192,6 +193,7 @@ const FoodDrinkList = () => {
                                 w="80px"
                                 h="35px"
                                 mr ="50px"
+                                onClick={() => navigate(-1)}
                             >Back
                             </Button>
                                 <Button 

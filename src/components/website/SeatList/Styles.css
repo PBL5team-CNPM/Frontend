@@ -54,14 +54,13 @@ body {
 }
 
 .Cinema {
-  margin-bottom: 18px;
+  margin-bottom: 40px;
   perspective: 400px;
-
   grid-gap: 24px;
 }
 
 .Cinema .screen {
-  height: 70px;
+  height: 40px;
   background: white;
   width: 100%;
   transform: rotateX(-30deg) scale(1.1);
