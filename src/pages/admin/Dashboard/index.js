@@ -9,6 +9,7 @@ function Dashboard() {
         const [bgStyle4,setBgStyle4]=useState("")
         const [bgStyle5,setBgStyle5]=useState("")
         const [bgStyle6,setBgStyle6]=useState("")
+        const [bgStyle7,setBgStyle7]=useState("")
         
         if(JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD")){
           return (
@@ -107,6 +108,18 @@ function Dashboard() {
                         w='15%' h='60%'/>
                         <Text color='white' fontFamily='Poppins' fontSize='4vh' ml='7%'
                           mt='5%'>Suất chiếu</Text>
+                      </Flex>
+                    </Link>
+
+                    <Link to='popcorn' style={{width:'90%', height:'10%'}}>
+                      <Flex h='100%'  w='100%' borderRadius='6px' 
+                      onMouseLeave={(e) => {setBgStyle7("")}}
+                      onMouseEnter ={(e) => {setBgStyle7("#1F1D36")}}  
+                      bgColor={bgStyle7} alignItems='center'>
+                        <Image ml='10%' src={require('../../../imgs/popcorn.png')}
+                        w='15%' h='60%'/>
+                        <Text color='white' fontFamily='Poppins' fontSize='4vh' ml='7%'
+                          mt='5%'>Bắp nước</Text>
                       </Flex>
                     </Link>
                  </VStack>
