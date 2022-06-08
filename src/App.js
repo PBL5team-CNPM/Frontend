@@ -29,6 +29,7 @@ import Showtime from "./pages/admin/Showtime";
 import CinemaRoom from "./pages/admin/CinemaRoom";
 import FoodDrinkSelect from "./pages/website/FoodDrinkSelect";
 import Payment from "./pages/website/Payment";
+import Popcorn from "./pages/admin/Popcorn";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -90,6 +91,7 @@ function App() {
             <Route path="users" element={<Users />}  />
             <Route path="cinema-room" element={<CinemaRoom/>} />
             <Route path="showtime" element={<Showtime/>}  />
+            <Route path="popcorn" element={<Popcorn/>}  />
           </Route>
           <Route path="/home" element={<Navbar/>}>
             <Route path="" element={<FilmHome listphimdangchieu={listphimdangchieu}
