@@ -23,7 +23,6 @@ import SeatSelect from "./pages/website/SeatSelect";
 import ComingSoon from "./pages/website/ComingSoon";
 import NowShow from "./pages/website/NowShow";
 import MoviesByCategory from "./pages/website/MoviesByCategory";
-import axios from "axios";
 import ScrollToTop from "./ScrollToTop";
 import Showtime from "./pages/admin/Showtime";
 import CinemaRoom from "./pages/admin/CinemaRoom";
@@ -37,47 +36,10 @@ function App() {
   const callbackFunction = (childData) => {
         setMessage(childData)
        }
-  const listphimdangchieu = []
-  const listphimsapchieu = []
-  const [listphim, setListphim] = useState([])
-  function xulyphim(item, index, arr){
-      if(Date.parse((arr[index].time)) <= Date.now()){
-          listphimdangchieu.push(arr[index])
-      }
-      else {
-          listphimsapchieu.push(arr[index])
-      }
-  }
+ 
   useEffect(()=>{
-      if(message==="Update" || message===""){
-      axios.get('http://localhost:8000/api/phims/').
-      then(
-          res => {
-              setListphim(res.data.map((dataphim)=>{
-                  return(
-                      {
-                          id: dataphim.id,
-                          title: dataphim.ten,
-                          trailer: dataphim.trailer,
-                          imageUrl: dataphim.poster,
-                          time:dataphim.ngay_chieu,
-                          length: dataphim.thoiluong,
-                          director:dataphim.dao_dien,
-                          actor:dataphim.dien_vien,
-                          content:dataphim.tom_tat,
-                          finish:dataphim.ngay_ketthuc,
-                          theloai:dataphim.theloai,
-                          suatchieu:dataphim.suatchieu
-                      }
-                  )
-              }))
-          }
-      ).catch(error => console.log(error))
-      setMessage("wait update")
-      }  
-    },[])
-
-  listphim.forEach(xulyphim);
+     console.log(message)
+  },[message])
   return (
       <Box>
         <ScrollToTop/>
@@ -95,8 +57,7 @@ function App() {
             <Route path="popcorn" element={<Popcorn/>}  />
           </Route>
           <Route path="/home" element={<Navbar/>}>
-            <Route path="" element={<FilmHome listphimdangchieu={listphimdangchieu}
-            listphimsapchieu={listphimsapchieu}/>} />
+            <Route path="" element={<FilmHome/>} />
             <Route path="movie-info" element={<FilmAll />} />
             <Route path="movie-info/lich-chieu" element={<Showtimes />} />
             <Route path="movie-info/lich-chieu/chon-ghe" element={<SeatSelect />} />
@@ -106,10 +67,8 @@ function App() {
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<SeatSelect />} />
             <Route path="tintuc" element={<Payment />} />
-            <Route path="movies/now-showing" element={<NowShow 
-            listphimdangchieu={listphimdangchieu}/>} />
-            <Route path="movies/coming-soon" element={<ComingSoon
-            listphimsapchieu={listphimsapchieu}/>} />
+            <Route path="movies/now-showing" element={<NowShow/>} />
+            <Route path="movies/coming-soon" element={<ComingSoon/>} />
           </Route>
           <Route path="/profile" element={<Profile/>}>
             <Route path="viewprofile" element={<ViewProfile/>} />

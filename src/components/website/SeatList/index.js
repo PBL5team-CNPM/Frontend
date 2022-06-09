@@ -9,22 +9,23 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
- 
     SimpleGrid,
     Center,
-    Image,
-    Spacer,
     Button,
+    Text,
+    Spacer,
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import { Link, useLocation } from 'react-router-dom';
-import CheckboxCard from './CheckboxCard';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 const SeatList = () => {
     const [checked, setChecked] = useState([])
+    const [seatCode,setSeatCode] = useState([])
     const location=useLocation()
+    const [seats,setSeats]=useState([])
+    const navigate= useNavigate() 
     const [locationState, setLocationState]=useState({data:[
 
     ], tenphim: ''})
@@ -41,29 +42,75 @@ const SeatList = () => {
         console.log(checked)
     },[checked])
 
-    const handleCheck = (e) => {
-        var updateList = [...checked];
-        if (e.target.checked){
-            updateList = [...checked, e.target.value]
-        }
-        else{
-            updateList.splice(checked.indexOf(e.target.value), 1)
-        }
-        console.log(e.target.value)
-        setChecked(updateList)
-    }
+    useEffect(()=>{
+        console.log(seatCode)
+    },[seatCode])
+
+    useEffect(()=>{
+        setSeats(location.state.data.ghe.map((item)=>{
+            return(
+                {
+                    id: item.id,
+                    suatchieu_ID: item.suatchieu_ID,
+                    ma_ghe: item.ma_ghe,
+                    color : 'gray'
+                }
+            )
+        }))
+        
+    },[])
 
 
-    const List = location.state.data.ghe.map((item)=>{
+    const List = seats.map((item)=>{
         return(
                 (item.suatchieu_ID.includes(location.state.data.id))?
-                <Box bgColor="red.400" borderRadius="2px" w="32px" h="32px" key={item.id}>
+                <Box bgColor="red.400" borderTopLeftRadius='50%' borderTopRightRadius='50%'
+                 w="35px" h="30px" key={item.id} display='flex' userSelect={'none'} cursor='not-allowed'
+                 justifyContent={'center'} alignItems='center'>{item.ma_ghe}
                 </Box>:
-                <div key={item.id}>
-                    <input style={{width: "30px",
-                                    height: "30px",
-                    }} value={item.id} type="checkbox" onChange={handleCheck}/>
-                </div>
+                <Box key={item.id} bgColor={item.color} borderTopLeftRadius='50%' 
+                borderTopRightRadius='50%'
+                 display='flex' justifyContent={'center'} alignItems='center' cursor='pointer'
+                 w="35px" h="30px" >
+                <input style={{width: "32px", cursor:'pointer', position:'absolute',
+                                    height: "30px", opacity:'0'
+                    }} value={item.id} type="checkbox" onChange={
+                        (e)=>{
+                            var updateList = [...checked];
+                            var updateList2= [...seatCode];
+                            if (e.target.checked){
+                                updateList = [...checked, e.target.value]
+                                updateList2= [...seatCode,item.ma_ghe]
+                                setSeats(prevState=>{
+                                    return prevState.map((prev)=>{
+                                        if(prev.id===item.id){
+                                            prev.color='green.400'
+                                        }
+                                        return prev
+                                    })
+                                })
+                            }
+                            else{
+                                updateList.splice(checked.indexOf(e.target.value), 1)
+                                updateList2.splice(seatCode.indexOf(item.ma_ghe), 1)
+                                setSeats(prevState=>{
+                                    return prevState.map((prev)=>{
+                                        if(prev.id===item.id){
+                                            prev.color='gray'
+                                        }
+                                        return prev
+                                    })
+                                })
+                                
+                            }
+                            setSeatCode(updateList2)
+                            setChecked(updateList)
+                        }
+                    }/>
+                {item.ma_ghe}
+              
+
+                </Box>
         )
     })
     
@@ -91,65 +138,102 @@ const SeatList = () => {
                     <Divider mt='24px' mb='24px'/>
                     <Flex>
                         <Stack spacing='24px'>
-                            <Center borderRadius='10px' border='4px' w='255px' h='150px' p='27px'>
-                                <Flex>
+                          <Center borderRadius='10px' border='4px' w='255px' p='10px'>
+                                <Center>
                                     <Box>
-                                        <Heading>
-                                            {moment(location.state.data.ngay_chieu).format("ddd DD/MM/YY")}
+                                        <Heading textAlign='center' fontSize='36px'>
+                                            {location.state.data.phongchieu_name}
                                         </Heading>
                                     </Box>
-                                    <Box ml='25px'>
-                                        <Heading fontSize='96px'>
-                                        </Heading>
-                                    </Box>
-                                </Flex>
+                                   
+                                </Center>
                             </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
+                            <Center borderRadius='10px' border='4px' w='255px' p='15px'>
+                                <Center>
+                                    <Box>
+                                        <Heading textAlign='center' fontSize='36px'>
+                                            {moment(location.state.data.ngay_chieu).format("ddd DD/MM/YYYY")}
+                                        </Heading>
+                                    </Box>
+                                   
+                                </Center>
+                            </Center>
+                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='10px'>
                                     <Flex>
                                         <Box>
-                                        <Heading fontSize='36px'>
-                                                {moment(location.state.data.gio_bat_dau,'h:mm:ss').format("LT")}
+                                        <Heading fontSize='22px' textAlign='center'>
+                                                {moment(location.state.data.gio_bat_dau,'h:mm:ss').format("LT")} - {moment(location.state.data.gio_ket_thuc,'h:mm:ss').format("LT")}
                                             </Heading>
                                         </Box>
                                     </Flex>
                             </Center>
-                        </Stack>
-                        <Spacer/>
-                        <Box borderRadius='10px' w='1240px' py='55px' px='98px' ml='84px'>
-                            <div className="Cinema">
-                            <div className="screen" />
-                            </div>    
-                            <SimpleGrid columns={[2, null, location.state.data.soluong_cot]} spacing='20px' spacingX='25px' spacingY='28px'>
-                                {List}
-                            </SimpleGrid>
+
+                            <Center borderRadius='10px' border='4px' w='255px'>
+                                <Box w='100%'>
+                                <Heading fontSize='25px' textAlign='center' m='5px'>Ghế đang chọn</Heading>
+                                <hr/><hr/><hr/>
+                                <Heading fontSize='20px' m='8px' textAlign='center'>
+                                       {seatCode.length===0?'Không có ghế được chọn':seatCode.map(i=>i).join(', ')}
+                                    </Heading>
+                                </Box>
+                            </Center>
                             <Center mt="60px">
                             <Button 
-                                colorScheme='blue'
-                                bgColor='red'
+                                colorScheme='red'
                                 color='white'
                                 size='lg'
-                                borderRadius="10px"
+                                borderRadius="8px"
                                 w="80px"
-                                h="35px"
+                                h="40px"
                                 mr ="50px"
+                                onClick={() => navigate(-1)}
                             >Back
                             </Button>
                             <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked}}>
                                 <Button 
                                     colorScheme='blue'
-                                    bgColor='green'
                                     color='white'
                                     size='lg'
-                                    borderRadius="10px"
+                                    borderRadius="8px"
                                     w="80px"
-                                    h="35px"
+                                    h="40px"
                                 >Next
                                 </Button>
                             </Link>
                             </Center>
-                        </Box>
-                        
+                        </Stack>
                         <Spacer/>
+                        <Box borderRadius='10px' w='75%'  border={'4px'}>
+                            <Text fontSize='30px' textAlign='center'>Người/ Ghế</Text>
+                            <hr /><hr/><hr/>
+                          <Center mt='20px'>
+                           <Box >
+                            <div className="Cinema">
+                            <div className="screen" />
+                            </div>    
+                            <SimpleGrid columns={[2, null, location.state.data.soluong_cot]} spacing='10px' >
+                                {List}
+                            </SimpleGrid>
+                            </Box>
+                            </Center>
+                            <Center mt='30px'mb='20px'>
+                                <Flex alignItems='center'>
+                                    <Box bgColor="gray" borderTopLeftRadius='50%' borderTopRightRadius='50%'
+                 w="30px" h="25px"></Box>
+                                    <Text ml='10px' fontSize='17px'>Trống</Text>
+                                </Flex>
+                                <Flex alignItems='center' ml='50px' mr='50px'>
+                                    <Box bgColor="green.400" borderTopLeftRadius='50%' borderTopRightRadius='50%'
+                 w="30px" h="25px"></Box>
+                                    <Text ml='10px' fontSize='17px'>Đang chọn</Text>
+                                </Flex>
+                                <Flex alignItems='center'>
+                                    <Box bgColor="red.400" borderTopLeftRadius='50%' borderTopRightRadius='50%'
+                 w="30px" h="25px"></Box>
+                                    <Text ml='10px' fontSize='17px'>Đã chọn</Text>
+                                </Flex>
+                            </Center>
+                        </Box>
                     </Flex>
                 </Box>
             </Box>

@@ -53,6 +53,7 @@ function DialogUpdateCategory(props){
         isClosable: true,
       })
       props.parentCallback("Update")
+      localStorage.setItem('Update','yes')
       }
     }
     return(
