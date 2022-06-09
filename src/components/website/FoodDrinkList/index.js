@@ -48,6 +48,7 @@ const FoodDrinkList = () => {
                     setFD_data(res.data.data.map((item)=>{
                         return(
                             {
+                                "food_drink_name": item.ten,
                                 "food_drink_id": item.id,
                                 "so_luong": 0
                             }
@@ -159,7 +160,7 @@ const FoodDrinkList = () => {
                                 <Flex ml="27px">
                                     <Box>
                                         <Heading fontSize='24px'>
-                                            {location.state.ghe.join(", ")}
+                                            {location.state.seatCode.join(", ")}
                                         </Heading>
                                     </Box>
                                 </Flex>
@@ -203,6 +204,7 @@ const FoodDrinkList = () => {
                                 onClick={() => navigate(-1)}
                             >Back
                             </Button>
+                            <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink/detail-bill" state={{data:location.state.data, ghe: location.state.ghe, seatCode: location.state.seatCode, foodDrink: FD_data}}>
                                 <Button 
                                     colorScheme='blue'
                                     bgColor='green'
@@ -211,9 +213,10 @@ const FoodDrinkList = () => {
                                     borderRadius="10px"
                                     w="80px"
                                     h="35px"
-                                    onClick={handleClick}
+                                    // onClick={handleClick}
                                 >Next
                                 </Button>
+                            </Link>
                             </Center>
                         </Box>
                         

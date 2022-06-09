@@ -189,7 +189,7 @@ const SeatList = () => {
                                 onClick={() => navigate(-1)}
                             >Back
                             </Button>
-                            <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked}}>
+                            <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked, seatCode: seatCode}}>
                                 <Button 
                                     colorScheme='blue'
                                     color='white'
