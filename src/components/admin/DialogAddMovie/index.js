@@ -28,22 +28,10 @@ function DialogAddMovie(props){
       setTheloai(val)
       console.log(Theloai)
     }
-    const [values, setValues] = useState(
-      {
-        title: "",
-        trailer: "",
-        imageUrl: "",
-        time: "",
-        length: "",
-        director: "",
-        actor: "",
-        content: "",
-        finish:"",
-      }
-    )
     const [title, setTitle] = useState("")
     const [trailer, setTrailer] = useState("")
     const [imageUrl, setImageUrl] = useState("")
+    const [thumbnail, setThumbnail] = useState("")
     const [time, setTime] = useState("")
     const [length, setLength] = useState("")
     const [director, setDirector] = useState("")
@@ -57,7 +45,7 @@ function DialogAddMovie(props){
 
     const handleSubmit = (e) => {
       if(title==="" || trailer==="" || imageUrl==="" || !Theloai.length ||
-      length==="" || director==="" || actor==="" || content==="" ){
+      length==="" || director==="" || actor==="" || content==="" || thumbnail===""){
         e.preventDefault();
         const a=[]
         function xulyTheloai(item,index,arr){
@@ -86,29 +74,14 @@ function DialogAddMovie(props){
       formData.append('dien_vien', actor)
       formData.append('tom_tat', content)
       formData.append('ngay_ketthuc', finish)
+      formData.append('thumbnail', thumbnail)
       const inputTheloai = []
-      const phim = {
-        ten: values.title,
-        trailer: values.trailer,
-        poster: values.imageUrl,
-        ngay_chieu: values.time,
-        thoiluong: values.length,
-        dao_dien: values.director,
-        dien_vien: values.actor,
-        tom_tat: values.content,
-        ngay_ketthuc: values.finish,
-        theloai: []
-      }
       function xulyTheloai(item,index,arr){
         // phim.theloai.push(arr[index].id)
         inputTheloai.push(arr[index].id)
       }
       Theloai.forEach(xulyTheloai)
       formData.append('theloai', JSON.stringify(inputTheloai))
-      console.log(JSON.stringify(inputTheloai))
-      console.log(phim.theloai)
-      console.log(formData)
-      console.log(imageUrl)
       axios.post('http://localhost:8000/api/addphims', formData,
         {
           headers: {
@@ -130,16 +103,16 @@ function DialogAddMovie(props){
         isClosable: true,
       })
       props.parentCallback("Update")
-      setValues({title: "",
-      trailer: "",
-      imageUrl: "",
-      time: "",
-      length: "",
-      director: "",
-      actor: "",
-      content: "",
-      finish:"",
-    })
+     setTitle("")
+     setActor("")
+     setTrailer("")
+     setImageUrl("")
+     setThumbnail("")
+     setTime("")
+     setLength("")
+     setDirector("")
+     setContent("")
+     setFinish("")
     }
     }
 
@@ -240,6 +213,21 @@ function DialogAddMovie(props){
                     />
                   </Box>
 
+                  <Box mb='15px'>
+                    <Text mb='10px'>Diễn viên (*) </Text>
+                    <Input w='360px' h='45px' type='text' 
+                    focusBorderColor='white'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    placeholder='Nhập tên các diễn viên'
+                    value={actor}
+                    onChange={(e)=>{
+                      setActor(e.target.value)
+                    }}
+                    />
+                  </Box>
+
                   <Box >
                     <Text mb='10px'>Thể loại (*)</Text>
                     <Multiselect className='mse-category' 
@@ -249,7 +237,8 @@ function DialogAddMovie(props){
                     onRemove={SelectCategory}
                     avoidHighlightFirstOption='true'
                     style={ {chips: { background: "#42C2FF" },
-                    searchBox: {color:"white", border: "2px solid #42C2FF",  "borderRadius": "10px"}} }
+                    searchBox: {color:"white", border: "2px solid #42C2FF",  "borderRadius": "10px",
+                  height: '45px'}} }
                     />
                   </Box>
                   </Box>
@@ -299,16 +288,16 @@ function DialogAddMovie(props){
                   </Box>
 
                   <Box mb='15px'>
-                    <Text mb='10px'>Diễn viên (*) </Text>
-                    <Input w='360px' h='45px' type='text' 
+                    <Text mb='10px'>Thumbnail (*)</Text>
+                    <Input w='360px' h='45px' type='file' 
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
                     borderColor='#42C2FF'
-                    placeholder='Nhập tên các diễn viên'
-                    value={actor}
+                    placeholder='Nhập tên đạo diễn'
+                    value={thumbnail}
                     onChange={(e)=>{
-                      setActor(e.target.value)
+                      setThumbnail(e.target.files[0])
                     }}
                     />
                   </Box>

@@ -135,7 +135,7 @@ const SeatList = () => {
                     </BreadcrumbItem>
                 </Breadcrumb>
                 <Box>
-                    <Divider mt='24px' mb='24px'/>
+                    <Divider mt='10px' mb='24px'/>
                     <Flex>
                         <Stack spacing='24px'>
                           <Center borderRadius='10px' border='4px' w='255px' p='10px'>
@@ -189,8 +189,8 @@ const SeatList = () => {
                                 onClick={() => navigate(-1)}
                             >Back
                             </Button>
-                            <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked, seatCode: seatCode}}>
-                                <Button 
+                            {checked.length===0?
+                                <Button  disabled
                                     colorScheme='blue'
                                     color='white'
                                     size='lg'
@@ -198,8 +198,19 @@ const SeatList = () => {
                                     w="80px"
                                     h="40px"
                                 >Next
-                                </Button>
-                            </Link>
+                                </Button>:
+                                 <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked, seatCode:seatCode}}>
+                                 <Button 
+                                     colorScheme='blue'
+                                     color='white'
+                                     size='lg'
+                                     borderRadius="8px"
+                                     w="80px"
+                                     h="40px"
+                                 >Next
+                                 </Button>
+                             </Link>
+                            }
                             </Center>
                         </Stack>
                         <Spacer/>

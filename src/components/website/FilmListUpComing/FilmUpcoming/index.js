@@ -18,7 +18,7 @@ const FilmUpcoming = (props) => {
             onMouseLeave={(e) => {setStyle({opacity: 0})}}
             onMouseEnter ={(e) => {setStyle({opacity: 1})}} 
             >
-            <Box ml='190px' mt='392px' pos='absolute'>
+            <Box ml='195px' mt='392px' pos='absolute'>
                 <Link to="/home/movie-info" state={{data:props.data, check: '1'}}>
                 <Button  transition='0.7s' style={style} bgColor='rgb(0,0,255,0.5)' colorScheme='blue'>Chi tiết</Button></Link>
             </Box>
@@ -29,7 +29,7 @@ const FilmUpcoming = (props) => {
             
             <Center>
               <Image w='300px' h='452px' border='2px' 
-                src={props.data.imageUrl} borderColor='white'
+                src={"http://localhost:8000/"+props.data.imageUrl} borderColor='white'
             />
             </Center>
          

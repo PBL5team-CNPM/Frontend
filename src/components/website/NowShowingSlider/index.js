@@ -145,9 +145,10 @@ const MoviesSlider=styled.div`
                              <Flex className="btnGroup" opacity={'0'} position={'absolute'} right='10px' bottom='35px'>
                                  
                              {localStorage.getItem('user-info')?
+                             <Link to='/home/movie-info/lich-chieu' state={{data:movie.suatchieu, tenphim: movie.title}}>
                                  <Button transition={'0.7s'} mr='7px' colorScheme='red' size='sm' bgColor='rgb(255,0,0,0.5)'>
                                  Mua vé
-                             </Button>:
+                             </Button></Link>:
                              <Link to='/login'>
                                <Button transition={'0.7s'} mr='7px' colorScheme='red' size='sm' bgColor='rgb(255,0,0,0.5)'>
                                  Mua vé

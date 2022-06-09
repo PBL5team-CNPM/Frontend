@@ -17,7 +17,7 @@ import {
 import {FiLogOut} from 'react-icons/fi'
 import {MdOutlineSpaceDashboard} from 'react-icons/md'
 import {AiOutlineMenu} from 'react-icons/ai'
-import SearchBar from "../SearchBar";
+
 
 
 const Header = () => {
@@ -48,9 +48,6 @@ const Header = () => {
                         
                     </Flex>
                 </Link>
-            </Box>
-            <Box color='white' fontFamily='Poppins' fontSize='36px'>
-                <SearchBar/>    
             </Box>
             <Spacer/>
             <Box mr='50px' color='white' fontFamily='Poppins' fontSize='20px' >

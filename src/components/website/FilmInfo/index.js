@@ -18,6 +18,7 @@ const FilmInfo = (props) => {
         title: "",
         trailer: "",
         imageUrl: "",
+        thumbnail: "",
         time: "",
         length: "",
         director: "",
@@ -47,7 +48,7 @@ const FilmInfo = (props) => {
     }
     locationState.data.theloai.forEach(xuliTL)
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
-    const bgImg=bgC+"http://localhost:8000/"+locationState.data.imageUrl+")"
+    const bgImg=bgC+"http://localhost:8000/"+locationState.data.thumbnail+")"
     return(
         <Stack   color='white' 
         bg={bgImg}
@@ -94,9 +95,14 @@ const FilmInfo = (props) => {
                         </Box>
                         <Flex>
                           {locationState.check==='0'?
+                          localStorage.getItem('user-info')?
                           <Link to='/home/movie-info/lich-chieu' state={{data:locationState.data.suatchieu, tenphim: locationState.data.title}}>
                           <Button mr='20px' fontSize='24px' h='63px' w='164px' 
-                          colorScheme='blue'>Mua Vé</Button></Link> : null}
+                          colorScheme='blue'>Mua Vé</Button></Link>:
+                          <Link to='/login'>
+                          <Button mr='20px' fontSize='24px' h='63px' w='164px' 
+                          colorScheme='blue'>Mua Vé</Button></Link>
+                           : null}
                           
                           <TrailerInfo trailerProp={locationState.data.trailer}/>
                         </Flex>

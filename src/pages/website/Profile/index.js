@@ -7,7 +7,6 @@ import axios from 'axios';
 
 
 function Profile() {
-    const toast = useToast()
     const inputFile = useRef()
     const [file, setFile] = useState("")
     const [preview, setPreview] = useState("")
@@ -118,7 +117,7 @@ function Profile() {
                 }
                 {/* upload avatar */}
                 <Flex>
-                <Box ml="60px" boxSize="24px" pos="relative" overflow="hidden">
+                <Box ml="60px" boxSize="24px" pos="relative" overflow="hidden" cursor="pointer">
                   <EditIcon as='label' boxSize="24px" pos="absolute" cursor="pointer" color="white"/>
                   <Input boxSize="24px" opacity={0} type='file' id='avatar' pos="absolute"
                     ref={inputFile}

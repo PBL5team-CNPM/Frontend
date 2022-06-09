@@ -23,12 +23,13 @@ import {
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon, InfoIcon } from '@chakra-ui/icons'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from "moment";
 import axios from "axios";
 
 const BillInfo = () => {
     const location=useLocation()
+    const navigate=useNavigate()
     const [locationState, setLocationState]=useState(
         {data:[], ghe: []})
     const [foodDrink, setFoodDrink]=useState([])
@@ -82,16 +83,16 @@ const BillInfo = () => {
                     </BreadcrumbItem>
                 </Breadcrumb>
                 <Box>
-                    <Divider mt='24px' mb='24px'/>
+                    <Divider mt='10px' mb='24px'/>
                     <Flex>
                         <Spacer/>
                         <Box w='100%'>
                             <Box borderRadius='0px' bgColor="white" boxShadow="4px 6px 5px 0px rgb(255 255 255 / 0.4)" w='100%' overflow="hidden">
                                 <Flex>
                                     <Box w="40%" fontSize="24px" color="blackAlpha.400" borderRight="1px">
-                                        <Image w="100%" fit="cover" src="https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/d/r/dr-strange-payoff-poster_1_.jpg"/>
+                                        <Image w="100%" objectFit="cover" h='100%' src={"http://localhost:8000/" + location.state.data.data.poster}/>
                                     </Box>
-                                    <Box w="60%" fontSize="24px" color="blackAlpha.400">
+                                    <Box w="60%" fontSize="24px" color="blackAlpha.400" pb='20px'>
                                         <Box px="25px" py="15px">
                                             <Flex alignItems="center">
                                                 <Image
@@ -133,7 +134,7 @@ const BillInfo = () => {
                                                         Đồ ăn: {location.state.foodDrink.map(item => {
                                                             if(item.so_luong !== 0){
                                                                 return(
-                                                                    item.so_luong+ " x "+ item.food_drink_name+" "
+                                                                    item.so_luong+ "x"+ item.food_drink_name+", "
                                                                 )
                                                             }
                                                             
@@ -192,7 +193,7 @@ const BillInfo = () => {
                                             <Divider mt="20px"/>
                                         </Box>
                                         <Center>
-                                            <Button fontSize="24px" color="white" colorScheme="purple" mt="30px" w="300px" h="100px"
+                                            <Button fontSize="24px" color="white" colorScheme="purple" mt="20px" w="300px" h="100px"
                                             onClick={handleClick}
                                             > MUA NGAY</Button>
                                         </Center>
@@ -201,29 +202,19 @@ const BillInfo = () => {
                             </Box>
                             
 
-                            <Center mt="60px">
+                            <Center mt="30px">
                             <Button 
-                                colorScheme='blue'
-                                bgColor='red'
+                                onClick={()=>navigate(-1)}
+                                colorScheme='red'
                                 color='white'
                                 size='lg'
                                 borderRadius="10px"
                                 w="80px"
-                                h="35px"
+                                h="40px"
                                 mr ="50px"
                             >Back
                             </Button>
-                                <Button 
-                                    colorScheme='blue'
-                                    bgColor='green'
-                                    color='white'
-                                    size='lg'
-                                    borderRadius="10px"
-                                    w="80px"
-                                    h="35px"
-                                    onClick={"handleClick"}
-                                >Next
-                                </Button>
+            
                             </Center>
                         </Box>
                         <Spacer/>

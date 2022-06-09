@@ -115,114 +115,118 @@ const FoodDrinkList = () => {
                 <Divider size='' mb='24px'/>
                 <Breadcrumb spacing='8px' separator={<Heading><ChevronRightIcon /></Heading>}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>{locationState.tenphim}</Heading></BreadcrumbLink>
+                        <BreadcrumbLink><Heading fontSize='32px'>{locationState.data.tenphim}</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>MUA VÉ</Heading></BreadcrumbLink>
+                        <BreadcrumbLink><Heading fontSize='32px'>MUA VÉ</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>CHỌN LỊCH CHIẾU</Heading></BreadcrumbLink>
+                        <BreadcrumbLink><Heading fontSize='32px'>CHỌN LỊCH CHIẾU</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem isCurrentPage>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>CHỌN GHẾ</Heading></BreadcrumbLink>
+                        <BreadcrumbLink><Heading fontSize='32px'>CHỌN GHẾ</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
-                <Box>
-                    <Divider mt='24px' mb='24px'/>
-                    <Flex>
+             
+                    <Divider  mt='10px' mb='24px'/>
+                    <Flex h="100%">
                         <Stack spacing='24px'>
-                            <Center borderRadius='10px' border='4px' w='255px' h='150px' p='27px'>
-                                <Flex>
+                        <Center borderRadius='10px' border='4px' w='255px' p='10px'>
                                     <Box>
-                                        <Heading>
-                                            {moment(location.state.data.data.ngay_chieu).format("ddd DD/MM/YY")}
+                                        <Heading textAlign='center' fontSize='36px'>
+                                            {location.state.data.data.phongchieu_name}
                                         </Heading>
                                     </Box>
-                                    <Box ml='25px'>
-                                        <Heading fontSize='96px'>
-                                        </Heading>
-                                    </Box>
-                                </Flex>
                             </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
+                            <Center borderRadius='10px' border='4px' w='255px'  p='15px'>
+                                
+                                <Box>
+                                    <Heading textAlign='center' fontSize='36px'>
+                                        {moment(location.state.data.data.ngay_chieu).format("ddd DD/MM/YYYY")}
+                                    </Heading>
+                                </Box>
+                                  
+                            </Center>
+                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='10px'>
                                     <Flex>
                                         <Box>
-                                            <Heading fontSize='36px'>
-                                                {moment(location.state.data.data.gio_bat_dau,'h:mm:ss').format("LT")}
+                                            <Heading fontSize='22px' textAlign='center'>
+                                                {moment(location.state.data.data.gio_bat_dau,'h:mm:ss').format("LT")} - {moment(location.state.data.data.gio_ket_thuc,'h:mm:ss').format("LT")}
                                             </Heading>
                                         </Box>
                                     </Flex>
                             </Center>
-                            <Box borderRadius='10px' border='4px' w='255px' p='10px'>
-                                <Heading fontSize='24px' ml="27px">
-                                    Ghế đang chọn:
+                            <Box borderRadius='10px' border='4px' w='255px'>
+                                <Heading fontSize='25px' textAlign='center' m='5px'>
+                                    Ghế chọn
+                                </Heading><hr/><hr/><hr/>
+                                <Heading fontSize='20px' m='8px' textAlign='center'>
+                                    {location.state.seatCode.join(", ")}
                                 </Heading>
-                                <Flex ml="27px">
-                                    <Box>
-                                        <Heading fontSize='24px'>
-                                            {location.state.seatCode.join(", ")}
-                                        </Heading>
-                                    </Box>
-                                </Flex>
-                            </Box>
-                        </Stack>
-                        <Spacer/>
-                        <Box borderRadius='10px' w='1240px' py='55px' px='98px' ml='84px'>
-                            <Box borderRadius='10px' border='4px' w='1000px'>
-                                <Center>
-                                <Box fontSize="90px">
-                                    Tổng cộng:  
-                                </Box>
-                                <Box ml="20" fontSize="90px">
-                                    {location.state.ghe.length} x Vé
-                                </Box>
-                                </Center>
-                                <Center fontSize="90px">
-                                    {location.state.ghe.length*100000} Đ
-                                </Center>
-                                <Divider mt='24px' mb='24px'/>
-                                <Center fontSize="90px">
-                                    Chọn báp và nước
-                                </Center>
-                                <Center mb="20px">
-                                    <SimpleGrid columns={[2, null, 2]} spacing='50px' spacingX='300px' spacingY='28px'>
-                                        {List}
-                                    </SimpleGrid>
-                                </Center>
                             </Box>
 
                             <Center mt="60px">
                             <Button 
-                                colorScheme='blue'
-                                bgColor='red'
+                                colorScheme='red'
                                 color='white'
                                 size='lg'
-                                borderRadius="10px"
+                                borderRadius="8px"
                                 w="80px"
-                                h="35px"
+                                h="40px"
                                 mr ="50px"
                                 onClick={() => navigate(-1)}
                             >Back
                             </Button>
+                            
                             <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink/detail-bill" state={{data:location.state.data, ghe: location.state.ghe, seatCode: location.state.seatCode, foodDrink: FD_data}}>
-                                <Button 
-                                    colorScheme='blue'
-                                    bgColor='green'
-                                    color='white'
-                                    size='lg'
-                                    borderRadius="10px"
-                                    w="80px"
-                                    h="35px"
-                                    // onClick={handleClick}
-                                >Next
-                                </Button>
-                            </Link>
+                                 <Button 
+                                     colorScheme='blue'
+                                     color='white'
+                                     size='lg'
+                                     borderRadius="8px"
+                                     w="80px"
+                                     h="40px"
+                                 >Next
+                                 </Button>
+                             </Link>
+                
                             </Center>
-                        </Box>
-                        
+                          
+                        </Stack>
                         <Spacer/>
+                        <Box borderRadius='10px' w='75%' >
+                            <Box borderRadius='10px' border='4px' w='100%'>
+                                <Center>
+                                <Box>
+                                <Flex>
+                                <Box fontSize="45px" mr='30px'>
+                                    Tổng cộng:  
+                                </Box>
+                                <Box  fontSize="45px">
+                                    {location.state.ghe.length} x Vé
+                                </Box>
+                                </Flex>
+                                <Flex >
+                                    <Box fontSize="45px" mr="160px">
+                                        Giá:
+                                    </Box>
+                                    <Box fontSize="45px">
+                                    {location.state.ghe.length*100000} Đ
+                                    </Box>
+                                </Flex></Box></Center>
+                                <hr/><hr/><hr/>
+                                <Center fontSize="60px" fontWeight='bold'>
+                                    Chọn bắp và nước
+                                </Center>
+                                <Center mb="20px">
+                                    <SimpleGrid columns={[2, null, 2]} spacing='30px' spacingX='200px' spacingY='28px'>
+                                        {List}
+                                    </SimpleGrid>
+                                </Center>
+                            </Box>
+                        </Box>
                     </Flex>
-                </Box>
+
             </Box>
             
         </Stack>
