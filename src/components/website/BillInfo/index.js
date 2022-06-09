@@ -33,30 +33,30 @@ const BillInfo = () => {
         {data:[], ghe: []})
     const [foodDrink, setFoodDrink]=useState([])
     const [FD_data, setFD_data]=useState()
-    // React.useEffect(() =>{
-    //     if(location.state){
-    //         let _state=location.state
-    //         setLocationState(_state)
-    //         console.log(_state)
-    //     }
-    // }, [])
+    React.useEffect(() =>{
+        if(location.state){
+            let _state=location.state
+            setLocationState(_state)
+            console.log(_state)
+        }
+    }, [])
 
-    // const handleClick = () => {
-    //     const data = {
-    //         "user_id": JSON.parse(localStorage.getItem('user-info')).id,
-    //         "suatchieu_id": location.state.data.data.id,
-    //         "ghe_id": location.state.ghe,
-    //         "gia_ve": 100000,
-    //         "food_drink": FD_data
-    //     }
-    //     console.log(data)
-    //     axios.post('http://localhost:8000/api/addhoadon', data
-    //     ).then(res => {
-    //         console.log(res.data)
-    //     }).catch(error=>{
-    //             console.log(error)
-    //     })
-    // }
+    const handleClick = () => {
+        const data = {
+            "user_id": JSON.parse(localStorage.getItem('user-info')).id,
+            "suatchieu_id": location.state.data.data.id,
+            "ghe_id": location.state.ghe,
+            "gia_ve": 100000,
+            "food_drink": location.state.foodDrink
+        }
+        console.log(data)
+        axios.post('http://localhost:8000/api/addhoadon', data
+        ).then(res => {
+            console.log(res.data)
+        }).catch(error=>{
+                console.log(error)
+        })
+    }
     
     return(
         <Box>
@@ -66,7 +66,7 @@ const BillInfo = () => {
                 <Divider size='' mb='24px'/>
                 <Breadcrumb spacing='8px' separator={<Heading><ChevronRightIcon /></Heading>}>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='32px'>{locationState.tenphim}</Heading></BreadcrumbLink>
+                        <BreadcrumbLink href='#'><Heading fontSize='32px'>{locationState.data.tenphim}</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem>
                         <BreadcrumbLink href='#'><Heading fontSize='32px'>MUA VÉ</Heading></BreadcrumbLink>
@@ -117,19 +117,27 @@ const BillInfo = () => {
                                                         CINEMA PRO MAX
                                                     </Heading>
                                                     <Text mt="10px"  color="gray" fontWeight="bold">
-                                                        PHIM: PHÙ THỦY TỐI THƯỢNG TRONG ĐA VŨ TRỤ HỖN LOẠN 
+                                                        PHIM: {location.state.data.tenphim} 
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                        Số lượng: 3 VÉ
+                                                        Số lượng: {location.state.ghe.length} VÉ
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                        Phòng chiếu: CINEMA 1
+                                                        Phòng chiếu: {location.state.data.data.phongchieu_name}
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                        Ghế: A1, A2, A3
+                                                        Ghế: {location.state.seatCode.join(", ")}
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                        Đồ ăn: 2 x Bắp lớn, 2 x Coca-cola lớn
+                                                        {/* Đồ ăn: 2 x Bắp lớn, 2 x Coca-cola lớn */}
+                                                        Đồ ăn: {location.state.foodDrink.map(item => {
+                                                            if(item.so_luong !== 0){
+                                                                return(
+                                                                    item.so_luong+ " x "+ item.food_drink_name+" "
+                                                                )
+                                                            }
+                                                            
+                                                        })}
                                                     </Text>
                                                 </Box>
                                             </Flex>
@@ -145,7 +153,7 @@ const BillInfo = () => {
                                                         </Text>
                                                         <Spacer/>
                                                         <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                            User01
+                                                            {JSON.parse(localStorage.getItem('user-info')).name}
                                                         </Text>
                                                     </Flex>
                                                     <Flex>
@@ -154,7 +162,7 @@ const BillInfo = () => {
                                                         </Text>
                                                         <Spacer/>
                                                         <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                            Nguyễn Văn A
+                                                            {JSON.parse(localStorage.getItem('user-info')).realname}
                                                         </Text>
                                                     </Flex>
                                                     <Flex>
@@ -163,7 +171,7 @@ const BillInfo = () => {
                                                         </Text>
                                                         <Spacer/>
                                                         <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                            User01@gmail.com
+                                                            {JSON.parse(localStorage.getItem('user-info')).email}
                                                         </Text>
                                                     </Flex>
                                                     <Flex>
@@ -184,7 +192,9 @@ const BillInfo = () => {
                                             <Divider mt="20px"/>
                                         </Box>
                                         <Center>
-                                            <Button fontSize="24px" color="white" colorScheme="purple" mt="30px" w="300px" h="100px"> MUA NGAY</Button>
+                                            <Button fontSize="24px" color="white" colorScheme="purple" mt="30px" w="300px" h="100px"
+                                            onClick={handleClick}
+                                            > MUA NGAY</Button>
                                         </Center>
                                     </Box>
                                 </Flex>
