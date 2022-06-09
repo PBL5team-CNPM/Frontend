@@ -41,7 +41,7 @@ const Showtimes = (props) => {
                 <Center borderRadius='10px' border='4px' py={2}>
                     <Box ml ="50px">
                         <Text fontSize='18px'>
-                            Tên phòng : {item.phongchieu_name}
+                            Phòng chiếu : {item.phongchieu_name}
                         </Text>
                         <Text fontSize='18px'>
                             Ngày chiếu: {Moment(item.ngay_chieu).format("ddd, DD/MM/YYYY")}

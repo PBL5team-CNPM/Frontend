@@ -38,11 +38,11 @@ function DialogAddRoom(props){
           isClosable: true,
         })
       }
-      else if(values.row < 6 || values.row > 8){
+      else if(values.row < 8 || values.row > 13){
         e.preventDefault();
         toast({
             title: 'Warning!',
-            description: "Số hàng phải lớn hơn 5 và nhỏ hơn 9",
+            description: "Số hàng phải lớn hơn 7 và nhỏ hơn 14",
             status: 'warning',
             duration: 2000,
             isClosable: true,

@@ -41,7 +41,7 @@ const Navbar = () => {
         <Box w='100%'>
 
           <Header/>
-            <Center bgColor='white' h='50px' w='100%' fontSize='24px' zIndex={100} position='fixed'
+            <Center bgColor='white' h='50px' w='100%' fontSize='24px' zIndex={99} position='fixed'
             top='80px' left={'0'} right='0' >
                        
                      <Link to="">

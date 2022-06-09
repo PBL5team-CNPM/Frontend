@@ -32,18 +32,17 @@
   max-block-size: 45px;
   width: 360px;
   color: black;
-  border-color: #42C2FF;
-  border-radius: 10px;
-  outline-color: red;
 }
 
+.mse-showtime {
+  max-block-size: 45px;
+  width: 400px;
+  color: black;
+}
 .mse-permission {
   max-block-size: 45px;
   width: 490px;
   color: black;
-  border-color: #42C2FF;
-  border-radius: 10px;
-  outline-color: red;
 }
 
 @keyframes App-logo-spin {

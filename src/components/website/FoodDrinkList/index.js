@@ -29,11 +29,10 @@ import axios from "axios";
 const FoodDrinkList = () => {
     const location=useLocation()
     const navigate= useNavigate()
-    const [locationState, setLocationState]=useState({data:[
-
-    ], ghe: []})
+    const [locationState, setLocationState]=useState(
+        {data:[], ghe: []})
     const [foodDrink, setFoodDrink]=useState([])
-    const [FD_data, setFD_data]=useState([])
+    const [FD_data, setFD_data]=useState()
     React.useEffect(() =>{
         if(location.state){
             let _state=location.state
@@ -45,19 +44,19 @@ const FoodDrinkList = () => {
         axios.get('http://localhost:8000/api/food_drinks').
             then(
                 res => {
-                    setFoodDrink(res.data)
-                    setFD_data({data: res.data.map((item)=>{
+                    setFoodDrink(res.data.data)
+                    setFD_data(res.data.data.map((item)=>{
                         return(
                             {
                                 "food_drink_id": item.id,
                                 "so_luong": 0
                             }
                         )
-                    })})
+                    }))
                 }
             ).catch(error => console.log(error))
         },[])
-    
+    console.log(FD_data)
     const List = foodDrink.map((item)=>{
             return(
                 <Stack>
@@ -68,11 +67,18 @@ const FoodDrinkList = () => {
                         </Box>
                     </Box>
                     <NumberInput size='xs' maxW={16} min={0} 
-                    onChange={(e)=>{
-                        console.log({"food_drink_id":item.id,"so_luong":e})
-                        setFD_data(FD_data.data[item.id-1].so_luong = e)
-                        console.log(FD_data)
-                        }} defaultValue={0}>
+                        onChange={(e)=>{
+                            setFD_data(prevState => {
+                                return prevState.map(prev => {
+                                    if(prev.food_drink_id === item.id){
+                                        prev.so_luong = e
+                                    }
+                                    return prev
+                                })
+                            })
+                            console.log(FD_data)
+                            }} 
+                        defaultValue={0}>
                         <NumberInputField  />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
@@ -88,7 +94,8 @@ const FoodDrinkList = () => {
             "user_id": JSON.parse(localStorage.getItem('user-info')).id,
             "suatchieu_id": location.state.data.data.id,
             "ghe_id": location.state.ghe,
-            "gia_ve": 100000
+            "gia_ve": 100000,
+            "food_drink": FD_data
         }
         console.log(data)
         axios.post('http://localhost:8000/api/addhoadon', data

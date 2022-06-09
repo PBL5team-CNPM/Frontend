@@ -158,11 +158,11 @@ const SeatList = () => {
                                    
                                 </Center>
                             </Center>
-                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='27px'>
+                            <Center borderRadius='10px' border='4px' w='255px' h='62' p='10px'>
                                     <Flex>
                                         <Box>
-                                        <Heading fontSize='36px'>
-                                                {moment(location.state.data.gio_bat_dau,'h:mm:ss').format("LT")}
+                                        <Heading fontSize='22px' textAlign='center'>
+                                                {moment(location.state.data.gio_bat_dau,'h:mm:ss').format("LT")} - {moment(location.state.data.gio_ket_thuc,'h:mm:ss').format("LT")}
                                             </Heading>
                                         </Box>
                                     </Flex>

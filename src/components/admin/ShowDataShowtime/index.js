@@ -10,7 +10,7 @@ import { Box,  Heading,
     Flex,
     Spacer,
     Text} from '@chakra-ui/react'
-import DialogAddRoom from '../DialogAddRoom';
+import DialogAddShowtime from '../DialogAddShowtime';
 import DialogDeleteShowtime from '../DialogDeleteShowtime';
 import {FcHighPriority} from 'react-icons/fc'
 import axios from 'axios';
@@ -88,7 +88,7 @@ function ShowDataShowtime(){
          </Table>
        </TableContainer>
        <Flex alignItems='center'>
-       <DialogAddRoom parentCallback={callbackFunction}/>
+       <DialogAddShowtime parentCallback={callbackFunction}/>
        <Spacer/>
        <Flex alignItems='center'>
            <FcHighPriority/>
