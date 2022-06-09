@@ -21,7 +21,7 @@ import moment from 'moment';
 function ViewMovieInFo(props){
     const { isOpen, onOpen, onClose } = useDisclosure()
     const bgC="linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("
-    const bgImg=bgC+"http://localhost:8000/"+props.data.imageUrl+")"
+    const bgImg=bgC+"http://localhost:8000/"+props.data.thumbnail+")"
     let tl=""
     function xuliTL(item,index,arr){
          if(index===props.data.theloai.length-1)

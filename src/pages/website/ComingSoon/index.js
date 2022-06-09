@@ -26,6 +26,7 @@ function ComingSoon(props){
                             title: dataphim.ten,
                             trailer: dataphim.trailer,
                             imageUrl: dataphim.poster,
+                            thumbnail: dataphim.thumbnail,
                             time:dataphim.ngay_chieu,
                             length: dataphim.thoiluong,
                             director:dataphim.dao_dien,

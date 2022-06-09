@@ -25,23 +25,12 @@ function DialogUpdateMovie(props){
       setTheloai(val)
       console.log(Theloai)
     }
-    const [values, setValues] = useState(
-      {
-        title: props.dataphim.title,
-        trailer: props.dataphim.trailer,
-        imageUrl: props.dataphim.imageUrl,
-        time: props.dataphim.time,
-        length: props.dataphim.length,
-        director: props.dataphim.director,
-        actor: props.dataphim.actor,
-        content: props.dataphim.content,
-        finish:props.dataphim.finish,
-      }
-    )
+ 
 
     const [title, setTitle] = useState(props.dataphim.title)
     const [trailer, setTrailer] = useState(props.dataphim.trailer)
     const [imageUrl, setImageUrl] = useState("")
+    const [thumbnail, setThumbnail] = useState("")
     const [time, setTime] = useState(props.dataphim.time)
     const [length, setLength] = useState(props.dataphim.length)
     const [director, setDirector] = useState(props.dataphim.director)
@@ -55,7 +44,7 @@ function DialogUpdateMovie(props){
 
     const handleSubmit = (e) => {
       if(title==="" || trailer==="" || imageUrl==="" || !Theloai.length ||
-      length==="" || director==="" || actor==="" || content==="" ){
+      length==="" || director==="" || actor==="" || content==="" || thumbnail==="" ){
         e.preventDefault();
         const a=[]
         function xulyTheloai(item,index,arr){
@@ -81,6 +70,7 @@ function DialogUpdateMovie(props){
       formData.append('dao_dien', director)
       formData.append('dien_vien', actor)
       formData.append('tom_tat', content)
+      formData.append('thumbnail', thumbnail)
       if(time){
         formData.append('ngay_chieu', time)
       }
@@ -88,18 +78,7 @@ function DialogUpdateMovie(props){
         formData.append('ngay_ketthuc', finish)
       }
       const inputTheloai = []
-      const phim = {
-        ten: values.title,
-        trailer: values.trailer,
-        poster: values.imageUrl,
-        ngay_chieu: values.time,
-        thoiluong: values.length,
-        dao_dien: values.director,
-        dien_vien: values.actor,
-        tom_tat: values.content,
-        ngay_ketthuc: values.finish,
-        theloai: []
-      }
+    
       function xulyTheloai(item,index,arr){
         inputTheloai.push(arr[index].id)
       }
@@ -109,7 +88,6 @@ function DialogUpdateMovie(props){
       }
       
       console.log(JSON.stringify(inputTheloai))
-      console.log(phim.theloai)
       console.log(formData)
       console.log(imageUrl)
       
@@ -127,7 +105,7 @@ function DialogUpdateMovie(props){
      
       toast({
         title: 'Successfully!',
-        description: "Đã sửa phim "+values.title+".",
+        description: "Đã sửa phim "+title+".",
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -228,6 +206,21 @@ function DialogUpdateMovie(props){
                     />
                   </Box>
 
+                  <Box mb='15px'>
+                    <Text mb='10px'>Diễn viên (*) </Text>
+                    <Input w='360px' h='45px' type='text' 
+                    focusBorderColor='white'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    placeholder='Nhập tên các diễn viên'
+                    value={actor}
+                    onChange={(e)=>{
+                      setActor(e.target.value)
+                    }}
+                    />
+                  </Box>
+
                   <Box >
                     <Text mb='10px'>Thể loại (*)</Text>
                     <Multiselect className='mse-category' 
@@ -238,7 +231,8 @@ function DialogUpdateMovie(props){
                     onRemove={SelectCategory}
                     avoidHighlightFirstOption='true'
                     style={ {chips: { background: "#42C2FF" },
-                    searchBox: {color:"white", border: "2px solid #42C2FF",  "borderRadius": "10px"}} }
+                    searchBox: {color:"white", border: "2px solid #42C2FF",  "borderRadius": "10px",
+                  height: "45px"}} }
                     />
                   </Box>
                   </Box>
@@ -288,16 +282,15 @@ function DialogUpdateMovie(props){
                   </Box>
 
                   <Box mb='15px'>
-                    <Text mb='10px'>Diễn viên (*) </Text>
-                    <Input w='360px' h='45px' type='text' 
+                    <Text mb='10px'>Thumbnail (*)</Text>
+                    <Input w='360px' h='45px' type='file' 
                     focusBorderColor='white'
+                    placeholder='Nhập link thumbnail'
                     border='2px'
                     borderRadius='10px'
                     borderColor='#42C2FF'
-                    placeholder='Nhập tên các diễn viên'
-                    value={actor}
                     onChange={(e)=>{
-                      setActor(e.target.value)
+                      setThumbnail(e.target.files[0])
                     }}
                     />
                   </Box>

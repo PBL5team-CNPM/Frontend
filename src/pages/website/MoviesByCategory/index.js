@@ -3,11 +3,11 @@ import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink,Heading, Icon, Stack, T
 import React, {  useEffect, useState } from "react";
 import {FaHome} from 'react-icons/fa';
 import {  useParams } from "react-router-dom";
-import FilmList from "../../../components/website/FilmList";
+import ListMoviesByCategory from "../../../components/website/ListMoviesByCategory";
 import axios from "axios";
 
 function MoviesByCategory(){
-   const [listphimdangchieu, setListphim] = useState([])
+   const [listphim, setListphim] = useState([])
    const [theloai,setTheLoai]=useState("")
    const params=useParams()
    useEffect(()=>{
@@ -23,20 +23,22 @@ function MoviesByCategory(){
                             title: dataphim.ten,
                             trailer: dataphim.trailer,
                             imageUrl: dataphim.poster,
+                            thumbnail: dataphim.thumbnail,
                             time:dataphim.ngay_chieu,
                             length: dataphim.thoiluong,
                             director:dataphim.dao_dien,
                             actor:dataphim.dien_vien,
                             content:dataphim.tom_tat,
                             finish:dataphim.ngay_ketthuc,
-                            theloai:dataphim.theloai
+                            theloai:dataphim.theloai,
+                            suatchieu:dataphim.suatchieu
                         }
                     )
                 }))
             }
         ).catch(error => console.log(error))
     }, [params])
-console.log(listphimdangchieu)
+console.log(listphim)
     return(
         <Box>
             <Stack minH='640px' color='white' bgColor='#1F1D36'  px={50} py={18}>
@@ -57,8 +59,8 @@ console.log(listphimdangchieu)
                 <hr/>
                
                 <Box mt='30px'>
-                {listphimdangchieu.length===0?'Hiện tại chưa cập nhật phim!':
-                <FilmList data={listphimdangchieu}/>}
+                {listphim.length===0?'Hiện tại chưa cập nhật phim!':
+                <ListMoviesByCategory data={listphim}/>}
                 </Box>
                 
                 </Box>
