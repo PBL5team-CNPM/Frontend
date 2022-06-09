@@ -15,6 +15,7 @@ import { Image,Modal,
     Text,} from '@chakra-ui/react';
 import React from 'react';
 import WatchTrailer from '../WatchTrailer';
+import moment from 'moment';
 
 
 function ViewMovieInFo(props){
@@ -66,7 +67,7 @@ function ViewMovieInFo(props){
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
-                                <Text ml='1'>{props.data.time}</Text>
+                                <Text ml='1'>{moment(props.data.time).format("DD/MM/YYYY")}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thời lượng: </Text>
@@ -74,7 +75,7 @@ function ViewMovieInFo(props){
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Dự kiến kết thúc: </Text>
-                                <Text ml='1'>{props.data.finish}</Text>
+                                <Text ml='1'>{!props.data.finish?"":moment(props.data.finish).format("DD/MM/YYYY")}</Text>
                             </Flex>
                         </Box>
                         <WatchTrailer trailer={props.data.trailer}/>

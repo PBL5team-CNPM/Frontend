@@ -57,19 +57,13 @@ function Profile() {
       }).catch(error=>{
         console.log(error)
       })
-      toast({
-        title: 'Successfully!',
-        description: "Thay đổi avatar thành công",
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-      })
       inputFile.current.value = ""
       setFile("")
+      window.location.reload(false)
     }
     return (
       <Box>
-          <HStack bgColor='#00051D' h='80px' padding='10px'>
+          <HStack bgColor='#00051D' h='80px' padding='10px' pr='50px'>
               <Box w='500px' h='75px' ml='50px'>
                 <Link to='/home'>
                   <Flex>  
@@ -90,16 +84,16 @@ function Profile() {
                   </Link>
               </Box>
               <Spacer/>
-            <Button color='white' variant='link'
+          <Link to="/home">
+            <Button mr='20px'  color='white' variant='link'>
+                  Trang chủ
+            </Button>
+          </Link>
+            <Button color='white' variant='link' 
               onClick={logout}
             >
                   Đăng xuất
             </Button>
-          <Link to="/home">
-            <Button ml='20px' mr ='50px' color='white' variant='link'>
-                  Go Home
-            </Button>
-          </Link>
 
         </HStack>
           <Center bgColor='#1F1D36' w='100%' h='655px' 

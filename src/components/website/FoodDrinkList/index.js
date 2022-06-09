@@ -22,12 +22,13 @@ import {
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon } from '@chakra-ui/icons'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from "moment";
 import axios from "axios";
 
 const FoodDrinkList = () => {
     const location=useLocation()
+    const navigate= useNavigate()
     const [locationState, setLocationState]=useState(
         {data:[], ghe: []})
     const [foodDrink, setFoodDrink]=useState([])
@@ -43,8 +44,8 @@ const FoodDrinkList = () => {
         axios.get('http://localhost:8000/api/food_drinks').
             then(
                 res => {
-                    setFoodDrink(res.data)
-                    setFD_data(res.data.map((item)=>{
+                    setFoodDrink(res.data.data)
+                    setFD_data(res.data.data.map((item)=>{
                         return(
                             {
                                 "food_drink_id": item.id,
@@ -67,8 +68,6 @@ const FoodDrinkList = () => {
                     </Box>
                     <NumberInput size='xs' maxW={16} min={0} 
                         onChange={(e)=>{
-                            // console.log({"food_drink_id":item.id,"so_luong":e})
-                            // setFD_data(FD_data.data[item.id-1].so_luong = e)
                             setFD_data(prevState => {
                                 return prevState.map(prev => {
                                     if(prev.food_drink_id === item.id){
@@ -201,6 +200,7 @@ const FoodDrinkList = () => {
                                 w="80px"
                                 h="35px"
                                 mr ="50px"
+                                onClick={() => navigate(-1)}
                             >Back
                             </Button>
                                 <Button 
