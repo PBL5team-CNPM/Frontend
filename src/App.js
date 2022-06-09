@@ -30,6 +30,7 @@ import CinemaRoom from "./pages/admin/CinemaRoom";
 import FoodDrinkSelect from "./pages/website/FoodDrinkSelect";
 import Payment from "./pages/website/Payment";
 import Popcorn from "./pages/admin/Popcorn";
+import DetailBill from "./pages/website/DetailBill";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -100,6 +101,7 @@ function App() {
             <Route path="movie-info/lich-chieu" element={<Showtimes />} />
             <Route path="movie-info/lich-chieu/chon-ghe" element={<SeatSelect />} />
             <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink" element={<FoodDrinkSelect />} />
+            <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink/detail-bill" element={<DetailBill />} />
             <Route path="categorys/:id" element={<MoviesByCategory />} />
             <Route path="Ve" element={<Showtimes />} />
             <Route path="TuyenDung" element={<SeatSelect />} />
