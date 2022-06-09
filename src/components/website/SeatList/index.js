@@ -135,7 +135,7 @@ const SeatList = () => {
                     </BreadcrumbItem>
                 </Breadcrumb>
                 <Box>
-                    <Divider mt='24px' mb='24px'/>
+                    <Divider mt='10px' mb='24px'/>
                     <Flex>
                         <Stack spacing='24px'>
                           <Center borderRadius='10px' border='4px' w='255px' p='10px'>
@@ -199,7 +199,7 @@ const SeatList = () => {
                                     h="40px"
                                 >Next
                                 </Button>:
-                                 <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked}}>
+                                 <Link to="/home/movie-info/lich-chieu/chon-ghe/chon-food-drink" state={{data:location.state, ghe: checked, seatCode:seatCode}}>
                                  <Button 
                                      colorScheme='blue'
                                      color='white'

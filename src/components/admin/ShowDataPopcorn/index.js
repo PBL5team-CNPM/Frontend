@@ -49,7 +49,7 @@ const ShowDataPopcorn = () => {
                 <Td >{index+1}</Td>
                 <Td >{ten}</Td>
                 <Td >{gia} đ</Td>
-                <Td >{food_drink_bill.length}</Td>
+                <Td >{food_drink_bill}</Td>
                 <Td isNumeric> 
                 <DialogUpdatePopcorn data={popcorn} parentCallback={callbackFunction} />
                 <DialogDeletePopcorn parentCallback={callbackFunction} 
