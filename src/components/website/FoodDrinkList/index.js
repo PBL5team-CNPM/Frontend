@@ -50,6 +50,7 @@ const FoodDrinkList = () => {
                             {
                                 "food_drink_name": item.ten,
                                 "food_drink_id": item.id,
+                                "gia": item.gia,
                                 "so_luong": 0
                             }
                         )

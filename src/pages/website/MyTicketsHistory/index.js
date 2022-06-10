@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Box,  Flex, Image,  Text} from '@chakra-ui/react'
+import { Box,  Center,  Flex,  Heading,  IconButton,  Image,  Text, useDisclosure} from '@chakra-ui/react'
 import axios from 'axios';
 import moment from 'moment';
-import MyTicketDialog from '../MyTicketDialog';
+import { InfoIcon } from '@chakra-ui/icons';
+import MyTicketDialog from '../../../components/website/MyTicketDialog';
 
-
-function MyTickets() {
+const MyTicketsHistory = () => {
     const [hoaDon, setHoaDon] = useState([])
+    const {isOpen, onOpen, onClose} = useDisclosure()
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/hoadonbyuser/${JSON.parse(localStorage.getItem('user-info')).id}`).
             then(
@@ -15,10 +16,12 @@ function MyTickets() {
                 }
             ).catch(error => console.log(error))
         },[])
+    console.log(hoaDon)
+    // console.log(phim)
 
     const List = hoaDon.map((item, index)=> {
         return(
-            <Flex mb="10px" overflow="hidden" borderTopRightRadius="40px" borderBottomLeftRadius="40px" color="white" bgGradient='linear(to-r, #7928CA, #FF0080)' borderRight="1px" borderTop="1px">
+            <Flex mb="10px" overflow="hidden" color="white" bgGradient='linear(to-r, #7928CA, #FF0080)' borderRight="1px" borderTop="1px">
                 <Text bgColor="blackAlpha.800" color="white" w="15%" borderRight="1px" display="flex" justifyContent="center" alignItems="center">{index+1}</Text>
                 <Box w="85%">
                     <Box>
@@ -27,7 +30,7 @@ function MyTickets() {
                                 w="20%"
                                 src={"http://localhost:8000/" + item.phim.poster}
                             />
-                            <Box px="10px" py="10px">
+                            <Box fontSize="24px" px="10px" py="10px">
                                 <Box w="100%" display="flex" justifyContent="center" alignItems="center">
                                     {item.phim.ten_phim}
                                 </Box>
@@ -55,7 +58,7 @@ function MyTickets() {
                                     </Box>
                                 </Flex>
                             </Box>
-                            <Box mt="80px" mr="10px" display="flex" justifyContent="center" alignItems="center">
+                            <Box mt="130px" mr="20px" display="flex" justifyContent="center" alignItems="center">
                             <MyTicketDialog data={item}/>
                             </Box>
                         </Flex>
@@ -64,38 +67,14 @@ function MyTickets() {
             </Flex>
         )
     })
-
-    return (
-        <Box bgColor='white' w='600px' h='500px' 
-        boxShadow='10px 10px 10px #7c76ad'
-        margin='0px 0px 0px 120px' borderRadius='10px'
-        padding='10px'
-        overflow="hidden"
-        >
-        <Text color='black' fontWeight='bold' fontSize='3xl'
-            textAlign='center' marginTop='20px'
-        >VÉ CỦA TÔI</Text>
-        <Box h="80%" overflow="auto"
-        css={{
-            '&::-webkit-scrollbar':{
-                width: '4px',
-            },
-            '&::-webkit-scrollbar-track':{
-                width: '6px',
-            },
-            '&::-webkit-scrollbar-thumb':{
-                background: 'rgb(0, 100, 255, 0.3)',
-                borderRadius: '20px'
-            },
-        }}
-        >
-            {List}
+    return(
+        <Box margin="auto" mt="100px" w="60%">
+            <Heading fontSize="5xl" display="flex" justifyContent="center" alignItems="center" color="white">LỊCH SỬ MUA VÉ</Heading>
+            <Box mt="100px">
+                {List}
+            </Box>
         </Box>
-        </Box>
-    );
+    )
 }
 
-
-
-
-export default MyTickets;
+export default MyTicketsHistory
