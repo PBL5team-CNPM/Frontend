@@ -8,23 +8,21 @@ import { Box, Heading,Image,
     Td,
     TableContainer,
     Flex,
-    Select,
     InputGroup,
     Input,
-    InputRightElement,
-    IconButton,
-    Spacer,} from '@chakra-ui/react'
+    Spacer,
+    InputLeftElement,
+    Divider,} from '@chakra-ui/react'
 import ViewUsersInFo from '../ViewUsersInfo';
-import { Search2Icon } from '@chakra-ui/icons';
+
 import axios from 'axios'
 import DialogDeleteUsers from '../DialogDeleteUsers';
 import DialogGrantPermission from '../DialogGrantPermission';
+import {BsSearch} from 'react-icons/bs'
+import DialogAddUsers from '../DialogAddUsers';
 
 function ShowDataUsers() {
-       const [show, setShow] = useState(false)
-       const handleClick = () => setShow(!show)
-
-
+      const [search, setSearch]= useState("")
       const [listusers, setListUsers] = useState([])
       const [message,setMessage]= useState('')
       const callbackFunction = (childData) => {
@@ -57,7 +55,12 @@ function ShowDataUsers() {
         setMessage('wait update')
           }
 
-        const renderTableData=listusers.map((user, index) => {
+        const renderTableData=listusers.filter(val=>{
+          if(search===""){return val}
+          else if(val.username.toLowerCase().includes(search.toLocaleLowerCase())){
+            return val
+          }
+        }).map((user, index) => {
           const { id, username , email, avatar} = user
           return (
             <Tr key={id}>
@@ -92,20 +95,23 @@ function ShowDataUsers() {
           )
         }) 
         return (
-            <Box w='100%' h='100%'>
-                <Heading textAlign='center' textShadow='2px 3px 4px #000'
+            <Box >
+              <Flex w='100%' h='9%' mb='1.5%' alignItems='center'>
+                <Heading  textShadow='2px 3px 4px #000'
                 fontSize='6vh'>Thông tin khách hàng</Heading>
+                <Spacer/>
+                <DialogAddUsers parentCallback={callbackFunction} />
+              </Flex>
+              <Divider bgColor='#1F1D36' h={'3px'} />
+               
 
-                <Flex mt='2%' w='100%' h='9%' alignItems={'center'}>
-                 <Select focusBorderColor='none' w='125px' h='100%' size={'sm'}
-                  shadow='0px 3px 3px 3px rgb(131, 131, 131)'>
-                   <option value='option1'>Mới nhất</option>
-                   <option value='option2'>A-Z</option>
-                   <option value='option3'>Z-A</option>
-                 </Select>
-                 <Spacer/>
-                 <InputGroup size='md' w='35%' h='100%'>
+                <Flex mt='2%' mb='3%' w='100%' h='9%' justifyContent={'center'}>  
+                 <InputGroup size='md' w='50%' h='100%'>
+                  <InputLeftElement>
+                   <BsSearch/>
+                  </InputLeftElement>
                  <Input
+                    onChange={(e)=>{setSearch(e.target.value)}}
                     border='2px'
                     focusBorderColor='none'
                     shadow='0px 3px 3px 3px rgb(131, 131, 131)'
@@ -113,20 +119,10 @@ function ShowDataUsers() {
                     type='text'
                     placeholder='Tìm kiếm khách hàng...'
                  />
-                 <InputRightElement width='3.5rem'>
-                    <IconButton
-                      variant='ghost'
-                      h='1.75rem'
-                      size='lg'
-                      icon ={<Search2Icon/>}
-                      onClick={handleClick}
-                      color='black'
-                    />
-                 </InputRightElement>
                  </InputGroup>
 
                 </Flex>
-                <TableContainer  mt='3%'  w='100%' 
+                <TableContainer   w='100%' 
                 boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                  <Table variant='striped' >
                    <Thead bgColor={'#1F1D36'}  >

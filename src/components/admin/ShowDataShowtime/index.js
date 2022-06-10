@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box,  Heading,
     Table,
     Thead,
@@ -9,14 +9,28 @@ import { Box,  Heading,
     TableContainer,
     Flex,
     Spacer,
-    Text} from '@chakra-ui/react'
+    Text,
+    Divider,
+    Select,
+    Button} from '@chakra-ui/react'
 import DialogAddShowtime from '../DialogAddShowtime';
 import DialogDeleteShowtime from '../DialogDeleteShowtime';
 import {FcHighPriority} from 'react-icons/fc'
+import {MdOutlineFilterList} from 'react-icons/md'
 import axios from 'axios';
 import moment from 'moment';
 function ShowDataShowtime(){
     const [listShowtime,setListShowtime]=useState([])
+    const [listMovie, setListMovie] = useState([])
+    const [listRoom, setListRoom] = useState([])
+    const [movieSL,setMovieSL] = useState("-- Chọn phim --")
+    useEffect(()=>{console.log(movieSL)},[movieSL])
+    const [roomSL, setRoomSL] = useState("-- Chọn phòng chiếu --")
+    useEffect(()=>{console.log(roomSL)},[roomSL])
+    const [movieFilter,setMovieFilter] = useState("-- Chọn phim --")
+    useEffect(()=>{console.log(movieFilter)},[movieFilter])
+    const [roomFilter, setRoomFilter] = useState("-- Chọn phòng chiếu --")
+    useEffect(()=>{console.log(roomFilter)},[roomFilter])
     const [message,setMessage]= useState('')
     const callbackFunction = (childData) => {
       setMessage(childData)
@@ -40,7 +54,54 @@ function ShowDataShowtime(){
                   }))}).catch(error => console.log(error))
                 setMessage('waiting update')
                 }
-    const renderTableData=listShowtime.map((showtime, index) => {
+        useEffect(()=>{
+          axios.get('http://localhost:8000/api/phongchieus/').
+          then(
+              res => {
+                  setListRoom(res.data.data.map((dataRoom)=>{
+                      return(
+                          {
+                              id_room: dataRoom.id,
+                              room: dataRoom.ten_phong
+                          }
+                      )
+                        }))}).catch(error => console.log(error))
+      },[])
+  
+      useEffect(()=>{
+          axios.get('http://localhost:8000/api/phims/').
+          then(
+              res => {
+                  setListMovie(res.data.map((dataphim)=>{
+                      return(
+                          {
+                              id_movie: dataphim.id,
+                              movie: dataphim.ten,
+                          }
+                      )
+                  }))
+              }
+          ).catch(error => console.log(error))
+      },[])
+    const handleFilter =()=>{
+      setMovieFilter(movieSL)
+      setRoomFilter(roomSL)
+    }
+    const renderTableData=listShowtime.filter(val=>{
+      if(movieFilter==="-- Chọn phim --" && roomFilter==="-- Chọn phòng chiếu --"){return val}
+      else if(val.movie.toLowerCase().includes(movieFilter.toLocaleLowerCase()) &&
+         roomFilter==="-- Chọn phòng chiếu --" ){
+        return val
+      }
+      else if(val.room.toLowerCase().includes(roomFilter.toLocaleLowerCase()) &&
+         movieFilter==="-- Chọn phim --" ){
+        return val
+      }
+      else if(val.movie.toLowerCase().includes(movieFilter.toLocaleLowerCase()) &&
+          val.room.toLowerCase().includes(roomFilter.toLocaleLowerCase()) ){
+        return val
+      }
+    }).map((showtime, index) => {
         return (
           <Tr key={showtime.id}>
             <Td >{index+1}</Td>
@@ -68,8 +129,48 @@ function ShowDataShowtime(){
       })
     return(
         <Box >
-        <Heading fontSize={'6vh'} textAlign='center' textShadow='2px 3px 4px #000'>Danh sách suất chiếu</Heading>
-        <TableContainer  mt='30px' w='100%' 
+         <Flex w='100%' h='9%' mb='1.5%' alignItems='center'>
+                <Heading  textShadow='2px 3px 4px #000'
+                fontSize='6vh'>Danh sách suất chiếu</Heading>
+                <Spacer/>
+                <DialogAddShowtime parentCallback={callbackFunction}
+                  listMovie={listMovie} listRoom={listRoom}/>
+              </Flex>
+              <Divider bgColor='#1F1D36' h={'3px'} />
+              <Flex mt='2%' mb='2%' w='100%' h='9%' justifyContent={'center'} alignItems='center'>  
+                  <Text mr='1%' fontSize='17px'>Phim</Text>
+                  <Select size={'sm'} w='30%' value={movieSL} 
+                  onChange={(e)=>{setMovieSL(e.target.value)}} focusBorderColor='none'
+                  shadow='0px 3px 3px 3px rgb(131, 131, 131)'>
+                     <option>-- Chọn phim --</option>
+                     {listMovie.map(data=>(
+                       <option>{data.movie}</option>
+                     ))}
+                  </Select>
+
+                  <Text mr='1%' ml='3%' fontSize='17px'>Phòng chiếu</Text>
+                  <Select size={'sm'} w='30%' value={roomSL} 
+                  onChange={(e)=>{setRoomSL(e.target.value)}} focusBorderColor='none'
+                  shadow='0px 3px 3px 3px rgb(131, 131, 131)'>
+                     <option>-- Chọn phòng chiếu --</option>
+                     {listRoom.map(data=>(
+                       <option>{data.room}</option>
+                     ))}
+                  </Select>
+
+                  <Button colorScheme={'blue'} leftIcon={<MdOutlineFilterList/>}
+                   shadow='0px 3px 3px 3px #344a3b'
+                  size='sm' ml='3%' onClick={handleFilter}>
+                    Lọc</Button>
+                </Flex>
+        <Flex alignItems='center' mb='1%'>
+       <Spacer/>
+       <Flex alignItems='center'>
+           <FcHighPriority/>
+           <Text userSelect='none' ml='5px'>Ngày chiếu quá hạn</Text>
+       </Flex>
+       </Flex>
+        <TableContainer  w='100%' 
         boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
          <Table variant='striped'>
              <Thead bgColor={'#1F1D36'}>
@@ -87,14 +188,7 @@ function ShowDataShowtime(){
            </Tbody>
          </Table>
        </TableContainer>
-       <Flex alignItems='center'>
-       <DialogAddShowtime parentCallback={callbackFunction}/>
-       <Spacer/>
-       <Flex alignItems='center'>
-           <FcHighPriority/>
-           <Text userSelect='none' ml='5px'>Ngày chiếu quá hạn</Text>
-       </Flex>
-       </Flex>
+       
      
   </Box>
     )

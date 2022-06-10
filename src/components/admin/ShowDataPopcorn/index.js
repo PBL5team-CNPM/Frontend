@@ -7,13 +7,21 @@ import { Box,  Heading,
     Tr,
     Th,
     Td,
-    TableContainer} from '@chakra-ui/react'
+    TableContainer,
+    Flex,
+    InputGroup,
+    Input,
+    Spacer,
+    InputLeftElement,
+    Divider,} from '@chakra-ui/react'
 import DialogAddPopcorn from "../DialogAddPopcorn";
 import DialogUpdatePopcorn from "../DialogUpdatePopcorn";
 import DialogDeletePopcorn from "../DialogDeletePopcorn";
+import {BsSearch} from 'react-icons/bs'
 
 const ShowDataPopcorn = () => {
     const [listPopcorn, setListPopcorn] = useState([])
+    const [search, setSearch]= useState("")
     const [message, setMessage] =useState('')
     const callbackFunction = (childData) => {
         setMessage(childData)
@@ -42,7 +50,12 @@ const ShowDataPopcorn = () => {
 
     console.log(listPopcorn)
 
-    const renderTableData=listPopcorn.map((popcorn, index) => {
+    const renderTableData=listPopcorn.filter(val=>{
+        if(search===""){return val}
+        else if(val.ten.toLowerCase().includes(search.toLocaleLowerCase())){
+          return val
+        }
+      }).map((popcorn, index) => {
         const { id, ten, gia, food_drink_bill} = popcorn
         return (
             <Tr key={id}>
@@ -61,8 +74,33 @@ const ShowDataPopcorn = () => {
 
     return(
         <Box >
-            <Heading fontSize={'6vh'} textAlign='center' textShadow='2px 3px 4px #000'>Danh sách Bắp nước</Heading>
-            <TableContainer  mt='30px' w='100%' 
+           <Flex w='100%' h='9%' mb='1.5%' alignItems='center'>
+                <Heading  textShadow='2px 3px 4px #000'
+                fontSize='6vh'>Danh sách bắp nước</Heading>
+                <Spacer/>
+                <DialogAddPopcorn parentCallback={callbackFunction}/>
+              </Flex>
+              <Divider bgColor='#1F1D36' h={'3px'} />
+               
+
+                <Flex mt='2%' mb='3%' w='100%' h='9%' justifyContent={'center'}>  
+                 <InputGroup size='md' w='50%' h='100%'>
+                  <InputLeftElement>
+                   <BsSearch/>
+                  </InputLeftElement>
+                 <Input
+                    onChange={(e)=>{setSearch(e.target.value)}}
+                    border='2px'
+                    focusBorderColor='none'
+                    shadow='0px 3px 3px 3px rgb(131, 131, 131)'
+                    borderRadius='12px'
+                    type='text'
+                    placeholder='Tìm kiếm bắp nước...'
+                 />
+                 </InputGroup>
+
+                </Flex>
+            <TableContainer   w='100%' 
             boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                 <Table variant='striped'>
                     <Thead bgColor={'#1F1D36'}>
@@ -79,7 +117,7 @@ const ShowDataPopcorn = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <DialogAddPopcorn parentCallback={callbackFunction}/>
+            
         </Box>
     )
 }

@@ -6,13 +6,21 @@ import { Box,  Heading,
     Tr,
     Th,
     Td,
-    TableContainer} from '@chakra-ui/react'
+    TableContainer,
+    Flex,
+    InputGroup,
+    Input,
+    Spacer,
+    InputLeftElement,
+    Divider} from '@chakra-ui/react'
 import DialogAddCategory from '../DialogAddCategory';
 import axios from 'axios';
 import DialogUpdateCategory from '../DialogUpdateCategory';
 import DialogDeleteCategory from '../DialogDeleteCategory';
+import {BsSearch} from 'react-icons/bs'
 
 function ShowDataCategory(props) {
+  const [search, setSearch]= useState("")
   const [listTheloai,setListTheloai]=useState([])
   const [message,setMessage]= useState('')
   const callbackFunction = (childData) => {
@@ -37,7 +45,12 @@ function ShowDataCategory(props) {
               setMessage('waiting update')
               }
    
-  const renderTableData=listTheloai.map((theloai, index) => {
+  const renderTableData=listTheloai.filter(val=>{
+    if(search===""){return val}
+    else if(val.category.toLowerCase().includes(search.toLocaleLowerCase())){
+      return val
+    }
+  }).map((theloai, index) => {
     const { id, category, phim} = theloai
     console.log(phim.length)
     return (
@@ -54,8 +67,32 @@ function ShowDataCategory(props) {
   })
         return (
             <Box >
-                <Heading fontSize={'6vh'} textAlign='center' textShadow='2px 3px 4px #000'>Danh sách thể loại</Heading>
-                <TableContainer  mt='30px' w='100%' 
+              <Flex w='100%' h='9%' mb='1.5%' alignItems='center'>
+                <Heading  textShadow='2px 3px 4px #000'
+                fontSize='6vh'>Danh sách thể loại</Heading>
+                <Spacer/>
+                <DialogAddCategory parentCallback={callbackFunction} />
+              </Flex>
+              <Divider bgColor='#1F1D36' h={'3px'} />
+               
+                <Flex mt='2%' mb='3%' w='100%' h='9%' justifyContent={'center'}>  
+                 <InputGroup size='md' w='50%' h='100%'>
+                  <InputLeftElement>
+                   <BsSearch/>
+                  </InputLeftElement>
+                 <Input
+                    onChange={(e)=>{setSearch(e.target.value)}}
+                    border='2px'
+                    focusBorderColor='none'
+                    shadow='0px 3px 3px 3px rgb(131, 131, 131)'
+                    borderRadius='12px'
+                    type='text'
+                    placeholder='Tìm kiếm thể loại...'
+                 />
+                 </InputGroup>
+
+                </Flex>
+                <TableContainer  w='100%' 
                 boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'>
                  <Table variant='striped'>
                      <Thead bgColor={'#1F1D36'}>
@@ -72,7 +109,6 @@ function ShowDataCategory(props) {
                    </Tbody>
                  </Table>
                </TableContainer>
-               <DialogAddCategory parentCallback={callbackFunction}/>
           </Box>
         );
 }

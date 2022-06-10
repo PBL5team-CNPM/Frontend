@@ -8,14 +8,14 @@ function ListCategory(props){
 
         <Link to={`/home/categorys/${item.id}`} >
         <Center>
-        <Button key={item.id} variant={'link'} color='white' size='sm'> 
+        <Button key={item.id} variant={'link'} color='white' size='xs'> 
         {item.category}
         </Button></Center>
         </Link>
     ))
     return(
     <Center>
-    <SimpleGrid mt='15px' mb='15px' columns={[1, null, 4]} spacing='50px'>
+    <SimpleGrid mt='15px' mb='15px' columns={[1, null, 4]} spacing='30px'>
        {List}
     </SimpleGrid></Center>
     )

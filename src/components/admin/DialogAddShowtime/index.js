@@ -15,13 +15,12 @@ import {Button,
     useToast} from '@chakra-ui/react'
 import axios from 'axios';
 import Multiselect from 'multiselect-react-dropdown';
+import {MdOutlineAdd} from 'react-icons/md'
 
 function DialogAddShowtime(props){
     const { isOpen,onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
     const toast= useToast()
-    const [listMovie, setListMovie] = useState([])
-    const [listRoom, setListRoom] = useState([])
     const [Movie,setMovie] = useState([])
     const [Room, setRoom] =useState([])
     const [values, setValues] = useState(
@@ -41,35 +40,6 @@ function DialogAddShowtime(props){
     const SelectRoom = val => {
     setRoom(val)
     }
-    useEffect(()=>{
-        axios.get('http://localhost:8000/api/phongchieus/').
-        then(
-            res => {
-                setListRoom(res.data.data.map((dataRoom)=>{
-                    return(
-                        {
-                            id_room: dataRoom.id,
-                            room: dataRoom.ten_phong
-                        }
-                    )
-                      }))}).catch(error => console.log(error))
-    },[])
-
-    useEffect(()=>{
-        axios.get('http://localhost:8000/api/phims/').
-        then(
-            res => {
-                setListMovie(res.data.map((dataphim)=>{
-                    return(
-                        {
-                            id_movie: dataphim.id,
-                            movie: dataphim.ten,
-                        }
-                    )
-                }))
-            }
-        ).catch(error => console.log(error))
-    },[])
     const handleSubmit = (e) => {
       if(values.date==="" || values.start==="" || values.finish==="" ||!Movie.length
       || !Room.length){
@@ -130,10 +100,10 @@ function DialogAddShowtime(props){
       {
         (JSON.parse(localStorage.getItem('user-info')).action.includes("AddCategory"))
         ?
-        <Button  mt='30px' colorScheme='green' size='lg'
+        <Button colorScheme='green' size='md' leftIcon={<MdOutlineAdd/>} 
           shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
         :
-        <Button  mt='30px' colorScheme='green' size='lg'
+        <Button  colorScheme='green' size='md' leftIcon={<MdOutlineAdd/>} 
           shadow='0px 3px 3px 3px #344a3b' disabled onClick={onOpen}>Thêm mới</Button>
       }
        
@@ -206,7 +176,7 @@ function DialogAddShowtime(props){
                     <Multiselect className='mse-showtime'
                     singleSelect
                     placeholder='Chọn phim' hidePlaceholder='true'
-                    options={listMovie} showCheckbox='true' displayValue="movie"
+                    options={props.listMovie} showCheckbox='true' displayValue="movie"
                     onSelect={SelectMovie}
                     onRemove={SelectMovie}
                     avoidHighlightFirstOption='true'
@@ -223,7 +193,7 @@ function DialogAddShowtime(props){
                     <Multiselect className='mse-showtime'
                     singleSelect
                     placeholder='Chọn phòng chiếu' hidePlaceholder='true'
-                    options={listRoom} showCheckbox='true' displayValue="room"
+                    options={props.listRoom} showCheckbox='true' displayValue="room"
                     onSelect={SelectRoom}
                     onRemove={SelectRoom}
                     avoidHighlightFirstOption='true'
