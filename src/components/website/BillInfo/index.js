@@ -53,12 +53,21 @@ const BillInfo = () => {
         console.log(data)
         axios.post('http://localhost:8000/api/addhoadon', data
         ).then(res => {
+            navigate("/success")
             console.log(res.data)
         }).catch(error=>{
                 console.log(error)
         })
     }
     
+    var gia = location.state.ghe.length*100000
+
+    location.state.foodDrink.map(item => {
+        if(item.so_luong !== 0){
+            gia += (Number(item.so_luong)* item.gia)
+        }
+    })
+
     return(
         <Box>
         <Stack minH="640px" color='white' bgColor='#1F1D36' px={164} py={18} fontFamily='Poppins'>
@@ -188,7 +197,7 @@ const BillInfo = () => {
                                             </Flex>
                                             <Divider mt="20px"/>
                                             <Heading color="gray">
-                                                Tổng cộng: 470.000 đ 
+                                                Tổng cộng: {gia.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")} đ
                                             </Heading>
                                             <Divider mt="20px"/>
                                         </Box>
