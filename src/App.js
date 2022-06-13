@@ -27,11 +27,12 @@ import ScrollToTop from "./ScrollToTop";
 import Showtime from "./pages/admin/Showtime";
 import CinemaRoom from "./pages/admin/CinemaRoom";
 import FoodDrinkSelect from "./pages/website/FoodDrinkSelect";
-import Payment from "./pages/website/Payment";
 import Popcorn from "./pages/admin/Popcorn";
 import DetailBill from "./pages/website/DetailBill";
 import Success from "./components/website/Success";
 import MyTicketsHistory from "./pages/website/MyTicketsHistory";
+import Recuit from "./pages/website/Recuit";
+import News from "./pages/website/News";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -69,8 +70,8 @@ function App() {
             <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink/detail-bill" element={<DetailBill />} />
             <Route path="categorys/:id" element={<MoviesByCategory />} />
             <Route path="Ve" element={<MyTicketsHistory/>} />
-            <Route path="TuyenDung" element={<SeatSelect />} />
-            <Route path="tintuc" element={<Payment />} />
+            <Route path="recuit" element={<Recuit/>} />
+            <Route path="news" element={<News/>} />
             <Route path="movies/now-showing" element={<NowShow/>} />
             <Route path="movies/coming-soon" element={<ComingSoon/>} />
           </Route>

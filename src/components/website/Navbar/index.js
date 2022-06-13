@@ -119,7 +119,7 @@ const Navbar = () => {
                                 
                         </Center></Link>
                         
-                        <Link to="tuyendung">
+                        <Link to="recuit">
                         <Center w='196px' h='50px' bgColor={recuit.BColor} color={recuit.TColor}
                         onMouseLeave={() => {setRecuit({BColor:"white",TColor:"#020e1a"})}}
                         onMouseEnter ={() => {setRecuit({BColor:"#020e1a",TColor:"white"})}}>
@@ -131,7 +131,7 @@ const Navbar = () => {
                            
                         </Center> </Link>
                         
-                        <Link to="tintuc">
+                        <Link to="news">
                         <Center w='196px' h='50px' bgColor={news.BColor} color={news.TColor}
                         onMouseLeave={() => {setNews({BColor:"white",TColor:"#020e1a"})}}
                         onMouseEnter ={() => {setNews({BColor:"#020e1a",TColor:"white"})}}>
