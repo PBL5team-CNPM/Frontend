@@ -89,7 +89,7 @@ function DialogUpdatePopcorn(props){
             ><form onSubmit={handleSubmit}>
                 <AlertDialogHeader fontSize='2xl' fontWeight='bold'
                 color='white' textAlign='center'>
-                Sửa phòng chiếu
+                Sửa bắp nước
                 </AlertDialogHeader>
 
                 <AlertDialogBody color='white'>

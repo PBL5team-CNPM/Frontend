@@ -126,7 +126,7 @@ function SignupForm() {
             border="2px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 65px'
+            margin='0px 0px 0px 71px'
             onChange={(e)=>{
                setName(e.target.value)
             }}
@@ -146,7 +146,7 @@ function SignupForm() {
             border="2px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 95px'
+            margin='0px 0px 0px 100px'
             onChange={(e)=>{
                setRealname(e.target.value)
             }}
@@ -166,7 +166,7 @@ function SignupForm() {
             border="2px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 70px'
+            margin='0px 0px 0px 72px'
             onChange={(e)=>{
                setPhone_number(e.target.value)
             }}
@@ -186,7 +186,7 @@ function SignupForm() {
             border="2px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 121px'
+            margin='0px 0px 0px 134px'
             onChange={(e)=>{
                setEmail(e.target.value)
             }}
@@ -206,7 +206,7 @@ function SignupForm() {
             borderRadius="10px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 96px'
+            margin='0px 0px 0px 102px'
             onChange={(e)=>{
                setPassword(e.target.value)
             }}
@@ -251,7 +251,7 @@ function SignupForm() {
             border="2px"
             w="400px"
             h="45px"
-            margin='0px 0px 0px 90px'
+            margin='0px 0px 0px 98px'
             onChange={(e)=>{
                setBirth(e.target.value)
             }}

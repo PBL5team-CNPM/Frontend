@@ -30,7 +30,8 @@ import FoodDrinkSelect from "./pages/website/FoodDrinkSelect";
 import Payment from "./pages/website/Payment";
 import Popcorn from "./pages/admin/Popcorn";
 import DetailBill from "./pages/website/DetailBill";
-import axios from "axios";
+import Success from "./components/website/Success";
+import MyTicketsHistory from "./pages/website/MyTicketsHistory";
 
 function App() {
   const [message,setMessage]= useState('')
@@ -42,47 +43,7 @@ function App() {
      console.log(message)
   },[message])
 
-  const listphimdangchieu = []
-  const listphimsapchieu = []
-  const [listphim, setListphim] = useState([])
-  function xulyphim(item, index, arr){
-      if(Date.parse((arr[index].time)) <= Date.now()){
-          listphimdangchieu.push(arr[index])
-      }
-      else {
-          listphimsapchieu.push(arr[index])
-      }
-  }
-  useEffect(()=>{
-      axios.get('http://localhost:8000/api/phims/').
-      then(
-          res => {
-            console.log(res.data)
-              setListphim(res.data.map((dataphim)=>{
-                  return(
-                      {
-                          id: dataphim.id,
-                          title: dataphim.ten,
-                          trailer: dataphim.trailer,
-                          imageUrl: dataphim.poster,
-                          thumbnail: dataphim.thumbnail,
-                          time:dataphim.ngay_chieu,
-                          length: dataphim.thoiluong,
-                          director:dataphim.dao_dien,
-                          actor:dataphim.dien_vien,
-                          content:dataphim.tom_tat,
-                          finish:dataphim.ngay_ketthuc,
-                          theloai:dataphim.theloai,
-                          suatchieu:dataphim.suatchieu
-                      }
-                  )
-              }))
-          },
-          localStorage.setItem('Update','wait')
-      ).catch(error => console.log(error))
-    },[])
-  
-    listphim.forEach(xulyphim);
+
   return (
       <Box>
         <ScrollToTop/>
@@ -100,21 +61,18 @@ function App() {
             <Route path="popcorn" element={<Popcorn/>}  />
           </Route>
           <Route path="/home" element={<Navbar/>}>
-            <Route path="" element={<FilmHome listphimdangchieu={listphimdangchieu}
-            listphimsapchieu={listphimsapchieu}/>} />
+            <Route path="" element={<FilmHome/>} />
             <Route path="movie-info" element={<FilmAll />} />
             <Route path="movie-info/lich-chieu" element={<Showtimes />} />
             <Route path="movie-info/lich-chieu/chon-ghe" element={<SeatSelect />} />
             <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink" element={<FoodDrinkSelect />} />
             <Route path="movie-info/lich-chieu/chon-ghe/chon-food-drink/detail-bill" element={<DetailBill />} />
             <Route path="categorys/:id" element={<MoviesByCategory />} />
-            <Route path="Ve" element={<Showtimes />} />
+            <Route path="Ve" element={<MyTicketsHistory/>} />
             <Route path="TuyenDung" element={<SeatSelect />} />
             <Route path="tintuc" element={<Payment />} />
-            <Route path="movies/now-showing" element={<NowShow 
-            listphimdangchieu={listphimdangchieu}/>} />
-            <Route path="movies/coming-soon" element={<ComingSoon 
-            listphimsapchieu={listphimsapchieu}/>} />
+            <Route path="movies/now-showing" element={<NowShow/>} />
+            <Route path="movies/coming-soon" element={<ComingSoon/>} />
           </Route>
           <Route path="/profile" element={<Profile/>}>
             <Route path="viewprofile" element={<ViewProfile/>} />
@@ -122,6 +80,7 @@ function App() {
             <Route path="mytickets" element={<MyTickets />} />
             <Route path="changepassword" element={<ChangePassword />} />
           </Route>
+          <Route path="/success" element={<Success/>} />
         </Routes>
       </Box>
   );
