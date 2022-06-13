@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Box, Button,  Checkbox,  Input, Text} from '@chakra-ui/react'
+import { Box, Button,  Checkbox,  Input, Text, useToast} from '@chakra-ui/react'
+import axios from 'axios';
 
 
 function ChangePassword() {
+        const toast= useToast()
         const [typeP,setTypeP]=useState("password");
+        const [old_password, setOld_password] = useState();
+        const [new_password, setNew_password] = useState();
+        const [confirm_password, setConfirm_password] = useState();
         const handleToggle=()=>{
           if(typeP==='password'){
             setTypeP('text');
@@ -12,6 +17,46 @@ function ChangePassword() {
             setTypeP('password');
           }
         }
+
+        const handleClick = ()=> {
+          var data = {
+            "user_id": JSON.parse(localStorage.getItem('user-info')).id,
+            "old_password" : old_password,
+            "new_password" : new_password,
+            "confirm_password" : confirm_password,
+          }
+          axios.post("http://localhost:8000/api/changepassword",data,
+          {
+            headers: {
+              "Content-Type" : "application/json",
+              "Accept" : "application/json"
+            }
+          }
+          ).then(res => {
+            console.log(res.data)
+            localStorage.setItem('user-info',JSON.stringify(res.data))
+            toast({
+              title: 'Successfully!',
+              description: "Đã đổi mật khẩu thành công",
+              status: 'success',
+              duration: 2000,
+              isClosable: true,
+            })
+            setOld_password("")
+            setNew_password("")
+            setConfirm_password("")
+          }).catch(error=>{
+                console.log(error)
+                toast({
+                  title: 'Warning!',
+                  description: "Vui lòng kiểm tra lại thông tin",
+                  status: 'error',
+                  duration: 2000,
+                  isClosable: true,
+                })
+          })
+        }
+
         return (
           <Box bgColor='white' w='450px' h='500px' 
           boxShadow='10px 10px 10px #7c76ad'
@@ -35,6 +80,8 @@ function ChangePassword() {
                w="310px"
                h="30px"
                m='10px 0px 10px 60px'
+               value={old_password}
+               onChange={(e)=>{setOld_password(e.target.value)}}
             />
             <Text color='black' marginLeft='60px'>Mật khẩu mới</Text>
             <Input 
@@ -50,6 +97,8 @@ function ChangePassword() {
              w="310px"
              h="30px"
              margin='10px 0px 10px 60px'
+             value={new_password}
+             onChange={(e)=>{setNew_password(e.target.value)}}
             />
             <Text color='black' marginLeft='60px'>Xác nhận mật khẩu</Text>
             <Input 
@@ -65,6 +114,8 @@ function ChangePassword() {
              w="310px"
              h="30px"
              margin='10px 0px 10px 60px'
+             value={confirm_password}
+             onChange={(e)=>{setConfirm_password(e.target.value)}}
             />
                   
           <Checkbox onChange={handleToggle} margin='10px 0px 10px 60px'>Hiện mật khẩu</Checkbox>
@@ -77,6 +128,7 @@ function ChangePassword() {
             w="245px"
             h="35px"
             margin='20px 0px 20px 92px'
+            onClick={handleClick}
           >Lưu</Button>
         </Box>
         );
