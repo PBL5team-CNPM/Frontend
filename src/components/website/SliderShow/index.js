@@ -5,10 +5,10 @@ import {
 import {ArrowBackIcon, ArrowForwardIcon} from '@chakra-ui/icons'
 import { useState, useEffect } from 'react'
 
-const SliderShow = () => {
+const SliderShow = (props) => {
     const [id, setId] = useState(0);
     function autoCount() {
-        if(id>=3) {
+        if(id>=9) {
             setId(0)
         }
         else {
@@ -16,7 +16,7 @@ const SliderShow = () => {
         }
     }
     function handleClickRight() {
-        if(id<3){
+        if(id<9){
             setId(id+1)
         }
         else{
@@ -28,7 +28,7 @@ const SliderShow = () => {
             setId(id-1)
         }
         else {
-            setId(3)
+            setId(9)
         }
     }
     useEffect(
@@ -40,54 +40,27 @@ const SliderShow = () => {
     return(
         <Center bgColor='#00051D'>
             <Flex w='1090px' h='572px' overflow='hidden'>
-                <Link>
-                <Image
-                    src="https://www.thebatman.com/images/share.jpg"
+                {props.data.map(phim=>(
+                    <Link>
+                     <Image
+                    src= {"http://localhost:8000/" + phim.thumbnail}
                     ml = {id===1 ? '-100%'
                                 : id===2 ?
-                                '-200%': id===3 ? '-300%': '0%'}
+                                '-200%': id===3 ? '-300%':
+                                id===4 ? '-400%':
+                                id===5 ? '-500%':
+                                id===6 ? '-600%':
+                                id===7 ? '-700%': 
+                                id===8 ? '-800%':
+                                id===9 ? '-900%': '0%'}
                     minW='1090px'
                     objectFit='cover'
+                    h='572px'
                     transition='2s'
-                    id='0'
+                    id={phim.id}
                 />
-                </Link>
-                <Link>
-                <Image
-                    src="https://novastreamnetwork.com/wp-content/uploads/2019/12/the_witcher_netflix_promos-2.jpg"
-                    ml = {id===1 ? '-100%'
-                                : id===2 ?
-                                '-200%': id===3 ? '-300%': '0%'}
-                    minW='1090px'
-                    objectFit='cover'
-                    transition='2s'
-                    id='1'
-                />
-                </Link>
-                <Link>
-                <Image
-                    src="https://static0.srcdn.com/wordpress/wp-content/uploads/2022/02/Doctor-Strange-2-Poster.jpeg?q=50&fit=crop&w=767&h=450&dpr=1.5"
-                    ml = {id===1 ? '-100%'
-                                : id===2 ?
-                                '-200%': id===3 ? '-300%': '0%'}
-                    minW='1090px'
-                    objectFit='cover'
-                    transition='2s'
-                    id='2'
-                />
-                </Link>
-                <Link>
-                <Image
-                    src="https://novastreamnetwork.com/wp-content/uploads/2019/12/the_witcher_netflix_promos-2.jpg"
-                    ml = {id===1 ? '-100%'
-                                : id===2 ?
-                                '-200%': id===3 ? '-300%': '0%'}
-                    minW='1090px'
-                    objectFit='cover'
-                    transition='2s'
-                    id='3'
-                />
-                </Link>
+                    </Link>
+                ))}
             </Flex>
             <RadioGroup mt='500px' pos='absolute' color='white' value={id}>
                 <HStack>
@@ -95,6 +68,12 @@ const SliderShow = () => {
                     <Radio value={1} onClick={(e)=> {setId(1)}}></Radio>
                     <Radio value={2} onClick={(e)=> {setId(2)}}></Radio>
                     <Radio value={3} onClick={(e)=> {setId(3)}}></Radio>
+                    <Radio value={4} onClick={(e)=> {setId(4)}}></Radio>
+                    <Radio value={5} onClick={(e)=> {setId(5)}}></Radio>
+                    <Radio value={6} onClick={(e)=> {setId(6)}}></Radio>
+                    <Radio value={7} onClick={(e)=> {setId(7)}}></Radio>
+                    <Radio value={8} onClick={(e)=> {setId(8)}}></Radio>
+                    <Radio value={9} onClick={(e)=> {setId(9)}}></Radio>
                 </HStack>
             </RadioGroup>
             <HStack spacing={950} pos='absolute' color='white'>

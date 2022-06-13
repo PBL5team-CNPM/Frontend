@@ -13,13 +13,13 @@ import {Button,
     Center,
     Box,
     Textarea,
-    useToast,
+    useToast, 
   } from '@chakra-ui/react'
   import Multiselect from 'multiselect-react-dropdown';
 import axios from 'axios';
 import {MdOutlineAdd} from 'react-icons/md'
 
-function DialogAddMovie(props){
+function DialogAddUsers(props){
     const toast=useToast()
     const [Theloai,setTheloai]=useState([])
     useEffect(()=>{
@@ -122,12 +122,12 @@ function DialogAddMovie(props){
       {
       (JSON.parse(localStorage.getItem('user-info')).action.includes("AddMovie"))
         ?
-        <Button  leftIcon={<MdOutlineAdd/>}  
-        colorScheme='green' size='md'
+        <Button  leftIcon={<MdOutlineAdd/>} 
+        colorScheme='green' size='md' 
           shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
         :
-        <Button leftIcon={<MdOutlineAdd/>} 
-        colorScheme='green' size='md'
+        <Button  leftIcon={<MdOutlineAdd/>} 
+        colorScheme='green' size='md' 
           shadow='0px 3px 3px 3px #344a3b' disabled onClick={onOpen}>Thêm mới</Button>
       }
        
@@ -342,4 +342,4 @@ function DialogAddMovie(props){
 
 
 
-export default DialogAddMovie;
+export default DialogAddUsers;

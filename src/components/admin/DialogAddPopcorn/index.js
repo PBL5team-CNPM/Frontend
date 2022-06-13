@@ -14,6 +14,7 @@ import {Button,
     Box,
     useToast} from '@chakra-ui/react'
 import axios from 'axios';
+import {MdOutlineAdd} from 'react-icons/md'
 
 function DialogAddPopcorn(props){
     const { isOpen,onOpen, onClose } = useDisclosure()
@@ -75,10 +76,10 @@ function DialogAddPopcorn(props){
         {
             (JSON.parse(localStorage.getItem('user-info')).action.includes("AddCategory"))
             ?
-            <Button  mt='30px' colorScheme='green' size='lg'
+            <Button  leftIcon={<MdOutlineAdd/>}  colorScheme='green' size='md'
             shadow='0px 3px 3px 3px #344a3b' onClick={onOpen}>Thêm mới</Button>
             :
-            <Button  mt='30px' colorScheme='green' size='lg'
+            <Button  leftIcon={<MdOutlineAdd/>}  colorScheme='green' size='md'
             shadow='0px 3px 3px 3px #344a3b' disabled onClick={onOpen}>Thêm mới</Button>
         }
         
@@ -94,7 +95,7 @@ function DialogAddPopcorn(props){
             ><form onSubmit={handleSubmit}>
                 <AlertDialogHeader fontSize='2xl' fontWeight='bold'
                 color='white' textAlign='center'>
-                Thêm phòng chiếu
+                Thêm bắp nước
                 </AlertDialogHeader>
 
                 <AlertDialogBody color='white'>

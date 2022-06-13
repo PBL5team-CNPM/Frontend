@@ -138,7 +138,7 @@ function ComingSoonSlider (props){
                           <Box key={index} className='movieItem' ref={movieRef} w='100%' h='100%' maxH='500px'
                           maxW='400px' userSelect='none' overflow='hidden' borderRadius='6px'
                           position='relative' draggable='false' border={'2px'} borderColor='white'>
-                              <Image src={movie.imageUrl} w='100%' h='100%' objectFit='cover'
+                              <Image src={"http://localhost:8000/" + movie.imageUrl} w='100%' h='100%' objectFit='cover'
                               draggable='false'/>
                               <Text position='absolute' left='0' right='0' bottom='0'
                                p='4px' textAlign='center' fontSize='11px' 

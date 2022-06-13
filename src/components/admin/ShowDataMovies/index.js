@@ -6,15 +6,23 @@ import { Box,  Heading,
     Tr,
     Th,
     Td,
-    TableContainer} from '@chakra-ui/react'
+    TableContainer,
+    Spacer,
+    Divider,
+    Flex,
+    InputGroup,
+    InputLeftElement,
+    Input} from '@chakra-ui/react'
     
 import DialogAddMovie from '../DialogAddMovie';
 import ViewMovieInFo from '../ViewMovieInfo';
 import axios from 'axios';
 import DialogUpdateMovie from '../DialogUpdateMovie';
 import DialogDeleteMovie from '../DialogDeleteMovie';
+import {BsSearch} from 'react-icons/bs'
 
 const ShowDataMovies=(props) => {
+  const [search, setSearch]= useState("")
   const [listTheloai, setListTheloai] = useState([])
   const [listphim, setListphim] = useState([])
   const listCategory=[]
@@ -72,7 +80,12 @@ if(message==='Update' || message===""){
    }, [])
    
         listTheloai.forEach(xulytheloai)
-        const renderTableData=listphim.map((phim, index) => {
+        const renderTableData=listphim.filter(val=>{
+          if(search===""){return val}
+          else if(val.title.toLowerCase().includes(search.toLocaleLowerCase())){
+            return val
+          }
+        }).map((phim, index) => {
             const { id, title } = phim
             return (
               <Tr key={id}>
@@ -90,8 +103,31 @@ if(message==='Update' || message===""){
         
         return (
             <Box >
-                <Heading fontSize='6vh' textAlign='center' textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
-                <TableContainer  mt='30px'  w='100%' 
+                <Flex w='100%' h='9%' mb='1.5%' alignItems='center'>
+                <Heading fontSize='6vh'textShadow='2px 3px 4px #000'>Danh sách phim</Heading>
+                <Spacer/>
+                <DialogAddMovie parentCallback={callbackFunction} data={listCategory}/>
+              </Flex>
+              <Divider bgColor='#1F1D36' h={'3px'} />
+                
+              <Flex mt='2%' mb='3%' w='100%' h='9%' justifyContent={'center'}>  
+                 <InputGroup size='md' w='50%' h='100%'>
+                  <InputLeftElement>
+                   <BsSearch/>
+                  </InputLeftElement>
+                 <Input
+                    onChange={(e)=>{setSearch(e.target.value)}}
+                    border='2px'
+                    focusBorderColor='none'
+                    shadow='0px 3px 3px 3px rgb(131, 131, 131)'
+                    borderRadius='12px'
+                    type='text'
+                    placeholder='Tìm kiếm phim...'
+                 />
+                 </InputGroup>
+
+                </Flex>
+                <TableContainer    w='100%' 
                 boxShadow='0px 3px 3px 3px rgb(131, 131, 131)'
                >
                  <Table  variant={'striped'} >
@@ -112,7 +148,6 @@ if(message==='Update' || message===""){
                     
                  </Table>
                </TableContainer>
-               <DialogAddMovie data={listCategory} parentCallback={callbackFunction}/>
           </Box>
         );
 }
