@@ -67,7 +67,7 @@ function ViewMovieInFo(props){
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
-                                <Text ml='1'>{moment(props.data.time).format("DD/MM/YYYY")}</Text>
+                                <Text ml='1'>{!props.data.time?"":moment(props.data.time).format("DD/MM/YYYY")}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thời lượng: </Text>

@@ -1,8 +1,7 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Icon, Stack, Text } from "@chakra-ui/react";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Heading, Icon, Stack, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import {FaHome} from 'react-icons/fa';
-import { Table } from 'react-bootstrap'
 
 function Recuit(){
     return(
@@ -24,22 +23,23 @@ function Recuit(){
                 <Box color={'white'}>
                 <Heading fontSize='34px' mb='20px'>TUYỂN DỤNG CINEMA PRO MAX</Heading>
                 <Heading fontSize='30px' mb='20px'>I. Bảng thông tin tuyển dụng:</Heading>
-                <Table  bordered >
-                    <thead style={{color: 'white'}}>
-                        <tr>
-                        <th>Stt</th>
-                        <th >Vị trí</th>
-                        <th>Số lượng</th>
-                        <th>Mô tả công việc chính</th>
-                        <th>Yêu cầu</th>
-                        </tr>
-                    </thead>
-                    <tbody style={{color: 'white', fontSize:'17px'}}>
-                        <tr>
-                        <td>1</td>
-                        <td>Chuyên viên pháp lý</td>
-                        <td>1</td>
-                        <td>	
+                <TableContainer border={'2px'} w='100%'>
+                <Table variant='simple'>
+                    <Thead >
+                        <Tr>
+                        <Th color={'white'}>Stt</Th>
+                        <Th color={'white'}>Vị trí</Th>
+                        <Th color={'white'}>Số lượng</Th>
+                        <Th color={'white'}>Mô tả công việc chính</Th>
+                        <Th color={'white'}>Yêu cầu</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody  fontSize='17px'>
+                        <Tr>
+                        <Td>1</Td>
+                        <Td>Chuyên viên pháp lý</Td>
+                        <Td>1</Td>
+                        <Td>	
 +  Chịu trách nhiệm về pháp lý và pháp chế của công ty. Tham gia soạn thảo HĐ, văn bản, hồ sơ giao dịch. Kiểm soát tính pháp lý đối với các văn bản, hợp đồng công ty ban hành, ký kết.
 <br/>
 +  Chịu trách nhiệm kiểm tra tính pháp lý, hợp pháp cho tất cả các hoạt động và lĩnh vực kinh doanh của công ty. Đảm bảo mọi thủ tục, quy định vận hành của công ty hợp pháp.
@@ -50,8 +50,8 @@ function Recuit(){
 <br/>
 +  Liên hệ, giao dịch với các cơ quan bên ngoài để giải quyết công việc cấp trên phân công. Tham gia tố tụng theo sự phân công của Lãnh đạo nhằm bảo vệ quyền lợi cho công ty.
 <br/>
-+ Các công việc khác theo sự chỉ đạo của cấp trên</td>
-                        <td>*Yêu cầu:<br/>
++ Các công việc khác theo sự chỉ đạo của cấp trên</Td>
+                        <Td>*Yêu cầu:<br/>
 
 + Giới tính: Nam / Nữ.
 <br/>
@@ -79,15 +79,15 @@ function Recuit(){
 <br/>
 - Ý thức chấp hành sự phân công của tổ chức.
 <br/>
-* Làm việc tại Văn phòng TP. Đà Nẵng – 136 Trần Cao Vân, Quận Thanh Khê</td>
-                        </tr>
+* Làm việc tại Văn phòng TP. Đà Nẵng – 136 Trần Cao Vân, Quận Thanh Khê</Td>
+                        </Tr>
 
-                        <tr>
-                        <td>2</td>
-                        <td>	
- Quản lý chất lượng dịch vụ và Chăm sóc khách hàng</td>
-                        <td>2</td>
-                        <td>+ Quản lý, phân phối nhân lực, giám sát hoạt động và chất lượng dịch vụ của hệ thống Cinema Pro Max Cinema.
+                        <Tr>
+                        <Td>2</Td>
+                        <Td>	
+ Quản lý chất lượng dịch vụ và Chăm sóc khách hàng</Td>
+                        <Td>2</Td>
+                        <Td>+ Quản lý, phân phối nhân lực, giám sát hoạt động và chất lượng dịch vụ của hệ thống Cinema Pro Max Cinema.
                         <br/>
 + Hỗ trợ quản lý xây dựng quy trình quản lý, giám sát dịch vụ, quy trình quản lý chất lượng của khối vận hành dịch vụ Cinema Pro Max Cinema.
 <br/>
@@ -101,8 +101,8 @@ function Recuit(){
 <br/>
 + Quản lý chất lượng dịch vụ cung cấp qua hotline và các kênh dịch vụ khách hàng của công ty.
 <br/>
-+ Thực hiện các công việc khác theo sự phân công của cấp trên.</td>
-                        <td>*Yêu cầu:
++ Thực hiện các công việc khác theo sự phân công của cấp trên.</Td>
+                        <Td>*Yêu cầu:
                         <br/>
 + Giới tính: Nam / Nữ.
 <br/>
@@ -128,14 +128,14 @@ function Recuit(){
 <br/>
 - Kỹ năng tin học tốt.
 <br/>
-* Làm việc tại Văn phòng TP. Buôn Ma Thuột – 39 Trần Khánh Dư, TP. Buôn Ma Thuột, tỉnh Đắk Lắk</td>
-                        </tr>
+* Làm việc tại Văn phòng TP. Buôn Ma Thuột – 39 Trần Khánh Dư, TP. Buôn Ma Thuột, tỉnh Đắk Lắk</Td>
+                        </Tr>
 
-                        <tr>
-                        <td>3</td>
-                        <td>Kiểm soát chất lượng dịch vụ (QC)</td>
-                        <td></td>
-                        <td>+ Kiểm tra các lỗi vi phạm tại các Trung tâm giải trí Cinema Pro Max, tập hợp và báo cáo hình ảnh vi phạm cho Trưởng bộ phận QC.
+                        <Tr>
+                        <Td>3</Td>
+                        <Td>Kiểm soát chất lượng dịch vụ (QC)</Td>
+                        <Td></Td>
+                        <Td>+ Kiểm tra các lỗi vi phạm tại các Trung tâm giải trí Cinema Pro Max, tập hợp và báo cáo hình ảnh vi phạm cho Trưởng bộ phận QC.
                         <br/>
 + Kiểm tra giám sát việc thực hiện nội quy, quy chế của công ty qua hình ảnh camera hoặc giám sát trực tiếp.
 <br/>
@@ -145,8 +145,8 @@ function Recuit(){
 <br/>
 + Tham mưu, đóng góp ý kiến xây dựng quy trình, quy chế, nội quy công ty.
 <br/>
-+ Thực hiện các công việc khác theo chỉ đạo của cấp trên.</td>
-                        <td>*Yêu cầu:
++ Thực hiện các công việc khác theo chỉ đạo của cấp trên.</Td>
+                        <Td>*Yêu cầu:
                         <br/>
 + Giới tính: Nam / Nữ.
 <br/>
@@ -168,14 +168,14 @@ function Recuit(){
 <br/>
 - Có thể đi công tác xa (Quy Nhơn, Long An, Bạc Liêu, Đà Nẵng, Huế, Bảo Lộc)
 <br/>
-* Làm việc tại Văn phòng TP. Buôn Ma Thuột – 39 Trần Khánh Dư, TP. Buôn Ma Thuột, tỉnh Đắk Lắk</td>
-                        </tr>
+* Làm việc tại Văn phòng TP. Buôn Ma Thuột – 39 Trần Khánh Dư, TP. Buôn Ma Thuột, tỉnh Đắk Lắk</Td>
+                        </Tr>
 
-                        <tr>
-                        <td>4</td>
-                        <td>Giám sát sảnh Cinema Pro Max</td>
-                        <td></td>
-                        <td>	
+                        <Tr>
+                        <Td>4</Td>
+                        <Td>Giám sát sảnh Cinema Pro Max</Td>
+                        <Td></Td>
+                        <Td>	
 +  Trực tiếp tham gia vận hành, quản lý, thực hiện và giám sát toàn bộ hoạt động trong 01 ca làm việc tại Rạp. (Kiểm tra hàng hóa, nguyên vật liệu, bán vé, thu ngân, vệ sinh rạp…).
 <br/>
  + Kiểm tra chất lượng phim, hình ảnh, âm thanh, máy chiếu.
@@ -194,8 +194,8 @@ function Recuit(){
 <br/>
 + Thực hiện báo cáo nhân sự, báo cáo doanh thu trong ca làm việc và các báo cáo có liên quan đến hoạt động của Rạp định kỳ theo yêu cầu của Quản lý Trung Tâm (CM) và các Phòng, ban chuyên môn.
 <br/>
-+ Thực hiện một số công việc khác theo sự phân công của Quản lý trung tâm (CM)</td>
-                        <td>*Yêu cầu:
++ Thực hiện một số công việc khác theo sự phân công của Quản lý trung tâm (CM)</Td>
+                        <Td>*Yêu cầu:
                         <br/>
 + Giới tính: Nam / Nữ.
 <br/>
@@ -225,14 +225,14 @@ function Recuit(){
           <br/>
           + Làm việc cả ngày cuối tuần và ngày Lễ Tết. (Được off 1 ngày trong tuần từ thứ hai đến thứ năm)
           <br/>
-* Làm việc tại TT Cinema Pro Max Bảo Lộc – 729/1 Trần Phú, Phường B’Lao, TP. Bảo Lộc, tỉnh Lâm Đồng</td>
-                        </tr>
+* Làm việc tại TT Cinema Pro Max Bảo Lộc – 729/1 Trần Phú, Phường B’Lao, TP. Bảo Lộc, tỉnh Lâm Đồng</Td>
+                        </Tr>
 
-                        <tr>
-                        <td>5</td>
-                        <td>NV Kỹ thuật Cinema Pro Max</td>
-                        <td></td>
-                        <td>	
+                        <Tr>
+                        <Td>5</Td>
+                        <Td>NV Kỹ thuật Cinema Pro Max</Td>
+                        <Td></Td>
+                        <Td>	
  - Thực hiện các công việc kỹ thuật của phòng chiếu, kỹ thuật hạ tầng, cơ sở vật chất; sửa chữa, bảo trì, bảo dưỡng các thiết bị, máy móc của Trung Tâm theo đúng quy định về các tiêu chuẩn kỹ thuật.
  <br/>
  - Khắc phục sự cố về máy móc, thiết bị kỹ thuật và hạ tầng khi có vấn đề xảy ra. Báo cáo với cấp trên để kịp thời sửa chữa.
@@ -241,8 +241,8 @@ function Recuit(){
  <br/>
  - Xử lý sự cố, sửa chữa, bảo trì hệ thống máy chiếu phim.
  <br/>
- - Thực hiện một số công việc khác theo chỉ đạo của Quản lý.</td>
-                        <td>*Giới tính/độ tuổi
+ - Thực hiện một số công việc khác theo chỉ đạo của Quản lý.</Td>
+                        <Td>*Giới tính/độ tuổi
                         <br/>
 + Giới tính: Nam
 <br/>
@@ -268,12 +268,12 @@ function Recuit(){
 <br/>
 * Thời gian làm việc: Theo ca
 <br/>
-* Làm việc tại TT Cinema Pro Max Bảo Lộc – 729/1 Trần Phú, Phường B’Lao, TP. Bảo Lộc, tỉnh Lâm Đồng</td>
-                        </tr>
+* Làm việc tại TT Cinema Pro Max Bảo Lộc – 729/1 Trần Phú, Phường B’Lao, TP. Bảo Lộc, tỉnh Lâm Đồng</Td>
+                        </Tr>
 
                        
-                    </tbody>
-            </Table>
+                    </Tbody>
+            </Table></TableContainer>
             </Box>
             <Box color={'white'}>
                <Heading fontSize={'30px'}>II. Hồ sơ bao gồm:</Heading>

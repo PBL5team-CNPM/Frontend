@@ -35,10 +35,9 @@ const Showtimes = (props) => {
     }, [])
 
     const List = locationState.data.map((item)=>{
-        // <FilmUpcoming key = {item.id} data = {item} />
         return(
             <Link key={item.id} to="/home/movie-info/lich-chieu/chon-ghe" state={{data:item, tenphim: locationState.tenphim}}>
-                <Center borderRadius='10px' border='4px' py={2}>
+                <Center borderRadius='10px' border='4px' py={2} _hover={{color: "#42C2FF"}}>
                     <Box ml ="50px">
                         <Text fontSize='18px'>
                             Phòng chiếu : {item.phongchieu_name}
@@ -85,13 +84,13 @@ const Showtimes = (props) => {
                 </Breadcrumb>
                 <Box>
                     <Divider mt='24px' mb='24px'/>
-                    <Flex>
-                        <Box ml='84px'>
+                    <Center >
+                        <Box>
                             <SimpleGrid columns={[2, null, 3]} spacing='20px' spacingX='84px'>
                                 {List}
                             </SimpleGrid>
                         </Box>
-                    </Flex>
+                    </Center>
                     <Divider mt='24px' mb='24px'/>
                 </Box>
             </Box>

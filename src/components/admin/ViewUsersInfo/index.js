@@ -9,6 +9,7 @@ import { Image,Modal,
     Text,
     Center,} from '@chakra-ui/react';
 import React from 'react';
+import moment from 'moment'
 
 
 function ViewUsersInFo(props){
@@ -58,7 +59,7 @@ function ViewUsersInFo(props){
 
                <Flex  mt='10px'>
                    <Text mr='82px' >Ngày sinh:</Text>
-                   <Text fontWeight='bold'>{props.data.birth}</Text>
+                   <Text fontWeight='bold'>{moment(props.data.birth).format("DD/MM/YYYY")}</Text>
                </Flex>
 
                <Flex  mt='10px' >

@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react"
 
 import { ChevronRightIcon, InfoIcon } from '@chakra-ui/icons'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 import moment from "moment";
 import axios from "axios";
 
@@ -192,7 +192,7 @@ const BillInfo = () => {
                                                     </Flex>
                                                     <Flex>
                                                         <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
-                                                            ngày giao dịch:
+                                                            Ngày giao dịch:
                                                         </Text>
                                                         <Spacer/>
                                                         <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">

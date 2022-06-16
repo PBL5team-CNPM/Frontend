@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button,  Input, Text} from '@chakra-ui/react';
+import { Box, Button,  Input, Text, useToast} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
 import axios from 'axios'
@@ -12,6 +12,7 @@ function LoginForm() {
           navigate("/home")
       }
     })
+    const toast= useToast()
     const [type, setType]=useState('password');
     const [icon, setIcon]=useState(FaEyeSlash);
     const [email, setEmail] = useState("")
@@ -29,6 +30,16 @@ function LoginForm() {
     }
 
     async function login(){
+      if(email ==="" || password===""){
+        toast({
+          title: 'Warning!',
+          description: "Hãy nhập đủ thông tin!",
+          status: 'warning',
+          duration: 2000,
+          isClosable: true,
+       })
+      }
+      else{
       let item = {"email": email, "password": password}
       axios.post("http://localhost:8000/api/login",item,
         {
@@ -42,8 +53,15 @@ function LoginForm() {
         localStorage.setItem('user-info',JSON.stringify(res.data.data))
         navigate("/home")
       }).catch(error=>{
-            console.log(error)
-      })
+        console.log(error)
+        toast({
+          title: 'Error!',
+          description: "Email, tên tài khoản hoặc mật khẩu không đúng!",
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+       })
+      })}
     }
 
     return (
@@ -91,8 +109,8 @@ function LoginForm() {
           setPassword(e.target.value)
         }}
         /><span style={{position:'relative', bottom:'35px',
-          left:'425px', color:'#42C2FF'}} onClick={handleToggle}>{icon}</span></Box>
-      {/* <Link to='/admin/revenue'> */}
+          left:'425px', color:'#42C2FF', cursor:'pointer'}} onClick={handleToggle}>{icon}</span></Box>
+  
       <Button 
         bgColor='#42C2FF'
         colorScheme='blue'
@@ -104,7 +122,6 @@ function LoginForm() {
         margin='10px 0px 20px 60px'
         onClick={login}
       >Đăng nhập</Button>
-      {/* </Link> */}
 
     <Text color='white' textAlign='center'>Chưa có tài khoản? 
     <span> <Link to='/signup'> 

@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react"
 import TrailerInfo from "../TrailerInfo";
 import { Link, useLocation } from "react-router-dom";
+import moment from 'moment'
 const FilmInfo = (props) => {
     const location=useLocation()
     const [locationState, setLocationState]=useState({data:{
@@ -81,7 +82,7 @@ const FilmInfo = (props) => {
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Khởi chiếu: </Text>
-                                <Text ml='1'>{locationState.data.time}</Text>
+                                <Text ml='1'>{!locationState.data.time?"":moment(locationState.data.time).format("DD/MM/YYYY")}</Text>
                             </Flex>
                             <Flex>
                                 <Text fontWeight='bold'>Thời lượng: </Text>
@@ -90,7 +91,7 @@ const FilmInfo = (props) => {
 
                             <Flex>
                                 <Text fontWeight='bold'>Dự kiến kết thúc: </Text>
-                                <Text ml='1'>{locationState.data.finish} </Text>
+                                <Text ml='1'>{!locationState.data.finish?"":moment(locationState.data.finish).format("DD/MM/YYYY")}</Text>
                             </Flex>
                         </Box>
                         <Flex>
