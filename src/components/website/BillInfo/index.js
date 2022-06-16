@@ -136,6 +136,12 @@ const BillInfo = () => {
                                                         Phòng chiếu: {location.state.data.data.phongchieu_name}
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
+                                                        Ngày chiếu: {moment(location.state.data.data.ngay_chieu).format("DD/MM/YYYY")}
+                                                    </Text>
+                                                    <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
+                                                        Khung giờ: {moment(location.state.data.data.gio_bat_dau, "h:mm:ss").format("LT")} - {moment(location.state.data.data.gio_ket_thuc, "h:mm:ss").format("LT")}
+                                                    </Text>
+                                                    <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
                                                         Ghế: {location.state.seatCode.join(", ")}
                                                     </Text>
                                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">

@@ -81,6 +81,12 @@ function MyTicketDialog(props){
                                         Phòng chiếu: {props.data.phim.suatchieu.phongchieu_name}
                                     </Text>
                                     <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
+                                    Ngày chiếu: {moment(props.data.phim.suatchieu.ngay_chieu).format("DD/MM/YYYY")}
+                                    </Text>
+                                    <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
+                                        Khung giờ: {moment(props.data.phim.suatchieu.gio_bat_dau, "h:mm:ss").format("LT")} - {moment(props.data.phim.suatchieu.gio_ket_thuc, "h:mm:ss").format("LT")}
+                                    </Text>
+                                    <Text ml="20px" fontSize="20px" color="gray" fontWeight="bold">
                                         Ghế: {
                                             props.data.vephim.map(item=>{
                                                 return(
