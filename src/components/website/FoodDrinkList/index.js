@@ -59,34 +59,42 @@ const FoodDrinkList = () => {
             ).catch(error => console.log(error))
         },[])
     console.log(FD_data)
+    console.log(foodDrink)
     const List = foodDrink.map((item)=>{
             return(
                 <Stack>
-                    <Box fontSize='24px'>
-                        {item.ten}
-                        <Box fontSize='24px'>
-                            {item.gia} Đ
+                    <Flex>
+                        <Box>
+                            <Image border="2px" borderRadius="50%" src={"http://localhost:8000/"+item.image} boxSize="100px" />
                         </Box>
-                    </Box>
-                    <NumberInput size='xs' maxW={16} min={0} 
-                        onChange={(e)=>{
-                            setFD_data(prevState => {
-                                return prevState.map(prev => {
-                                    if(prev.food_drink_id === item.id){
-                                        prev.so_luong = e
-                                    }
-                                    return prev
-                                })
-                            })
-                            console.log(FD_data)
-                            }} 
-                        defaultValue={0}>
-                        <NumberInputField  />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
+                        <Box ml="10px">
+                            <Box fontSize='24px'>
+                                {item.ten}
+                                <Box fontSize='24px'>
+                                    {item.gia} Đ
+                                </Box>
+                            </Box>
+                            <NumberInput size='xs' maxW={16} min={0} 
+                                onChange={(e)=>{
+                                    setFD_data(prevState => {
+                                        return prevState.map(prev => {
+                                            if(prev.food_drink_id === item.id){
+                                                prev.so_luong = e
+                                            }
+                                            return prev
+                                        })
+                                    })
+                                    console.log(FD_data)
+                                    }} 
+                                defaultValue={0}>
+                                <NumberInputField  />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                        </Box>
+                    </Flex>
                 </Stack>
             )
     })
