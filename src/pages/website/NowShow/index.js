@@ -51,15 +51,15 @@ function NowShow(props){
                 <Box>
                 <Breadcrumb spacing='8px' separator={<Text fontSize={'32px'}><ChevronRightIcon /></Text>}>
                     <BreadcrumbItem  >
-                        <BreadcrumbLink href='#'>
-                            <Icon pt='6px' as={FaHome}  fontSize='32px' />
+                        <BreadcrumbLink  >
+                            <Icon  as={FaHome}  fontSize='32px' />
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='#'><Heading fontSize='24px'>Phim</Heading></BreadcrumbLink>
+                        <BreadcrumbLink ><Heading fontSize='24px'>Phim</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbItem isCurrentPage>
-                        <BreadcrumbLink href='#'><Heading fontSize='24px'>Phim Đang Chiếu</Heading></BreadcrumbLink>
+                        <BreadcrumbLink ><Heading fontSize='24px'>Phim Đang Chiếu</Heading></BreadcrumbLink>
                     </BreadcrumbItem>
                 </Breadcrumb>
                 <hr/>

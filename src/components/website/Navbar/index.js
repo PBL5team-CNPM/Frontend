@@ -75,9 +75,11 @@ const Navbar = () => {
                         position={'absolute'} left={'24.2%'} 
                         >
                             <Box mb='15px' ml='35px'>
-                                <Link to='movies/now-showing' ><Button  variant={'link'} size='sm' color='white'>
+                                <Link to='movies/now-showing' ><Button  variant={'link'} size='sm' color='white'
+                                _hover={{color: "#42C2FF", textDecoration:'underline'}}>
                                 Phim Đang Chiếu</Button></Link>
-                               <Link to='movies/coming-soon'><Button variant={'link'} size='sm' color='white'>
+                               <Link to='movies/coming-soon'><Button variant={'link'} size='sm' color='white'
+                               _hover={{color: "#42C2FF", textDecoration:'underline'}} >
                                 Phim Sắp Chiếu</Button></Link>
                             </Box>
                        

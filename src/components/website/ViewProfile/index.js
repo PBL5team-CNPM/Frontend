@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button,  Text} from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import moment from 'moment'
 
 
 function ViewProfile() {
@@ -46,7 +47,7 @@ function ViewProfile() {
                m='10px 0px 10px 60px'  borderColor='blue'
                borderRadius="10px"
                border="2px">
-               <Text ml='10px' color='black' fontSize='18px'>{JSON.parse(localStorage.getItem('user-info')).birth}</Text>
+               <Text ml='10px' color='black' fontSize='18px'>{moment(JSON.parse(localStorage.getItem('user-info')).birth).format("DD/MM/YYYY")}</Text>
             </Box>
 
                 

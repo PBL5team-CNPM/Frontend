@@ -135,8 +135,8 @@ function ComingSoonSlider (props){
               draggable='true'>
                   {
                       props.data.map((movie,index)=>(
-                          <Box key={index} className='movieItem' ref={movieRef} w='100%' h='100%' maxH='500px'
-                          maxW='400px' userSelect='none' overflow='hidden' borderRadius='6px'
+                          <Box key={index} className='movieItem' ref={movieRef} w='100%' h='100%'  minH='452px'
+                          minW='300px' userSelect='none' overflow='hidden' borderRadius='6px'
                           position='relative' draggable='false' border={'2px'} borderColor='white'>
                               <Image src={"http://localhost:8000/" + movie.imageUrl} w='100%' h='100%' objectFit='cover'
                               draggable='false'/>

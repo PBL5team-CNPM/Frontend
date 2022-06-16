@@ -42,7 +42,8 @@ function SignupForm() {
       }
 
       async function singup(){
-         if(email==="" || password ==="" || name ===""){
+         if(email==="" || password ==="" || name ==="" || birth==="" || phone_number===""
+         || password2==="" || realname===""){
             toast({
                title: 'Warning!',
                description: "Hãy nhập đủ thông tin.",
@@ -94,7 +95,7 @@ function SignupForm() {
                   console.log(item)
                   toast({
                      title: 'Warning!',
-                     description: "Email này đã được sử dụng",
+                     description: "Email hoặc tên tài khoản đã được sử dụng",
                      status: 'warning',
                      duration: 2000,
                      isClosable: true,
@@ -210,7 +211,7 @@ function SignupForm() {
             onChange={(e)=>{
                setPassword(e.target.value)
             }}
-         /> <span style={{position:'relative',
+         /> <span style={{position:'relative', cursor:'pointer',
          color:'#42C2FF', right:'30px', top:'15px'}} onClick={handleToggle1}>{icon1}</span>
          </Box>
 
@@ -234,7 +235,7 @@ function SignupForm() {
                setPassword2(e.target.value)
             }}
          />
-         <span style={{position:'relative',
+         <span style={{position:'relative', cursor:'pointer',
          color:'#42C2FF', right:'30px', top:'15px'}} onClick={handleToggle2}>{icon2}</span>
          </Box>
 

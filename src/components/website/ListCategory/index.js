@@ -8,7 +8,8 @@ function ListCategory(props){
 
         <Link to={`/home/categorys/${item.id}`} >
         <Center>
-        <Button key={item.id} variant={'link'} color='white' size='xs'> 
+        <Button key={item.id} variant={'link'} color='white' size='xs' 
+        _hover={{color: "#42C2FF", textDecoration:'underline'}}> 
         {item.category}
         </Button></Center>
         </Link>

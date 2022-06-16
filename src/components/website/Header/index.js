@@ -63,7 +63,7 @@ const Header = () => {
                         />
                         <MenuList color={'black'}>
                            <Link to="/profile/viewprofile">
-                            <MenuItem>
+                            <MenuItem _hover={{color: "#42C2FF"}}>
                             <Image
                                 boxSize='2rem'
                                 borderRadius='full'
@@ -78,42 +78,17 @@ const Header = () => {
                             </MenuItem></Link>
                             {(JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD"))?
                              <Link to="/admin/revenue">
-                                   <MenuItem icon={<MdOutlineSpaceDashboard/>}>
+                                   <MenuItem icon={<MdOutlineSpaceDashboard/>} _hover={{color: "#42C2FF"}}>
                                     Dashboard
                                     </MenuItem>
                              </Link>
                              :null}
-                            <MenuItem icon={<FiLogOut/>} onClick={logout}>
+                            <Link to='/'>
+                            <MenuItem icon={<FiLogOut/>} onClick={logout} _hover={{color: "#42C2FF"}}>
                             Đăng xuất
-                            </MenuItem>
+                            </MenuItem></Link>
                         </MenuList>
                     </Menu>
-                    
-                    // <Flex mr='60px'>
-                    //     <Box w='80px' mr='60px'>
-                    //     <Link to="/profile/viewprofile">
-                    //         <Button  colorScheme='white' variant='link'>
-                    //             {JSON.parse(localStorage.getItem('user-info')).name}
-                    //         </Button>
-                    //         </Link>
-                    //     </Box>
-                    //     { (JSON.parse(localStorage.getItem('user-info')).action.includes("DASHBOARD"))?
-                    //     <Box w='80px' mr='60px'>
-                    //         <Link to="/admin/film">
-                    //             <Button colorScheme='white' variant='link'>
-                    //                 DashBoard
-                    //             </Button>
-                    //         </Link>
-                    //     </Box>:null
-                    //     } 
-                    //     <Box>
-                    //         <Button colorScheme='white' variant='link'
-                    //             onClick={logout}
-                    //         >
-                    //             Đăng xuất
-                    //         </Button>
-                    //     </Box>
-                    // </Flex>
                     :
                     <Flex mr='60px'>
                         <Box w='80px' mr='60px'>
