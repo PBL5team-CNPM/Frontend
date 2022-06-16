@@ -15,6 +15,7 @@ function MyTickets() {
                 }
             ).catch(error => console.log(error))
         },[])
+    console.log(hoaDon)
 
     const List = hoaDon.map((item, index)=> {
         return(
@@ -36,6 +37,15 @@ function MyTickets() {
                                 </Text>
                                 <Box>
                                     {item.vephim.length} x Vé
+                                </Box>
+                                <Box>
+                                    Phòng chiếu: {item.phim.suatchieu.phongchieu_name}
+                                </Box>
+                                <Box>
+                                    Ngày chiếu: {moment(item.phim.suatchieu.ngay_chieu).format("DD/MM/YYYY")}
+                                </Box>
+                                <Box>
+                                    Khung giờ: {moment(item.phim.suatchieu.gio_bat_dau, "h:mm:ss").format("LT")} - {moment(item.phim.suatchieu.gio_ket_thuc, "h:mm:ss").format("LT")}
                                 </Box>
                                 <Box>
                                     Giá: {item.gia} đ
