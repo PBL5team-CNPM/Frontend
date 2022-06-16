@@ -26,9 +26,12 @@ function DialogAddPopcorn(props){
             gia: "",
         }
     )
+    const [ten, setTen] = useState("")
+    const [gia, setGia] = useState("")
+    const [image, setImage] = useState("")
 
     const handleSubmit = (e) => {
-        if(values.ten==="" || values.gia===""){
+        if(ten==="" || gia===""){
             e.preventDefault();
             toast({
             title: 'Warning!',
@@ -38,7 +41,7 @@ function DialogAddPopcorn(props){
             isClosable: true,
             })
         }
-        else if(values.gia < 1000){
+        else if(gia < 1000){
             e.preventDefault();
             toast({
                 title: 'Warning!',
@@ -53,10 +56,20 @@ function DialogAddPopcorn(props){
         const Popcorn={'ten':values.ten,
                     'gia': values.gia,
                 }
+        const formData = new FormData()
+        formData.append('ten', ten)
+        formData.append('gia', gia)
+        formData.append('image', image)
         console.log(Popcorn)
 
-        axios.post('http://localhost:8000/api/addfooddrink',Popcorn).then(res => {
-
+        axios.post('http://localhost:8000/api/addfooddrink',formData,
+        {
+            headers: {
+                "Content-Type" : "multipart/form-data"
+            }
+        }
+        ).then(res => {
+            console.log(res.data)
         }).catch(error=>{
                 console.log(error)
         })
@@ -104,30 +117,47 @@ function DialogAddPopcorn(props){
                     <Flex mb='20px'>
                     <Text mr='28px'>Tên thực phẩm </Text>
                     <Input w='200px' h='45px' type='text'
-                    value={values.ten}
+                    value={ten}
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
                     borderColor='#42C2FF'
                     placeholder='Nhập tên thực phẩm' 
-                    onChange={(e)=>{setValues({ten: e.target.value,
-                                                gia: values.gia,
-                                                })}} />
+                    onChange={(e)=>{
+                        setTen(e.target.value)
+                        }}
+                    />
                     </Flex>
                     </Center>
                     <Center>
                     <Flex mb='20px'>
                     <Text mr='100px'>Giá</Text>
                     <Input w='200px' h='45px' type='number'
-                    value={values.gia}
+                    value={gia}
                     focusBorderColor='white'
                     border='2px'
                     borderRadius='10px'
                     borderColor='#42C2FF'
                     placeholder='Nhập giá' 
-                    onChange={(e)=>{setValues({ten: values.ten,
-                                                gia: e.target.value,
-                                                })}} />
+                    onChange={(e)=>{
+                        setGia(e.target.value)
+                        }}
+                    />
+                    </Flex>
+                    </Center>
+                    <Center>
+                    <Flex mb='20px'>
+                    <Text mr='100px'>Ảnh</Text>
+                    <Input w='200px' h='45px' type='file'
+                    focusBorderColor='white'
+                    border='2px'
+                    borderRadius='10px'
+                    borderColor='#42C2FF'
+                    placeholder='Image' 
+                    onChange={(e)=>{
+                        setImage(e.target.files[0])
+                        }}
+                    />
                     </Flex>
                     </Center>
                 </Box>

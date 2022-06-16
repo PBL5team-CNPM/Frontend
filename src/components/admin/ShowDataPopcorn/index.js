@@ -38,6 +38,7 @@ const ShowDataPopcorn = () => {
                                 id: popcorn.id,
                                 ten: popcorn.ten,
                                 gia: popcorn.gia,
+                                image: popcorn.image,
                                 food_drink_bill: popcorn.food_drink_bill
                             }
                         )
